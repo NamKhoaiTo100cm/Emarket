@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ShopService } from './shop.service';
 import { ShopController } from './shop.controller';
-import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 
 @Module({
   providers: [ShopService],

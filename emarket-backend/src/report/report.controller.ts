@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Query, Request, ParseIntPipe } from '@nestjs/common';
 import { ReportService } from './report.service';
 import { CreateReportDto, ResolveReportDto } from './dto/report.dto';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 
 @Controller('report')
 export class ReportController {

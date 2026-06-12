@@ -1,7 +1,7 @@
 import { Optional } from "@nestjs/common";
 import { Type } from "class-transformer";
 import { ArrayMinSize, IsArray, IsDefined, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Min, ValidateNested } from "class-validator";
-import { OrderStatus, PaymentMethod, PaymentStatus, ShippingMethod } from "src/generated/prisma/enums";
+import { OrderStatus, PaymentMethod, PaymentStatus, ShippingMethod } from "../../generated/prisma/enums";
 import { CreateOrderItemDto } from "./create-order-item.dto";
 
 export class CreateOrderDto {

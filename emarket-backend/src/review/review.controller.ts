@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Reques
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
-import { Public } from 'src/common/decorators/public.decorator';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Public } from '../common/decorators/public.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 
 @Controller('review')
 export class ReviewController {

@@ -3,8 +3,8 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { CreateShopDto } from './dto/create-shop.dto';
 import { UpdateShopDto } from './dto/update-shop.dto';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { ShopStatus, VerificationStatus } from 'src/generated/prisma/enums';
+import { PrismaService } from '../prisma/prisma.service';
+import { ShopStatus, VerificationStatus } from '../generated/prisma/enums';
 import { SubmitVerificationDto } from './dto/submit-verification.dto';
 import { ReviewVerificationDto } from './dto/review-verification.dto';
 

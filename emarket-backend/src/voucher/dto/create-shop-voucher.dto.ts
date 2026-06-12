@@ -1,5 +1,5 @@
 import { IsEnum, IsOptional, IsString, IsNumber, IsBoolean, IsDateString, Min, IsNotEmpty } from 'class-validator';
-import { DiscountType } from 'src/generated/prisma/enums';
+import { DiscountType } from '../../generated/prisma/enums';
 
 // Giống platform nhưng không có scope, shopId tự lấy từ token
 export class CreateShopVoucherDto {

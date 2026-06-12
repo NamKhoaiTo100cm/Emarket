@@ -2,9 +2,9 @@ import { BadRequestException, ConflictException, ForbiddenException, Injectable,
 import { CreatePlatformVoucherDto } from './dto/create-platform-voucher.dto';
 import { CreateShopVoucherDto } from './dto/create-shop-voucher.dto';
 import { UpdateVoucherDto } from './dto/update-voucher.dto';
-import { VoucherScope } from 'src/generated/prisma/enums';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { Voucher } from 'src/generated/prisma/client';
+import { VoucherScope } from '../generated/prisma/enums';
+import { PrismaService } from '../prisma/prisma.service';
+import { Voucher } from '../generated/prisma/client';
 
 @Injectable()
 export class VoucherService {

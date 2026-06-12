@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { PaymentController } from './payment.controller';
-import { OrderModule } from 'src/order/order.module';
-import { ProductModule } from 'src/product/product.module';
+import { OrderModule } from '../order/order.module';
+import { ProductModule } from '../product/product.module';
 
 @Module({
   controllers: [PaymentController],

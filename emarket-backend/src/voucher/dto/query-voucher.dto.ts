@@ -1,5 +1,5 @@
 import { IsEnum, IsOptional, IsNumberString, IsString } from 'class-validator';
-import { VoucherScope } from 'src/generated/prisma/enums';
+import { VoucherScope } from '../../generated/prisma/enums';
 
 export class QueryVoucherDto {
     @IsEnum(VoucherScope)

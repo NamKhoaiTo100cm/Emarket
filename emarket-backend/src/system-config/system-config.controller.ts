@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
 import { SystemConfigService } from './system-config.service';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 import { UpdateConfigDto } from './dto/update-config.dto';
 
 @Controller('system-config')

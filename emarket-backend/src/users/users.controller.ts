@@ -3,9 +3,9 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { Public } from 'src/common/decorators/public.decorator';
-import { UserStatus } from 'src/generated/prisma/enums';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Public } from '../common/decorators/public.decorator';
+import { UserStatus } from '../generated/prisma/enums';
+import { Roles } from '../common/decorators/roles.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('users')

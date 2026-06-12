@@ -2,9 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req, ParseIntPipe, Q
 import { VoucherService } from './voucher.service';
 import { CreatePlatformVoucherDto } from './dto/create-platform-voucher.dto';
 import { UpdateVoucherDto } from './dto/update-voucher.dto';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 import { CreateShopVoucherDto } from './dto/create-shop-voucher.dto';
-import { Public } from 'src/common/decorators/public.decorator';
+import { Public } from '../common/decorators/public.decorator';
 
 @Controller('voucher')
 export class VoucherController {

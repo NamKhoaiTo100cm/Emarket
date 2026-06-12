@@ -1,6 +1,6 @@
 import { Transform, Type } from 'class-transformer';
 import { IsString, IsOptional, IsEnum, IsInt, IsBoolean } from 'class-validator';
-import { BannerPosition } from 'src/generated/prisma/enums';
+import { BannerPosition } from '../../generated/prisma/enums';
 
 export class CreateBannerDto {
   @IsOptional()

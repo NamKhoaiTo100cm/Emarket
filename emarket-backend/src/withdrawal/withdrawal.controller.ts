@@ -11,9 +11,9 @@ import {
     UseGuards,
 } from '@nestjs/common';
 import { WithdrawalService } from './withdrawal.service';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 import { CreateWithdrawalDto, ResolveWithdrawalDto } from './dto/withdrawal.dto';
-import { WithdrawalStatus } from 'src/generated/prisma/enums';
+import { WithdrawalStatus } from '../generated/prisma/enums';
 
 
 @Controller('withdrawal')

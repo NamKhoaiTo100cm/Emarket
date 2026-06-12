@@ -1,7 +1,7 @@
 // import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-// import { OrderService } from 'src/order/order.service';
-// import { PrismaService } from 'src/prisma/prisma.service';
-// import { ProductService } from 'src/product/product.service';
+// import { OrderService } from '../order/order.service';
+// import { PrismaService } from '../prisma/prisma.service';
+// import { ProductService } from '../product/product.service';
 
 // @Injectable()
 // export class PaymentService {
@@ -92,9 +92,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { OrderService } from 'src/order/order.service';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { ProductService } from 'src/product/product.service';
+import { OrderService } from '../order/order.service';
+import { PrismaService } from '../prisma/prisma.service';
+import { ProductService } from '../product/product.service';
 import axios from 'axios';
 import * as crypto from 'crypto';
 

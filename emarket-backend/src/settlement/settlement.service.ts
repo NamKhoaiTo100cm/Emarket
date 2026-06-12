@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { SystemConfigService } from 'src/system-config/system-config.service';
+import { PrismaService } from '../prisma/prisma.service';
+import { SystemConfigService } from '../system-config/system-config.service';
 
 @Injectable()
 export class SettlementService {

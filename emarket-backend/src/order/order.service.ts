@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { ProductImage } from 'src/product-image/entities/product-image.entity';
+import { PrismaService } from '../prisma/prisma.service';
+import { ProductImage } from '../product-image/entities/product-image.entity';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
-import { VoucherService } from 'src/voucher/voucher.service';
+import { VoucherService } from '../voucher/voucher.service';
 
 @Injectable()
 export class OrderService {

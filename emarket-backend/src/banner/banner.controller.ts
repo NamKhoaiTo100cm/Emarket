@@ -14,12 +14,12 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { BannerService } from './banner.service';
 import { CreateBannerDto } from './dto/create-banner.dto';
 import { UpdateBannerDto } from './dto/update-banner.dto';
-import { Public } from 'src/common/decorators/public.decorator';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Public } from '../common/decorators/public.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 
 @Controller('banner')
 export class BannerController {
-  constructor(private readonly bannerService: BannerService) {}
+  constructor(private readonly bannerService: BannerService) { }
 
   @Post()
   @Roles('admin')

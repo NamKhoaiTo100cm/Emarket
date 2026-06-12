@@ -2,10 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Req, Q
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Public } from 'src/common/decorators/public.decorator';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Public } from '../common/decorators/public.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 import { CreateReturnRequestDto, ResolveReturnRequestDto } from './dto/return-request.dto';
-import { ReturnStatus } from 'src/generated/prisma/enums';
+import { ReturnStatus } from '../generated/prisma/enums';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
 

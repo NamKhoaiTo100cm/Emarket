@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString, IsIn, IsArray } from 'class-validator';
-import { ReturnStatus } from 'src/generated/prisma/enums';
+import { ReturnStatus } from '../../generated/prisma/enums';
 
 export class CreateReturnRequestDto {
   @IsString()

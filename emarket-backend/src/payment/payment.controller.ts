@@ -1,6 +1,6 @@
 import { Controller, Post, Param, ParseIntPipe, Body, Req } from '@nestjs/common';
 import { PaymentService } from './payment.service';
-import { Public } from 'src/common/decorators/public.decorator';
+import { Public } from '../common/decorators/public.decorator';
 
 @Controller('payment')
 export class PaymentController {

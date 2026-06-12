@@ -8,7 +8,7 @@ import {
     Min,
     IsNotEmpty,
 } from 'class-validator';
-import { DiscountType } from 'src/generated/prisma/enums';
+import { DiscountType } from '../../generated/prisma/enums';
 
 export class CreatePlatformVoucherDto {
     @IsString()

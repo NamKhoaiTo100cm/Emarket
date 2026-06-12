@@ -3,9 +3,9 @@ import {
     Injectable,
     NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateWithdrawalDto, ResolveWithdrawalDto } from './dto/withdrawal.dto';
-import { WithdrawalStatus } from 'src/generated/prisma/enums';
+import { WithdrawalStatus } from '../generated/prisma/enums';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Injectable()

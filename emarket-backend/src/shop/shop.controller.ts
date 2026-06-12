@@ -3,10 +3,10 @@ import { ShopService } from './shop.service';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { UpdateShopDto } from './dto/update-shop.dto';
-import { Public } from 'src/common/decorators/public.decorator';
+import { Public } from '../common/decorators/public.decorator';
 import { FileFieldsInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { Roles } from 'src/common/decorators/roles.decorator';
-import { ShopStatus, VerificationStatus } from 'src/generated/prisma/enums';
+import { Roles } from '../common/decorators/roles.decorator';
+import { ShopStatus, VerificationStatus } from '../generated/prisma/enums';
 import { SubmitVerificationDto } from './dto/submit-verification.dto';
 import { ReviewVerificationDto } from './dto/review-verification.dto';
 
