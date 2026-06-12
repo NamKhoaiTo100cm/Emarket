@@ -20,7 +20,10 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ResponseInterceptor());
   app.use(cookieParser()); // Thêm dòng này
   app.enableCors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "https://link-frontend-cua-ban.vercel.app",
+    ],
     credentials: true,
   })
   await app.listen(process.env.PORT || 8000);
