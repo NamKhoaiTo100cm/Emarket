@@ -14,22 +14,22 @@ const ProductList = ({ products }: { products: any[] }) => {
                 const hasDiscount = item.salePrice && Number(item.salePrice) > 0 && Number(item.salePrice) < Number(item.price);
                 const activePrice = hasDiscount ? Number(item.salePrice) : Number(item.price);
                 return (
-                    <div 
-                        onClick={() => handleCardProcductClick(item.id)} 
+                    <div
+                        onClick={() => handleCardProcductClick(item.id)}
                         key={item.id}
                         className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-gray-100 dark:border-zinc-800 bg-white dark:bg-card/30 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                     >
                         {/* Top Badge: Favorite/Mall */}
-                        <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
+                        {/* <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
                             <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm">
                                 Yêu thích
                             </span>
-                        </div>
+                        </div> */}
 
                         {/* Image Container */}
                         <div className="relative aspect-square w-full overflow-hidden bg-gray-50 dark:bg-zinc-900/40">
-                            <Image 
-                                src={item.images && item.images.length > 0 ? item.images[0].imageUrl : "/iphone-17-pro-max.webp"} 
+                            <Image
+                                src={item.images && item.images.length > 0 ? item.images[0].imageUrl : "/iphone-17-pro-max.webp"}
                                 alt={item.name}
                                 fill
                                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 16vw"
@@ -47,7 +47,7 @@ const ProductList = ({ products }: { products: any[] }) => {
                             <h3 className="text-sm font-medium text-gray-800 dark:text-zinc-100 line-clamp-2 min-h-[40px] group-hover:text-orange-500 transition-colors">
                                 {item.name}
                             </h3>
-                            
+
                             <div className="flex flex-col gap-0.5">
                                 <span className="text-red-500 font-semibold text-base">
                                     {activePrice.toLocaleString('vi-VN')} đ

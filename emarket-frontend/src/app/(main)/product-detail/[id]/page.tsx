@@ -408,7 +408,7 @@ const ProductDetailPage = () => {
         </div>
       </Card>
       {/* production specs */}
-      <h3 className='text-xl mt-3'>Thông số kỹ thuật</h3>
+      {/* <h3 className='text-xl mt-3'>Thông số kỹ thuật</h3>
       <Table>
         <TableCaption>Thông số kỹ thuật có thể khác tùy phiên bản</TableCaption>
         {/* <TableHeader>
@@ -417,15 +417,14 @@ const ProductDetailPage = () => {
             <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader> */}
-        <TableBody>
-          {productSpecs.map((spec, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{spec.specsName}</TableCell>
-              <TableCell>{spec.specsValue}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <TableBody>
+        {productSpecs.map((spec, index) => (
+          <TableRow key={index}>
+            <TableCell className="font-medium">{spec.specsName}</TableCell>
+            <TableCell>{spec.specsValue}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
 
       {/* product description */}
       <h3 className='text-xl mt-5'>Mô tả sản phẩm</h3>
