@@ -7,7 +7,7 @@ import { Roles } from 'src/common/decorators/roles.decorator';
 import { CreateReturnRequestDto, ResolveReturnRequestDto } from './dto/return-request.dto';
 import { ReturnStatus } from 'src/generated/prisma/enums';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Controller('order')
 export class OrderController {

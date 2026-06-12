@@ -6,7 +6,7 @@ import {
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateWithdrawalDto, ResolveWithdrawalDto } from './dto/withdrawal.dto';
 import { WithdrawalStatus } from 'src/generated/prisma/enums';
-import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Injectable()
 export class WithdrawalService {

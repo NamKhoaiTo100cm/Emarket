@@ -2,7 +2,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { UpdateShopDto } from './dto/update-shop.dto';
-import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ShopStatus, VerificationStatus } from 'src/generated/prisma/enums';
 import { SubmitVerificationDto } from './dto/submit-verification.dto';

@@ -3,7 +3,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProductImage } from 'src/product-image/entities/product-image.entity';
-import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { VoucherService } from 'src/voucher/voucher.service';
 
 @Injectable()
@@ -291,7 +291,7 @@ export class OrderService {
         })
       }
       if (item.returnRequest && item.returnRequest.images && item.returnRequest.images.length > 0) {
-        item.returnRequest.images = item.returnRequest.images.map((img: string) => 
+        item.returnRequest.images = item.returnRequest.images.map((img: string) =>
           img.startsWith('http') ? img : this.cloudinaryService.getUrl(img) || img
         );
       }
@@ -314,7 +314,7 @@ export class OrderService {
       throw new NotFoundException("Order not found")
     }
     if (order.returnRequest && order.returnRequest.images && order.returnRequest.images.length > 0) {
-      order.returnRequest.images = order.returnRequest.images.map((img: string) => 
+      order.returnRequest.images = order.returnRequest.images.map((img: string) =>
         img.startsWith('http') ? img : this.cloudinaryService.getUrl(img) || img
       );
     }
@@ -467,7 +467,7 @@ export class OrderService {
       throw new BadRequestException('Đã quá thời hạn 3 ngày kể từ lúc giao hàng, không thể yêu cầu trả hàng');
     }
     if (order.returnRequest) throw new BadRequestException('Yêu cầu trả hàng cho đơn hàng này đã được tạo trước đó');
- 
+
     return this.prisma.returnRequest.create({
       data: {
         orderId,
@@ -506,7 +506,7 @@ export class OrderService {
 
     return requests.map((req) => {
       if (req.images && req.images.length > 0) {
-        req.images = req.images.map((img) => 
+        req.images = req.images.map((img) =>
           img.startsWith('http') ? img : this.cloudinaryService.getUrl(img) || img
         );
       }
