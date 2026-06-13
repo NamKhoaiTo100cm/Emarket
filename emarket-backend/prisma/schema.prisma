@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider     = "prisma-client"
   output       = "../src/generated/prisma"
@@ -13,13 +8,380 @@ datasource db {
   provider = "postgresql"
 }
 
-// ==================== ENUMS ====================
+model User {
+  id               Int                @id @default(autoincrement())
+  name             String
+  email            String             @unique
+  password         String?
+  phone            String?
+  address          String?
+  avatar           String?            @default("default-avatar.png")
+  role             Role               @default(user)
+  status           UserStatus         @default(active)
+  hashRefreshToken String?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  googleId         String?            @unique
+  cart             Cart[]
+  conversations    ChatConversation[]
+  messages         ChatMessage[]
+  notifications    Notification[]
+  orders           Order[]
+  reports          Report[]
+  reviews          Review[]
+  shop             Shop?
+  userAddresses    UserAddress[]
+}
+
+model Shop {
+  id                   Int                 @id @default(autoincrement())
+  userId               Int                 @unique
+  name                 String
+  description          String?
+  logo                 String?             @default("default-shop.png")
+  banner               String?             @default("default-banner.jpg")
+  address              String?
+  phone                String?
+  rating               Decimal             @default(0) @db.Decimal(3, 2)
+  totalSales           Int                 @default(0)
+  status               ShopStatus          @default(pending)
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+  verificationStatus   VerificationStatus  @default(none)
+  conversations        ChatConversation[]
+  orders               Order[]
+  products             Product[]
+  reports              Report[]
+  user                 User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shopBalance          ShopBalance?
+  verificationRequests ShopVerification[]
+  vouchers             Voucher[]
+  withdrawalRequests   WithdrawalRequest[]
+}
+
+model Category {
+  id                   Int        @id @default(autoincrement())
+  parentId             Int?
+  name                 String
+  icon                 String     @default("🛍️")
+  slug                 String     @unique
+  sortOrder            Int        @default(0)
+  requiresVerification Boolean    @default(false)
+  parent               Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children             Category[] @relation("CategoryTree")
+  products             Product[]
+}
+
+model Product {
+  id          Int              @id @default(autoincrement())
+  shopId      Int
+  categoryId  Int?
+  name        String
+  description String?
+  price       Decimal          @db.Decimal(15, 0)
+  salePrice   Decimal?         @db.Decimal(15, 0)
+  stock       Int              @default(0)
+  soldCount   Int              @default(0)
+  rating      Decimal          @default(0) @db.Decimal(3, 2)
+  reviewCount Int              @default(0)
+  status      ProductStatus    @default(active)
+  isFeatured  Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  cart        Cart[]
+  orderItems  OrderItem[]
+  category    Category?        @relation(fields: [categoryId], references: [id])
+  shop        Shop             @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  images      ProductImage[]
+  variants    ProductVariant[]
+  reports     Report[]
+  reviews     Review[]
+}
+
+model ProductImage {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  imagePath String
+  isMain    Boolean @default(false)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductVariant {
+  id         Int         @id @default(autoincrement())
+  productId  Int
+  name       String
+  price      Decimal     @db.Decimal(15, 0)
+  salePrice  Decimal?    @db.Decimal(15, 0)
+  stock      Int         @default(0)
+  sortOrder  Int         @default(0)
+  orderItems OrderItem[]
+  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+}
+
+model Order {
+  id              Int            @id @default(autoincrement())
+  userId          Int
+  shopId          Int
+  subtotal        Decimal        @default(0) @db.Decimal(15, 0)
+  shippingFee     Decimal        @default(30000) @db.Decimal(15, 0)
+  discount        Decimal        @default(0) @db.Decimal(15, 0)
+  total           Decimal        @db.Decimal(15, 0)
+  shippingAddress String
+  receiverName    String?
+  receiverPhone   String?
+  paymentMethod   PaymentMethod  @default(cod)
+  paymentStatus   PaymentStatus  @default(pending)
+  status          OrderStatus    @default(pending)
+  note            String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  shippingMethod  ShippingMethod @default(standard)
+  voucherId       Int?
+  momoOrderId     String?
+  isSettled       Boolean        @default(false)
+  settlementAt    DateTime?
+  commission      Decimal        @default(0) @db.Decimal(15, 0)
+  trackingCode    String?
+  momoTransId     String?
+  shop            Shop           @relation(fields: [shopId], references: [id])
+  user            User           @relation(fields: [userId], references: [id])
+  voucher         Voucher?       @relation(fields: [voucherId], references: [id])
+  items           OrderItem[]
+  returnRequest   ReturnRequest?
+  reviews         Review[]
+}
+
+model UserAddress {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  receiverName  String
+  receiverPhone String
+  province      String
+  district      String
+  ward          String
+  addressLine   String
+  isDefault     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model OrderItem {
+  id           Int             @id @default(autoincrement())
+  orderId      Int
+  productId    Int
+  productName  String?
+  productImage String?
+  quantity     Int
+  price        Decimal         @db.Decimal(15, 0)
+  variantId    Int?
+  variantName  String?
+  order        Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product      Product         @relation(fields: [productId], references: [id])
+  variant      ProductVariant? @relation(fields: [variantId], references: [id])
+}
+
+model Review {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  productId     Int
+  orderId       Int
+  rating        Int
+  comment       String?
+  createdAt     DateTime  @default(now())
+  isHidden      Boolean   @default(false)
+  sellerReply   String?
+  sellerReplyAt DateTime?
+  updatedAt     DateTime  @updatedAt
+  reports       Report[]
+  order         Order     @relation(fields: [orderId], references: [id])
+  product       Product   @relation(fields: [productId], references: [id])
+  user          User      @relation(fields: [userId], references: [id])
+
+  @@unique([userId, productId, orderId])
+  @@index([productId])
+  @@index([userId])
+}
+
+model Banner {
+  id        Int            @id @default(autoincrement())
+  title     String?
+  image     String
+  link      String?
+  position  BannerPosition @default(main)
+  sortOrder Int            @default(0)
+  active    Boolean        @default(true)
+}
+
+model Voucher {
+  id            Int          @id @default(autoincrement())
+  code          String
+  discountType  DiscountType @default(fixed)
+  discountValue Decimal      @db.Decimal(15, 0)
+  minOrder      Decimal      @default(0) @db.Decimal(15, 0)
+  maxUses       Int          @default(100)
+  usedCount     Int          @default(0)
+  expiresAt     DateTime?
+  active        Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  maxDiscount   Decimal?     @db.Decimal(15, 0)
+  scope         VoucherScope @default(platform)
+  shopId        Int?
+  startAt       DateTime?
+  orders        Order[]
+  shop          Shop?        @relation(fields: [shopId], references: [id], onDelete: Cascade)
+
+  @@unique([code, shopId])
+}
+
+model ShopBalance {
+  id                 Int                 @id @default(autoincrement())
+  shopId             Int                 @unique
+  balance            Decimal             @default(0) @db.Decimal(15, 0)
+  pendingBalance     Decimal             @default(0) @db.Decimal(15, 0)
+  updatedAt          DateTime            @updatedAt
+  shop               Shop                @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  withdrawalRequests WithdrawalRequest[]
+}
+
+model WithdrawalRequest {
+  id            Int              @id @default(autoincrement())
+  shopId        Int
+  amount        Decimal          @db.Decimal(15, 0)
+  bankName      String
+  bankAccount   String
+  accountHolder String
+  status        WithdrawalStatus @default(PENDING)
+  note          String?
+  createdAt     DateTime         @default(now())
+  resolvedAt    DateTime?
+  shopBalanceId Int?
+  shopBalance   ShopBalance?     @relation(fields: [shopBalanceId], references: [id])
+  shop          Shop             @relation(fields: [shopId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id        Int              @id @default(autoincrement())
+  userId    Int
+  title     String
+  message   String?
+  type      NotificationType @default(info)
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ChatConversation {
+  id                Int           @id @default(autoincrement())
+  userId            Int
+  shopId            Int?
+  type              ChatType      @default(shop)
+  unreadUser        Int           @default(0)
+  unreadSeller      Int           @default(0)
+  lastMessage       String?
+  lastMessageAt     DateTime      @default(now())
+  createdAt         DateTime      @default(now())
+  assignedAt        DateTime?
+  assignedStaffId   Int?
+  lastStaffActivity DateTime?
+  shop              Shop?         @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages          ChatMessage[]
+
+  @@unique([userId, shopId])
+}
+
+model ChatMessage {
+  id             Int              @id @default(autoincrement())
+  conversationId Int
+  senderId       Int
+  senderRole     SenderRole
+  content        String
+  attachmentUrl  String?
+  isRead         Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+  conversation   ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         User             @relation(fields: [senderId], references: [id], onDelete: Cascade)
+}
+
+model ShopVerification {
+  id         Int                @id @default(autoincrement())
+  shopId     Int
+  note       String?
+  status     VerificationStatus @default(pending)
+  staffNote  String?
+  reviewedBy Int?
+  reviewedAt DateTime?
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+  shop       Shop               @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  documents  VerificationDoc[]
+}
+
+model VerificationDoc {
+  id                 Int              @id @default(autoincrement())
+  shopVerificationId Int
+  imagePath          String
+  shopVerification   ShopVerification @relation(fields: [shopVerificationId], references: [id], onDelete: Cascade)
+}
+
+model SystemConfig {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model ReturnRequest {
+  id          Int          @id @default(autoincrement())
+  orderId     Int          @unique
+  reason      String
+  status      ReturnStatus @default(PENDING)
+  staffNote   String?
+  bankName    String?
+  bankAccount String?
+  bankOwner   String?
+  images      String[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  order       Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model Report {
+  id         Int          @id @default(autoincrement())
+  userId     Int
+  type       ReportType
+  productId  Int?
+  reviewId   Int?
+  shopId     Int?
+  reason     String
+  status     ReportStatus @default(PENDING)
+  resolvedAt DateTime?
+  resolvedBy Int?
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  product    Product?     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  review     Review?      @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  shop       Shop?        @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
 enum Role {
   user
   seller
-  staff
   admin
+  staff
 }
 
 enum UserStatus {
@@ -36,8 +398,8 @@ enum ShopStatus {
 enum ProductStatus {
   active
   inactive
-  banned
   deleted
+  banned
 }
 
 enum OrderStatus {
@@ -58,8 +420,8 @@ enum PaymentMethod {
 
 enum PaymentStatus {
   pending
-  processing
   paid
+  processing
   failed
 }
 
@@ -106,393 +468,15 @@ enum VerificationStatus {
   rejected
 }
 
-// ==================== MODELS ====================
-
-model User {
-  id               Int        @id @default(autoincrement())
-  name             String
-  email            String     @unique
-  password         String?
-  googleId         String?    @unique
-  phone            String?
-  address          String?
-  avatar           String?    @default("default-avatar.png")
-  role             Role       @default(user)
-  status           UserStatus @default(active)
-  hashRefreshToken String?
-  createdAt        DateTime   @default(now())
-  updatedAt        DateTime   @updatedAt
-
-  shop          Shop?
-  orders        Order[]
-  reviews       Review[]
-  cart          Cart[]
-  notifications Notification[]
-  conversations ChatConversation[]
-  messages      ChatMessage[]
-  reports       Report[]
-
-  userAddresses UserAddress[]
-}
-
-model Shop {
-  id                 Int                @id @default(autoincrement())
-  userId             Int                @unique
-  name               String
-  description        String?
-  logo               String?            @default("default-shop.png")
-  banner             String?            @default("default-banner.jpg")
-  address            String?
-  phone              String?
-  rating             Decimal            @default(0) @db.Decimal(3, 2)
-  totalSales         Int                @default(0)
-  status             ShopStatus         @default(pending)
-  verificationStatus VerificationStatus @default(none)
-  createdAt          DateTime           @default(now())
-  updatedAt          DateTime           @updatedAt
-
-  user                 User                @relation(fields: [userId], references: [id], onDelete: Cascade)
-  products             Product[]
-  orders               Order[]
-  conversations        ChatConversation[]
-  vouchers             Voucher[]
-  shopBalance          ShopBalance?
-  withdrawalRequests   WithdrawalRequest[]
-  verificationRequests ShopVerification[]
-  reports              Report[]
-}
-
-model Category {
-  id                   Int     @id @default(autoincrement())
-  parentId             Int?
-  name                 String
-  icon                 String  @default("🛍️")
-  slug                 String  @unique
-  sortOrder            Int     @default(0)
-  requiresVerification Boolean @default(false)
-
-  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
-  children Category[] @relation("CategoryTree")
-  products Product[]
-}
-
-model Product {
-  id          Int           @id @default(autoincrement())
-  shopId      Int
-  categoryId  Int?
-  name        String
-  description String?
-  price       Decimal       @db.Decimal(15, 0)
-  salePrice   Decimal?      @db.Decimal(15, 0)
-  stock       Int           @default(0)
-  soldCount   Int           @default(0)
-  rating      Decimal       @default(0) @db.Decimal(3, 2)
-  reviewCount Int           @default(0)
-  status      ProductStatus @default(active)
-  isFeatured  Boolean       @default(false)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-
-  shop       Shop             @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  category   Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  images     ProductImage[]
-  variants   ProductVariant[]
-  cart       Cart[]
-  reviews    Review[]
-  orderItems OrderItem[]
-  reports    Report[]
-}
-
-model ProductImage {
-  id        Int     @id @default(autoincrement())
-  productId Int
-  imagePath String
-  isMain    Boolean @default(false)
-
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-}
-
-model ProductVariant {
-  id        Int      @id @default(autoincrement())
-  productId Int
-  name      String
-  price     Decimal  @db.Decimal(15, 0)
-  salePrice Decimal? @db.Decimal(15, 0)
-  stock     Int      @default(0)
-  sortOrder Int      @default(0)
-
-  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
-  orderItems OrderItem[]
-}
-
-model Cart {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  productId Int
-  quantity  Int      @default(1)
-  createdAt DateTime @default(now())
-
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, productId])
-}
-
-model Order {
-  id              Int            @id @default(autoincrement())
-  userId          Int
-  shopId          Int
-  subtotal        Decimal        @default(0) @db.Decimal(15, 0)
-  shippingFee     Decimal        @default(30000) @db.Decimal(15, 0)
-  discount        Decimal        @default(0) @db.Decimal(15, 0)
-  total           Decimal        @db.Decimal(15, 0)
-  shippingAddress String
-  receiverName    String?
-  receiverPhone   String?
-  momoOrderId     String? // thêm dòng này
-  momoTransId     String? // Mã giao dịch MoMo (transId từ IPN)
-  paymentMethod   PaymentMethod  @default(cod)
-  paymentStatus   PaymentStatus  @default(pending)
-  shippingMethod  ShippingMethod @default(standard)
-  status          OrderStatus    @default(pending)
-  note            String?
-  trackingCode    String? // Mã vận đơn do seller nhập khi giao hàng
-  voucherId       Int?
-  isSettled       Boolean        @default(false)
-  commission      Decimal        @default(0) @db.Decimal(15, 0)
-  settlementAt    DateTime?
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-
-  user          User           @relation(fields: [userId], references: [id])
-  shop          Shop           @relation(fields: [shopId], references: [id])
-  voucher       Voucher?       @relation(fields: [voucherId], references: [id])
-  items         OrderItem[]
-  reviews       Review[]
-  returnRequest ReturnRequest?
-}
-
-model UserAddress {
-  id            Int      @id @default(autoincrement())
-  userId        Int
-  receiverName  String
-  receiverPhone String
-  province      String
-  district      String
-  ward          String
-  addressLine   String // số nhà, tên đường
-  isDefault     Boolean  @default(false)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model OrderItem {
-  id           Int     @id @default(autoincrement())
-  orderId      Int
-  productId    Int
-  productName  String?
-  productImage String?
-  quantity     Int
-  price        Decimal @db.Decimal(15, 0)
-  variantId    Int?
-  variantName  String?
-
-  order   Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product Product         @relation(fields: [productId], references: [id])
-  variant ProductVariant? @relation(fields: [variantId], references: [id])
-}
-
-model Review {
-  id        Int @id @default(autoincrement())
-  userId    Int
-  productId Int
-  orderId   Int
-
-  rating  Int
-  comment String?
-
-  sellerReply   String?
-  sellerReplyAt DateTime?
-
-  isHidden Boolean @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user    User    @relation(fields: [userId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
-  order   Order   @relation(fields: [orderId], references: [id])
-
-  reports Report[]
-
-  @@unique([userId, productId, orderId])
-  @@index([productId])
-  @@index([userId])
-}
-
-model Banner {
-  id        Int            @id @default(autoincrement())
-  title     String?
-  image     String
-  link      String?
-  position  BannerPosition @default(main)
-  sortOrder Int            @default(0)
-  active    Boolean        @default(true)
-}
-
 enum VoucherScope {
   platform
   shop
-}
-
-model Voucher {
-  id            Int          @id @default(autoincrement())
-  code          String
-  scope         VoucherScope @default(platform)
-  shopId        Int?
-  discountType  DiscountType @default(fixed)
-  discountValue Decimal      @db.Decimal(15, 0)
-  minOrder      Decimal      @default(0) @db.Decimal(15, 0)
-  maxDiscount   Decimal?     @db.Decimal(15, 0)
-  maxUses       Int          @default(100)
-  usedCount     Int          @default(0)
-  startAt       DateTime?
-  expiresAt     DateTime?
-  active        Boolean      @default(true)
-  createdAt     DateTime     @default(now())
-
-  shop   Shop?   @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  orders Order[]
-
-  @@unique([code, shopId])
-}
-
-model ShopBalance {
-  id             Int      @id @default(autoincrement())
-  shopId         Int      @unique
-  balance        Decimal  @default(0) @db.Decimal(15, 0)
-  pendingBalance Decimal  @default(0) @db.Decimal(15, 0)
-  updatedAt      DateTime @updatedAt
-
-  shop               Shop                @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  withdrawalRequests WithdrawalRequest[]
-}
-
-model WithdrawalRequest {
-  id            Int              @id @default(autoincrement())
-  shopId        Int
-  amount        Decimal          @db.Decimal(15, 0)
-  bankName      String
-  bankAccount   String
-  accountHolder String
-  status        WithdrawalStatus @default(PENDING)
-  note          String?
-  createdAt     DateTime         @default(now())
-  resolvedAt    DateTime?
-
-  shop          Shop         @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  shopBalance   ShopBalance? @relation(fields: [shopBalanceId], references: [id])
-  shopBalanceId Int?
 }
 
 enum WithdrawalStatus {
   PENDING
   APPROVED
   REJECTED
-}
-
-model Notification {
-  id        Int              @id @default(autoincrement())
-  userId    Int
-  title     String
-  message   String?
-  type      NotificationType @default(info)
-  isRead    Boolean          @default(false)
-  createdAt DateTime         @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model ChatConversation {
-  id                Int       @id @default(autoincrement())
-  userId            Int
-  shopId            Int?
-  assignedStaffId   Int?
-  assignedAt        DateTime?
-  lastStaffActivity DateTime?
-  type              ChatType  @default(shop)
-  unreadUser        Int       @default(0)
-  unreadSeller      Int       @default(0)
-  lastMessage       String?
-  lastMessageAt     DateTime  @default(now())
-  createdAt         DateTime  @default(now())
-
-  user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  shop     Shop?         @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  messages ChatMessage[]
-
-  @@unique([userId, shopId])
-}
-
-model ChatMessage {
-  id             Int        @id @default(autoincrement())
-  conversationId Int
-  senderId       Int
-  senderRole     SenderRole
-  content        String
-  attachmentUrl  String?
-  isRead         Boolean    @default(false)
-  createdAt      DateTime   @default(now())
-
-  conversation ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
-  sender       User             @relation(fields: [senderId], references: [id], onDelete: Cascade)
-}
-
-model ShopVerification {
-  id         Int                @id @default(autoincrement())
-  shopId     Int
-  note       String? // Ghi chú của seller khi nộp hồ sơ
-  status     VerificationStatus @default(pending)
-  staffNote  String? // Ghi chú của staff khi duyệt/từ chối
-  reviewedBy Int? // ID của staff đã duyệt
-  reviewedAt DateTime?
-  createdAt  DateTime           @default(now())
-  updatedAt  DateTime           @updatedAt
-
-  shop      Shop              @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  documents VerificationDoc[]
-}
-
-model VerificationDoc {
-  id                 Int    @id @default(autoincrement())
-  shopVerificationId Int
-  imagePath          String
-
-  shopVerification ShopVerification @relation(fields: [shopVerificationId], references: [id], onDelete: Cascade)
-}
-
-model SystemConfig {
-  key       String   @id
-  value     String
-  updatedAt DateTime @updatedAt
-}
-
-model ReturnRequest {
-  id          Int          @id @default(autoincrement())
-  orderId     Int          @unique
-  reason      String
-  status      ReturnStatus @default(PENDING)
-  staffNote   String?
-  bankName    String?
-  bankAccount String?
-  bankOwner   String?
-  images      String[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-
-  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
 
 enum ReturnStatus {
@@ -511,24 +495,4 @@ enum ReportStatus {
   PENDING
   RESOLVED
   DISMISSED
-}
-
-model Report {
-  id         Int          @id @default(autoincrement())
-  userId     Int
-  type       ReportType
-  productId  Int?
-  reviewId   Int?
-  shopId     Int?
-  reason     String
-  status     ReportStatus @default(PENDING)
-  resolvedAt DateTime?
-  resolvedBy Int?
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-
-  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
-  review  Review?  @relation(fields: [reviewId], references: [id], onDelete: Cascade)
-  shop    Shop?    @relation(fields: [shopId], references: [id], onDelete: Cascade)
 }

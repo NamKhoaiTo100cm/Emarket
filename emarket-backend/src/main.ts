@@ -22,7 +22,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       "http://localhost:3000",
-      "https://link-frontend-cua-ban.vercel.app",
+      "https://emarket-frontend-smoky.vercel.app"
     ],
     credentials: true,
   })

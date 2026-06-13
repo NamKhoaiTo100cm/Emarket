@@ -12,8 +12,8 @@
 export const Role = {
   user: 'user',
   seller: 'seller',
-  staff: 'staff',
-  admin: 'admin'
+  admin: 'admin',
+  staff: 'staff'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -39,8 +39,8 @@ export type ShopStatus = (typeof ShopStatus)[keyof typeof ShopStatus]
 export const ProductStatus = {
   active: 'active',
   inactive: 'inactive',
-  banned: 'banned',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  banned: 'banned'
 } as const
 
 export type ProductStatus = (typeof ProductStatus)[keyof typeof ProductStatus]
@@ -70,8 +70,8 @@ export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
 
 export const PaymentStatus = {
   pending: 'pending',
-  processing: 'processing',
   paid: 'paid',
+  processing: 'processing',
   failed: 'failed'
 } as const
 

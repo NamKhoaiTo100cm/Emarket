@@ -39,7 +39,6 @@ export type UserMinAggregateOutputType = {
   name: string | null
   email: string | null
   password: string | null
-  googleId: string | null
   phone: string | null
   address: string | null
   avatar: string | null
@@ -48,6 +47,7 @@ export type UserMinAggregateOutputType = {
   hashRefreshToken: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  googleId: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -55,7 +55,6 @@ export type UserMaxAggregateOutputType = {
   name: string | null
   email: string | null
   password: string | null
-  googleId: string | null
   phone: string | null
   address: string | null
   avatar: string | null
@@ -64,6 +63,7 @@ export type UserMaxAggregateOutputType = {
   hashRefreshToken: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  googleId: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -71,7 +71,6 @@ export type UserCountAggregateOutputType = {
   name: number
   email: number
   password: number
-  googleId: number
   phone: number
   address: number
   avatar: number
@@ -80,6 +79,7 @@ export type UserCountAggregateOutputType = {
   hashRefreshToken: number
   createdAt: number
   updatedAt: number
+  googleId: number
   _all: number
 }
 
@@ -97,7 +97,6 @@ export type UserMinAggregateInputType = {
   name?: true
   email?: true
   password?: true
-  googleId?: true
   phone?: true
   address?: true
   avatar?: true
@@ -106,6 +105,7 @@ export type UserMinAggregateInputType = {
   hashRefreshToken?: true
   createdAt?: true
   updatedAt?: true
+  googleId?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -113,7 +113,6 @@ export type UserMaxAggregateInputType = {
   name?: true
   email?: true
   password?: true
-  googleId?: true
   phone?: true
   address?: true
   avatar?: true
@@ -122,6 +121,7 @@ export type UserMaxAggregateInputType = {
   hashRefreshToken?: true
   createdAt?: true
   updatedAt?: true
+  googleId?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -129,7 +129,6 @@ export type UserCountAggregateInputType = {
   name?: true
   email?: true
   password?: true
-  googleId?: true
   phone?: true
   address?: true
   avatar?: true
@@ -138,6 +137,7 @@ export type UserCountAggregateInputType = {
   hashRefreshToken?: true
   createdAt?: true
   updatedAt?: true
+  googleId?: true
   _all?: true
 }
 
@@ -232,7 +232,6 @@ export type UserGroupByOutputType = {
   name: string
   email: string
   password: string | null
-  googleId: string | null
   phone: string | null
   address: string | null
   avatar: string | null
@@ -241,6 +240,7 @@ export type UserGroupByOutputType = {
   hashRefreshToken: string | null
   createdAt: Date
   updatedAt: Date
+  googleId: string | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -271,7 +271,6 @@ export type UserWhereInput = {
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringNullableFilter<"User"> | string | null
-  googleId?: Prisma.StringNullableFilter<"User"> | string | null
   phone?: Prisma.StringNullableFilter<"User"> | string | null
   address?: Prisma.StringNullableFilter<"User"> | string | null
   avatar?: Prisma.StringNullableFilter<"User"> | string | null
@@ -280,14 +279,15 @@ export type UserWhereInput = {
   hashRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
-  orders?: Prisma.OrderListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
+  googleId?: Prisma.StringNullableFilter<"User"> | string | null
   cart?: Prisma.CartListRelationFilter
-  notifications?: Prisma.NotificationListRelationFilter
   conversations?: Prisma.ChatConversationListRelationFilter
   messages?: Prisma.ChatMessageListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
   reports?: Prisma.ReportListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
+  shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
   userAddresses?: Prisma.UserAddressListRelationFilter
 }
 
@@ -296,7 +296,6 @@ export type UserOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
-  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -305,14 +304,15 @@ export type UserOrderByWithRelationInput = {
   hashRefreshToken?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  shop?: Prisma.ShopOrderByWithRelationInput
-  orders?: Prisma.OrderOrderByRelationAggregateInput
-  reviews?: Prisma.ReviewOrderByRelationAggregateInput
+  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   cart?: Prisma.CartOrderByRelationAggregateInput
-  notifications?: Prisma.NotificationOrderByRelationAggregateInput
   conversations?: Prisma.ChatConversationOrderByRelationAggregateInput
   messages?: Prisma.ChatMessageOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
   reports?: Prisma.ReportOrderByRelationAggregateInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
+  shop?: Prisma.ShopOrderByWithRelationInput
   userAddresses?: Prisma.UserAddressOrderByRelationAggregateInput
 }
 
@@ -333,14 +333,14 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   hashRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
-  orders?: Prisma.OrderListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
   cart?: Prisma.CartListRelationFilter
-  notifications?: Prisma.NotificationListRelationFilter
   conversations?: Prisma.ChatConversationListRelationFilter
   messages?: Prisma.ChatMessageListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
   reports?: Prisma.ReportListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
+  shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
   userAddresses?: Prisma.UserAddressListRelationFilter
 }, "id" | "email" | "googleId">
 
@@ -349,7 +349,6 @@ export type UserOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
-  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -358,6 +357,7 @@ export type UserOrderByWithAggregationInput = {
   hashRefreshToken?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -373,7 +373,6 @@ export type UserScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   avatar?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
@@ -382,13 +381,13 @@ export type UserScalarWhereWithAggregatesInput = {
   hashRefreshToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -397,14 +396,15 @@ export type UserCreateInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -413,7 +413,6 @@ export type UserUncheckedCreateInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -422,14 +421,15 @@ export type UserUncheckedCreateInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -437,7 +437,6 @@ export type UserUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -446,14 +445,15 @@ export type UserUpdateInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -462,7 +462,6 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -471,14 +470,15 @@ export type UserUncheckedUpdateInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -487,7 +487,6 @@ export type UserCreateManyInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -496,13 +495,13 @@ export type UserCreateManyInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  googleId?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -511,6 +510,7 @@ export type UserUpdateManyMutationInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -518,7 +518,6 @@ export type UserUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -527,6 +526,7 @@ export type UserUncheckedUpdateManyInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -534,7 +534,6 @@ export type UserCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
@@ -543,6 +542,7 @@ export type UserCountOrderByAggregateInput = {
   hashRefreshToken?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -554,7 +554,6 @@ export type UserMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
@@ -563,6 +562,7 @@ export type UserMaxOrderByAggregateInput = {
   hashRefreshToken?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -570,7 +570,6 @@ export type UserMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
@@ -579,6 +578,7 @@ export type UserMinOrderByAggregateInput = {
   hashRefreshToken?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -748,7 +748,6 @@ export type UserCreateWithoutShopInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -757,13 +756,14 @@ export type UserCreateWithoutShopInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -772,7 +772,6 @@ export type UserUncheckedCreateWithoutShopInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -781,13 +780,14 @@ export type UserUncheckedCreateWithoutShopInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -811,7 +811,6 @@ export type UserUpdateWithoutShopInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -820,13 +819,14 @@ export type UserUpdateWithoutShopInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -835,7 +835,6 @@ export type UserUncheckedUpdateWithoutShopInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -844,13 +843,14 @@ export type UserUncheckedUpdateWithoutShopInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -858,7 +858,6 @@ export type UserCreateWithoutCartInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -867,13 +866,14 @@ export type UserCreateWithoutCartInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  googleId?: string | null
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -882,7 +882,6 @@ export type UserUncheckedCreateWithoutCartInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -891,13 +890,14 @@ export type UserUncheckedCreateWithoutCartInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -921,7 +921,6 @@ export type UserUpdateWithoutCartInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -930,13 +929,14 @@ export type UserUpdateWithoutCartInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -945,7 +945,6 @@ export type UserUncheckedUpdateWithoutCartInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -954,13 +953,14 @@ export type UserUncheckedUpdateWithoutCartInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -968,7 +968,6 @@ export type UserCreateWithoutOrdersInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -977,13 +976,14 @@ export type UserCreateWithoutOrdersInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -992,7 +992,6 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1001,13 +1000,14 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1031,7 +1031,6 @@ export type UserUpdateWithoutOrdersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1040,13 +1039,14 @@ export type UserUpdateWithoutOrdersInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -1055,7 +1055,6 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1064,13 +1063,14 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1078,7 +1078,6 @@ export type UserCreateWithoutUserAddressesInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1087,14 +1086,15 @@ export type UserCreateWithoutUserAddressesInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUserAddressesInput = {
@@ -1102,7 +1102,6 @@ export type UserUncheckedCreateWithoutUserAddressesInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1111,14 +1110,15 @@ export type UserUncheckedCreateWithoutUserAddressesInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUserAddressesInput = {
@@ -1141,7 +1141,6 @@ export type UserUpdateWithoutUserAddressesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1150,14 +1149,15 @@ export type UserUpdateWithoutUserAddressesInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserAddressesInput = {
@@ -1165,7 +1165,6 @@ export type UserUncheckedUpdateWithoutUserAddressesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1174,21 +1173,21 @@ export type UserUncheckedUpdateWithoutUserAddressesInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewsInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1197,13 +1196,14 @@ export type UserCreateWithoutReviewsInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -1212,7 +1212,6 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1221,13 +1220,14 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1251,7 +1251,6 @@ export type UserUpdateWithoutReviewsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1260,13 +1259,14 @@ export type UserUpdateWithoutReviewsInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -1275,7 +1275,6 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1284,13 +1283,14 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1298,7 +1298,6 @@ export type UserCreateWithoutNotificationsInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1307,13 +1306,14 @@ export type UserCreateWithoutNotificationsInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -1322,7 +1322,6 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1331,13 +1330,14 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1361,7 +1361,6 @@ export type UserUpdateWithoutNotificationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1370,13 +1369,14 @@ export type UserUpdateWithoutNotificationsInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -1385,7 +1385,6 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1394,13 +1393,14 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1408,7 +1408,6 @@ export type UserCreateWithoutConversationsInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1417,13 +1416,14 @@ export type UserCreateWithoutConversationsInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -1432,7 +1432,6 @@ export type UserUncheckedCreateWithoutConversationsInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1441,13 +1440,14 @@ export type UserUncheckedCreateWithoutConversationsInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1471,7 +1471,6 @@ export type UserUpdateWithoutConversationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1480,13 +1479,14 @@ export type UserUpdateWithoutConversationsInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -1495,7 +1495,6 @@ export type UserUncheckedUpdateWithoutConversationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1504,13 +1503,14 @@ export type UserUncheckedUpdateWithoutConversationsInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1518,7 +1518,6 @@ export type UserCreateWithoutMessagesInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1527,13 +1526,14 @@ export type UserCreateWithoutMessagesInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -1542,7 +1542,6 @@ export type UserUncheckedCreateWithoutMessagesInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1551,13 +1550,14 @@ export type UserUncheckedCreateWithoutMessagesInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1581,7 +1581,6 @@ export type UserUpdateWithoutMessagesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1590,13 +1589,14 @@ export type UserUpdateWithoutMessagesInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -1605,7 +1605,6 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1614,13 +1613,14 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1628,7 +1628,6 @@ export type UserCreateWithoutReportsInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1637,13 +1636,14 @@ export type UserCreateWithoutReportsInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressCreateNestedManyWithoutUserInput
 }
 
@@ -1652,7 +1652,6 @@ export type UserUncheckedCreateWithoutReportsInput = {
   name: string
   email: string
   password?: string | null
-  googleId?: string | null
   phone?: string | null
   address?: string | null
   avatar?: string | null
@@ -1661,13 +1660,14 @@ export type UserUncheckedCreateWithoutReportsInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  shop?: Prisma.ShopUncheckedCreateNestedOneWithoutUserInput
   userAddresses?: Prisma.UserAddressUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1691,7 +1691,6 @@ export type UserUpdateWithoutReportsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1700,13 +1699,14 @@ export type UserUpdateWithoutReportsInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUpdateManyWithoutUserNestedInput
 }
 
@@ -1715,7 +1715,6 @@ export type UserUncheckedUpdateWithoutReportsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1724,13 +1723,14 @@ export type UserUncheckedUpdateWithoutReportsInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cart?: Prisma.CartUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  shop?: Prisma.ShopUncheckedUpdateOneWithoutUserNestedInput
   userAddresses?: Prisma.UserAddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1740,24 +1740,24 @@ export type UserUncheckedUpdateWithoutReportsInput = {
  */
 
 export type UserCountOutputType = {
-  orders: number
-  reviews: number
   cart: number
-  notifications: number
   conversations: number
   messages: number
+  notifications: number
+  orders: number
   reports: number
+  reviews: number
   userAddresses: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  orders?: boolean | UserCountOutputTypeCountOrdersArgs
-  reviews?: boolean | UserCountOutputTypeCountReviewsArgs
   cart?: boolean | UserCountOutputTypeCountCartArgs
-  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   conversations?: boolean | UserCountOutputTypeCountConversationsArgs
   messages?: boolean | UserCountOutputTypeCountMessagesArgs
+  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+  orders?: boolean | UserCountOutputTypeCountOrdersArgs
   reports?: boolean | UserCountOutputTypeCountReportsArgs
+  reviews?: boolean | UserCountOutputTypeCountReviewsArgs
   userAddresses?: boolean | UserCountOutputTypeCountUserAddressesArgs
 }
 
@@ -1774,29 +1774,8 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrderWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReviewWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
 export type UserCountOutputTypeCountCartArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CartWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NotificationWhereInput
 }
 
 /**
@@ -1816,8 +1795,29 @@ export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.E
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ReportWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
 }
 
 /**
@@ -1833,7 +1833,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   email?: boolean
   password?: boolean
-  googleId?: boolean
   phone?: boolean
   address?: boolean
   avatar?: boolean
@@ -1842,14 +1841,15 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   hashRefreshToken?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  shop?: boolean | Prisma.User$shopArgs<ExtArgs>
-  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
-  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  googleId?: boolean
   cart?: boolean | Prisma.User$cartArgs<ExtArgs>
-  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   conversations?: boolean | Prisma.User$conversationsArgs<ExtArgs>
   messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
+  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  shop?: boolean | Prisma.User$shopArgs<ExtArgs>
   userAddresses?: boolean | Prisma.User$userAddressesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1859,7 +1859,6 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   email?: boolean
   password?: boolean
-  googleId?: boolean
   phone?: boolean
   address?: boolean
   avatar?: boolean
@@ -1868,6 +1867,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   hashRefreshToken?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  googleId?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1875,7 +1875,6 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   email?: boolean
   password?: boolean
-  googleId?: boolean
   phone?: boolean
   address?: boolean
   avatar?: boolean
@@ -1884,6 +1883,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   hashRefreshToken?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  googleId?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1891,7 +1891,6 @@ export type UserSelectScalar = {
   name?: boolean
   email?: boolean
   password?: boolean
-  googleId?: boolean
   phone?: boolean
   address?: boolean
   avatar?: boolean
@@ -1900,18 +1899,19 @@ export type UserSelectScalar = {
   hashRefreshToken?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  googleId?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "googleId" | "phone" | "address" | "avatar" | "role" | "status" | "hashRefreshToken" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "address" | "avatar" | "role" | "status" | "hashRefreshToken" | "createdAt" | "updatedAt" | "googleId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  shop?: boolean | Prisma.User$shopArgs<ExtArgs>
-  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
-  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
   cart?: boolean | Prisma.User$cartArgs<ExtArgs>
-  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   conversations?: boolean | Prisma.User$conversationsArgs<ExtArgs>
   messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
+  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  shop?: boolean | Prisma.User$shopArgs<ExtArgs>
   userAddresses?: boolean | Prisma.User$userAddressesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1921,14 +1921,14 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    shop: Prisma.$ShopPayload<ExtArgs> | null
-    orders: Prisma.$OrderPayload<ExtArgs>[]
-    reviews: Prisma.$ReviewPayload<ExtArgs>[]
     cart: Prisma.$CartPayload<ExtArgs>[]
-    notifications: Prisma.$NotificationPayload<ExtArgs>[]
     conversations: Prisma.$ChatConversationPayload<ExtArgs>[]
     messages: Prisma.$ChatMessagePayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
     reports: Prisma.$ReportPayload<ExtArgs>[]
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
+    shop: Prisma.$ShopPayload<ExtArgs> | null
     userAddresses: Prisma.$UserAddressPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1936,7 +1936,6 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     email: string
     password: string | null
-    googleId: string | null
     phone: string | null
     address: string | null
     avatar: string | null
@@ -1945,6 +1944,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     hashRefreshToken: string | null
     createdAt: Date
     updatedAt: Date
+    googleId: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -2339,14 +2339,14 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  shop<T extends Prisma.User$shopArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$shopArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cart<T extends Prisma.User$cartArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cartArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   conversations<T extends Prisma.User$conversationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$conversationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   messages<T extends Prisma.User$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reports<T extends Prisma.User$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shop<T extends Prisma.User$shopArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$shopArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   userAddresses<T extends Prisma.User$userAddressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userAddressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserAddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2381,7 +2381,6 @@ export interface UserFieldRefs {
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
-  readonly googleId: Prisma.FieldRef<"User", 'String'>
   readonly phone: Prisma.FieldRef<"User", 'String'>
   readonly address: Prisma.FieldRef<"User", 'String'>
   readonly avatar: Prisma.FieldRef<"User", 'String'>
@@ -2390,6 +2389,7 @@ export interface UserFieldRefs {
   readonly hashRefreshToken: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly googleId: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -2783,73 +2783,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.shop
- */
-export type User$shopArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Shop
-   */
-  select?: Prisma.ShopSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Shop
-   */
-  omit?: Prisma.ShopOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShopInclude<ExtArgs> | null
-  where?: Prisma.ShopWhereInput
-}
-
-/**
- * User.orders
- */
-export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Order
-   */
-  select?: Prisma.OrderSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Order
-   */
-  omit?: Prisma.OrderOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrderInclude<ExtArgs> | null
-  where?: Prisma.OrderWhereInput
-  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
-  cursor?: Prisma.OrderWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
-}
-
-/**
- * User.reviews
- */
-export type User$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Review
-   */
-  select?: Prisma.ReviewSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Review
-   */
-  omit?: Prisma.ReviewOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReviewInclude<ExtArgs> | null
-  where?: Prisma.ReviewWhereInput
-  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
-  cursor?: Prisma.ReviewWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
-}
-
-/**
  * User.cart
  */
 export type User$cartArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2871,30 +2804,6 @@ export type User$cartArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   take?: number
   skip?: number
   distinct?: Prisma.CartScalarFieldEnum | Prisma.CartScalarFieldEnum[]
-}
-
-/**
- * User.notifications
- */
-export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Notification
-   */
-  select?: Prisma.NotificationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Notification
-   */
-  omit?: Prisma.NotificationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.NotificationInclude<ExtArgs> | null
-  where?: Prisma.NotificationWhereInput
-  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
-  cursor?: Prisma.NotificationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**
@@ -2946,6 +2855,54 @@ export type User$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
+ * User.notifications
+ */
+export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * User.orders
+ */
+export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
  * User.reports
  */
 export type User$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2967,6 +2924,49 @@ export type User$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
+}
+
+/**
+ * User.reviews
+ */
+export type User$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+}
+
+/**
+ * User.shop
+ */
+export type User$shopArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Shop
+   */
+  select?: Prisma.ShopSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Shop
+   */
+  omit?: Prisma.ShopOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShopInclude<ExtArgs> | null
+  where?: Prisma.ShopWhereInput
 }
 
 /**

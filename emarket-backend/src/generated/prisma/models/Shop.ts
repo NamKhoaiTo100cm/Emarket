@@ -52,9 +52,9 @@ export type ShopMinAggregateOutputType = {
   rating: runtime.Decimal | null
   totalSales: number | null
   status: $Enums.ShopStatus | null
-  verificationStatus: $Enums.VerificationStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  verificationStatus: $Enums.VerificationStatus | null
 }
 
 export type ShopMaxAggregateOutputType = {
@@ -69,9 +69,9 @@ export type ShopMaxAggregateOutputType = {
   rating: runtime.Decimal | null
   totalSales: number | null
   status: $Enums.ShopStatus | null
-  verificationStatus: $Enums.VerificationStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  verificationStatus: $Enums.VerificationStatus | null
 }
 
 export type ShopCountAggregateOutputType = {
@@ -86,9 +86,9 @@ export type ShopCountAggregateOutputType = {
   rating: number
   totalSales: number
   status: number
-  verificationStatus: number
   createdAt: number
   updatedAt: number
+  verificationStatus: number
   _all: number
 }
 
@@ -119,9 +119,9 @@ export type ShopMinAggregateInputType = {
   rating?: true
   totalSales?: true
   status?: true
-  verificationStatus?: true
   createdAt?: true
   updatedAt?: true
+  verificationStatus?: true
 }
 
 export type ShopMaxAggregateInputType = {
@@ -136,9 +136,9 @@ export type ShopMaxAggregateInputType = {
   rating?: true
   totalSales?: true
   status?: true
-  verificationStatus?: true
   createdAt?: true
   updatedAt?: true
+  verificationStatus?: true
 }
 
 export type ShopCountAggregateInputType = {
@@ -153,9 +153,9 @@ export type ShopCountAggregateInputType = {
   rating?: true
   totalSales?: true
   status?: true
-  verificationStatus?: true
   createdAt?: true
   updatedAt?: true
+  verificationStatus?: true
   _all?: true
 }
 
@@ -257,9 +257,9 @@ export type ShopGroupByOutputType = {
   rating: runtime.Decimal
   totalSales: number
   status: $Enums.ShopStatus
-  verificationStatus: $Enums.VerificationStatus
   createdAt: Date
   updatedAt: Date
+  verificationStatus: $Enums.VerificationStatus
   _count: ShopCountAggregateOutputType | null
   _avg: ShopAvgAggregateOutputType | null
   _sum: ShopSumAggregateOutputType | null
@@ -297,18 +297,18 @@ export type ShopWhereInput = {
   rating?: Prisma.DecimalFilter<"Shop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFilter<"Shop"> | number
   status?: Prisma.EnumShopStatusFilter<"Shop"> | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFilter<"Shop"> | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFilter<"Shop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Shop"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  products?: Prisma.ProductListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
+  verificationStatus?: Prisma.EnumVerificationStatusFilter<"Shop"> | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationListRelationFilter
-  vouchers?: Prisma.VoucherListRelationFilter
-  shopBalance?: Prisma.XOR<Prisma.ShopBalanceNullableScalarRelationFilter, Prisma.ShopBalanceWhereInput> | null
-  withdrawalRequests?: Prisma.WithdrawalRequestListRelationFilter
-  verificationRequests?: Prisma.ShopVerificationListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
+  products?: Prisma.ProductListRelationFilter
   reports?: Prisma.ReportListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  shopBalance?: Prisma.XOR<Prisma.ShopBalanceNullableScalarRelationFilter, Prisma.ShopBalanceWhereInput> | null
+  verificationRequests?: Prisma.ShopVerificationListRelationFilter
+  vouchers?: Prisma.VoucherListRelationFilter
+  withdrawalRequests?: Prisma.WithdrawalRequestListRelationFilter
 }
 
 export type ShopOrderByWithRelationInput = {
@@ -323,18 +323,18 @@ export type ShopOrderByWithRelationInput = {
   rating?: Prisma.SortOrder
   totalSales?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  verificationStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
-  products?: Prisma.ProductOrderByRelationAggregateInput
-  orders?: Prisma.OrderOrderByRelationAggregateInput
+  verificationStatus?: Prisma.SortOrder
   conversations?: Prisma.ChatConversationOrderByRelationAggregateInput
-  vouchers?: Prisma.VoucherOrderByRelationAggregateInput
-  shopBalance?: Prisma.ShopBalanceOrderByWithRelationInput
-  withdrawalRequests?: Prisma.WithdrawalRequestOrderByRelationAggregateInput
-  verificationRequests?: Prisma.ShopVerificationOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
+  products?: Prisma.ProductOrderByRelationAggregateInput
   reports?: Prisma.ReportOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
+  shopBalance?: Prisma.ShopBalanceOrderByWithRelationInput
+  verificationRequests?: Prisma.ShopVerificationOrderByRelationAggregateInput
+  vouchers?: Prisma.VoucherOrderByRelationAggregateInput
+  withdrawalRequests?: Prisma.WithdrawalRequestOrderByRelationAggregateInput
 }
 
 export type ShopWhereUniqueInput = Prisma.AtLeast<{
@@ -352,18 +352,18 @@ export type ShopWhereUniqueInput = Prisma.AtLeast<{
   rating?: Prisma.DecimalFilter<"Shop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFilter<"Shop"> | number
   status?: Prisma.EnumShopStatusFilter<"Shop"> | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFilter<"Shop"> | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFilter<"Shop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Shop"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  products?: Prisma.ProductListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
+  verificationStatus?: Prisma.EnumVerificationStatusFilter<"Shop"> | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationListRelationFilter
-  vouchers?: Prisma.VoucherListRelationFilter
-  shopBalance?: Prisma.XOR<Prisma.ShopBalanceNullableScalarRelationFilter, Prisma.ShopBalanceWhereInput> | null
-  withdrawalRequests?: Prisma.WithdrawalRequestListRelationFilter
-  verificationRequests?: Prisma.ShopVerificationListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
+  products?: Prisma.ProductListRelationFilter
   reports?: Prisma.ReportListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  shopBalance?: Prisma.XOR<Prisma.ShopBalanceNullableScalarRelationFilter, Prisma.ShopBalanceWhereInput> | null
+  verificationRequests?: Prisma.ShopVerificationListRelationFilter
+  vouchers?: Prisma.VoucherListRelationFilter
+  withdrawalRequests?: Prisma.WithdrawalRequestListRelationFilter
 }, "id" | "userId">
 
 export type ShopOrderByWithAggregationInput = {
@@ -378,9 +378,9 @@ export type ShopOrderByWithAggregationInput = {
   rating?: Prisma.SortOrder
   totalSales?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  verificationStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
   _count?: Prisma.ShopCountOrderByAggregateInput
   _avg?: Prisma.ShopAvgOrderByAggregateInput
   _max?: Prisma.ShopMaxOrderByAggregateInput
@@ -403,9 +403,9 @@ export type ShopScalarWhereWithAggregatesInput = {
   rating?: Prisma.DecimalWithAggregatesFilter<"Shop"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntWithAggregatesFilter<"Shop"> | number
   status?: Prisma.EnumShopStatusWithAggregatesFilter<"Shop"> | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusWithAggregatesFilter<"Shop"> | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Shop"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Shop"> | Date | string
+  verificationStatus?: Prisma.EnumVerificationStatusWithAggregatesFilter<"Shop"> | $Enums.VerificationStatus
 }
 
 export type ShopCreateInput = {
@@ -418,18 +418,18 @@ export type ShopCreateInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateInput = {
@@ -444,17 +444,17 @@ export type ShopUncheckedCreateInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopUpdateInput = {
@@ -467,18 +467,18 @@ export type ShopUpdateInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateInput = {
@@ -493,17 +493,17 @@ export type ShopUncheckedUpdateInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateManyInput = {
@@ -518,9 +518,9 @@ export type ShopCreateManyInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  verificationStatus?: $Enums.VerificationStatus
 }
 
 export type ShopUpdateManyMutationInput = {
@@ -533,9 +533,9 @@ export type ShopUpdateManyMutationInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
 }
 
 export type ShopUncheckedUpdateManyInput = {
@@ -550,9 +550,9 @@ export type ShopUncheckedUpdateManyInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
 }
 
 export type ShopNullableScalarRelationFilter = {
@@ -572,9 +572,9 @@ export type ShopCountOrderByAggregateInput = {
   rating?: Prisma.SortOrder
   totalSales?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  verificationStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
 }
 
 export type ShopAvgOrderByAggregateInput = {
@@ -596,9 +596,9 @@ export type ShopMaxOrderByAggregateInput = {
   rating?: Prisma.SortOrder
   totalSales?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  verificationStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
 }
 
 export type ShopMinOrderByAggregateInput = {
@@ -613,9 +613,9 @@ export type ShopMinOrderByAggregateInput = {
   rating?: Prisma.SortOrder
   totalSales?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  verificationStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
 }
 
 export type ShopSumOrderByAggregateInput = {
@@ -806,17 +806,17 @@ export type ShopCreateWithoutUserInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutUserInput = {
@@ -830,17 +830,17 @@ export type ShopUncheckedCreateWithoutUserInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutUserInput = {
@@ -869,17 +869,17 @@ export type ShopUpdateWithoutUserInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutUserInput = {
@@ -893,17 +893,17 @@ export type ShopUncheckedUpdateWithoutUserInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateWithoutProductsInput = {
@@ -916,17 +916,17 @@ export type ShopCreateWithoutProductsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutProductsInput = {
@@ -941,16 +941,16 @@ export type ShopUncheckedCreateWithoutProductsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutProductsInput = {
@@ -979,17 +979,17 @@ export type ShopUpdateWithoutProductsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutProductsInput = {
@@ -1004,16 +1004,16 @@ export type ShopUncheckedUpdateWithoutProductsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateWithoutOrdersInput = {
@@ -1026,17 +1026,17 @@ export type ShopCreateWithoutOrdersInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutOrdersInput = {
@@ -1051,16 +1051,16 @@ export type ShopUncheckedCreateWithoutOrdersInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutOrdersInput = {
@@ -1089,17 +1089,17 @@ export type ShopUpdateWithoutOrdersInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutOrdersInput = {
@@ -1114,16 +1114,16 @@ export type ShopUncheckedUpdateWithoutOrdersInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateWithoutVouchersInput = {
@@ -1136,17 +1136,17 @@ export type ShopCreateWithoutVouchersInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutVouchersInput = {
@@ -1161,16 +1161,16 @@ export type ShopUncheckedCreateWithoutVouchersInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutVouchersInput = {
@@ -1199,17 +1199,17 @@ export type ShopUpdateWithoutVouchersInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutVouchersInput = {
@@ -1224,16 +1224,16 @@ export type ShopUncheckedUpdateWithoutVouchersInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateWithoutShopBalanceInput = {
@@ -1246,17 +1246,17 @@ export type ShopCreateWithoutShopBalanceInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
+  reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
   vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
   withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
-  reports?: Prisma.ReportCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutShopBalanceInput = {
@@ -1271,16 +1271,16 @@ export type ShopUncheckedCreateWithoutShopBalanceInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
   vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
   withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
-  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutShopBalanceInput = {
@@ -1309,17 +1309,17 @@ export type ShopUpdateWithoutShopBalanceInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
   vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
   withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
-  reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutShopBalanceInput = {
@@ -1334,16 +1334,16 @@ export type ShopUncheckedUpdateWithoutShopBalanceInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
   vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
   withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
-  reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateWithoutWithdrawalRequestsInput = {
@@ -1356,17 +1356,17 @@ export type ShopCreateWithoutWithdrawalRequestsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
+  reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
   shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
   verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
-  reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutWithdrawalRequestsInput = {
@@ -1381,16 +1381,16 @@ export type ShopUncheckedCreateWithoutWithdrawalRequestsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
   shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
   verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
-  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutWithdrawalRequestsInput = {
@@ -1419,17 +1419,17 @@ export type ShopUpdateWithoutWithdrawalRequestsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
   shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
   verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
-  reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutWithdrawalRequestsInput = {
@@ -1444,16 +1444,16 @@ export type ShopUncheckedUpdateWithoutWithdrawalRequestsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
   shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
   verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
-  reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateWithoutConversationsInput = {
@@ -1466,17 +1466,17 @@ export type ShopCreateWithoutConversationsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   orders?: Prisma.OrderCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutConversationsInput = {
@@ -1491,16 +1491,16 @@ export type ShopUncheckedCreateWithoutConversationsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutConversationsInput = {
@@ -1529,17 +1529,17 @@ export type ShopUpdateWithoutConversationsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutConversationsInput = {
@@ -1554,16 +1554,16 @@ export type ShopUncheckedUpdateWithoutConversationsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
-  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
+  verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateWithoutVerificationRequestsInput = {
@@ -1576,17 +1576,17 @@ export type ShopCreateWithoutVerificationRequestsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
+  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutVerificationRequestsInput = {
@@ -1601,16 +1601,16 @@ export type ShopUncheckedCreateWithoutVerificationRequestsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
-  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutShopInput
+  shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
+  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutVerificationRequestsInput = {
@@ -1639,17 +1639,17 @@ export type ShopUpdateWithoutVerificationRequestsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutVerificationRequestsInput = {
@@ -1664,16 +1664,16 @@ export type ShopUncheckedUpdateWithoutVerificationRequestsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
-  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutShopNestedInput
+  shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateWithoutReportsInput = {
@@ -1686,17 +1686,17 @@ export type ShopCreateWithoutReportsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutShopInput
-  products?: Prisma.ProductCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductCreateNestedManyWithoutShopInput
+  user: Prisma.UserCreateNestedOneWithoutShopInput
   shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
   verificationRequests?: Prisma.ShopVerificationCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateWithoutReportsInput = {
@@ -1711,16 +1711,16 @@ export type ShopUncheckedCreateWithoutReportsInput = {
   rating?: runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: number
   status?: $Enums.ShopStatus
-  verificationStatus?: $Enums.VerificationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  verificationStatus?: $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedCreateNestedManyWithoutShopInput
-  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutShopInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutShopInput
   shopBalance?: Prisma.ShopBalanceUncheckedCreateNestedOneWithoutShopInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
   verificationRequests?: Prisma.ShopVerificationUncheckedCreateNestedManyWithoutShopInput
+  vouchers?: Prisma.VoucherUncheckedCreateNestedManyWithoutShopInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopCreateOrConnectWithoutReportsInput = {
@@ -1749,17 +1749,17 @@ export type ShopUpdateWithoutReportsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
-  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUpdateManyWithoutShopNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNestedInput
   shopBalance?: Prisma.ShopBalanceUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
   verificationRequests?: Prisma.ShopVerificationUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateWithoutReportsInput = {
@@ -1774,16 +1774,16 @@ export type ShopUncheckedUpdateWithoutReportsInput = {
   rating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   totalSales?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShopStatusFieldUpdateOperationsInput | $Enums.ShopStatus
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   conversations?: Prisma.ChatConversationUncheckedUpdateManyWithoutShopNestedInput
-  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutShopNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutShopNestedInput
   shopBalance?: Prisma.ShopBalanceUncheckedUpdateOneWithoutShopNestedInput
-  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
   verificationRequests?: Prisma.ShopVerificationUncheckedUpdateManyWithoutShopNestedInput
+  vouchers?: Prisma.VoucherUncheckedUpdateManyWithoutShopNestedInput
+  withdrawalRequests?: Prisma.WithdrawalRequestUncheckedUpdateManyWithoutShopNestedInput
 }
 
 
@@ -1792,23 +1792,23 @@ export type ShopUncheckedUpdateWithoutReportsInput = {
  */
 
 export type ShopCountOutputType = {
-  products: number
-  orders: number
   conversations: number
+  orders: number
+  products: number
+  reports: number
+  verificationRequests: number
   vouchers: number
   withdrawalRequests: number
-  verificationRequests: number
-  reports: number
 }
 
 export type ShopCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  products?: boolean | ShopCountOutputTypeCountProductsArgs
-  orders?: boolean | ShopCountOutputTypeCountOrdersArgs
   conversations?: boolean | ShopCountOutputTypeCountConversationsArgs
+  orders?: boolean | ShopCountOutputTypeCountOrdersArgs
+  products?: boolean | ShopCountOutputTypeCountProductsArgs
+  reports?: boolean | ShopCountOutputTypeCountReportsArgs
+  verificationRequests?: boolean | ShopCountOutputTypeCountVerificationRequestsArgs
   vouchers?: boolean | ShopCountOutputTypeCountVouchersArgs
   withdrawalRequests?: boolean | ShopCountOutputTypeCountWithdrawalRequestsArgs
-  verificationRequests?: boolean | ShopCountOutputTypeCountVerificationRequestsArgs
-  reports?: boolean | ShopCountOutputTypeCountReportsArgs
 }
 
 /**
@@ -1824,8 +1824,8 @@ export type ShopCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * ShopCountOutputType without action
  */
-export type ShopCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProductWhereInput
+export type ShopCountOutputTypeCountConversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChatConversationWhereInput
 }
 
 /**
@@ -1838,8 +1838,22 @@ export type ShopCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Ext
 /**
  * ShopCountOutputType without action
  */
-export type ShopCountOutputTypeCountConversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ChatConversationWhereInput
+export type ShopCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductWhereInput
+}
+
+/**
+ * ShopCountOutputType without action
+ */
+export type ShopCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReportWhereInput
+}
+
+/**
+ * ShopCountOutputType without action
+ */
+export type ShopCountOutputTypeCountVerificationRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShopVerificationWhereInput
 }
 
 /**
@@ -1856,20 +1870,6 @@ export type ShopCountOutputTypeCountWithdrawalRequestsArgs<ExtArgs extends runti
   where?: Prisma.WithdrawalRequestWhereInput
 }
 
-/**
- * ShopCountOutputType without action
- */
-export type ShopCountOutputTypeCountVerificationRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShopVerificationWhereInput
-}
-
-/**
- * ShopCountOutputType without action
- */
-export type ShopCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReportWhereInput
-}
-
 
 export type ShopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1883,18 +1883,18 @@ export type ShopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   rating?: boolean
   totalSales?: boolean
   status?: boolean
-  verificationStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  products?: boolean | Prisma.Shop$productsArgs<ExtArgs>
-  orders?: boolean | Prisma.Shop$ordersArgs<ExtArgs>
+  verificationStatus?: boolean
   conversations?: boolean | Prisma.Shop$conversationsArgs<ExtArgs>
-  vouchers?: boolean | Prisma.Shop$vouchersArgs<ExtArgs>
-  shopBalance?: boolean | Prisma.Shop$shopBalanceArgs<ExtArgs>
-  withdrawalRequests?: boolean | Prisma.Shop$withdrawalRequestsArgs<ExtArgs>
-  verificationRequests?: boolean | Prisma.Shop$verificationRequestsArgs<ExtArgs>
+  orders?: boolean | Prisma.Shop$ordersArgs<ExtArgs>
+  products?: boolean | Prisma.Shop$productsArgs<ExtArgs>
   reports?: boolean | Prisma.Shop$reportsArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  shopBalance?: boolean | Prisma.Shop$shopBalanceArgs<ExtArgs>
+  verificationRequests?: boolean | Prisma.Shop$verificationRequestsArgs<ExtArgs>
+  vouchers?: boolean | Prisma.Shop$vouchersArgs<ExtArgs>
+  withdrawalRequests?: boolean | Prisma.Shop$withdrawalRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.ShopCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shop"]>
 
@@ -1910,9 +1910,9 @@ export type ShopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   rating?: boolean
   totalSales?: boolean
   status?: boolean
-  verificationStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  verificationStatus?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shop"]>
 
@@ -1928,9 +1928,9 @@ export type ShopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   rating?: boolean
   totalSales?: boolean
   status?: boolean
-  verificationStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  verificationStatus?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shop"]>
 
@@ -1946,22 +1946,22 @@ export type ShopSelectScalar = {
   rating?: boolean
   totalSales?: boolean
   status?: boolean
-  verificationStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  verificationStatus?: boolean
 }
 
-export type ShopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "description" | "logo" | "banner" | "address" | "phone" | "rating" | "totalSales" | "status" | "verificationStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["shop"]>
+export type ShopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "description" | "logo" | "banner" | "address" | "phone" | "rating" | "totalSales" | "status" | "createdAt" | "updatedAt" | "verificationStatus", ExtArgs["result"]["shop"]>
 export type ShopInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  products?: boolean | Prisma.Shop$productsArgs<ExtArgs>
-  orders?: boolean | Prisma.Shop$ordersArgs<ExtArgs>
   conversations?: boolean | Prisma.Shop$conversationsArgs<ExtArgs>
-  vouchers?: boolean | Prisma.Shop$vouchersArgs<ExtArgs>
-  shopBalance?: boolean | Prisma.Shop$shopBalanceArgs<ExtArgs>
-  withdrawalRequests?: boolean | Prisma.Shop$withdrawalRequestsArgs<ExtArgs>
-  verificationRequests?: boolean | Prisma.Shop$verificationRequestsArgs<ExtArgs>
+  orders?: boolean | Prisma.Shop$ordersArgs<ExtArgs>
+  products?: boolean | Prisma.Shop$productsArgs<ExtArgs>
   reports?: boolean | Prisma.Shop$reportsArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  shopBalance?: boolean | Prisma.Shop$shopBalanceArgs<ExtArgs>
+  verificationRequests?: boolean | Prisma.Shop$verificationRequestsArgs<ExtArgs>
+  vouchers?: boolean | Prisma.Shop$vouchersArgs<ExtArgs>
+  withdrawalRequests?: boolean | Prisma.Shop$withdrawalRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.ShopCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ShopIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1974,15 +1974,15 @@ export type ShopIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $ShopPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Shop"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
-    products: Prisma.$ProductPayload<ExtArgs>[]
-    orders: Prisma.$OrderPayload<ExtArgs>[]
     conversations: Prisma.$ChatConversationPayload<ExtArgs>[]
-    vouchers: Prisma.$VoucherPayload<ExtArgs>[]
-    shopBalance: Prisma.$ShopBalancePayload<ExtArgs> | null
-    withdrawalRequests: Prisma.$WithdrawalRequestPayload<ExtArgs>[]
-    verificationRequests: Prisma.$ShopVerificationPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
+    products: Prisma.$ProductPayload<ExtArgs>[]
     reports: Prisma.$ReportPayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
+    shopBalance: Prisma.$ShopBalancePayload<ExtArgs> | null
+    verificationRequests: Prisma.$ShopVerificationPayload<ExtArgs>[]
+    vouchers: Prisma.$VoucherPayload<ExtArgs>[]
+    withdrawalRequests: Prisma.$WithdrawalRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1996,9 +1996,9 @@ export type $ShopPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     rating: runtime.Decimal
     totalSales: number
     status: $Enums.ShopStatus
-    verificationStatus: $Enums.VerificationStatus
     createdAt: Date
     updatedAt: Date
+    verificationStatus: $Enums.VerificationStatus
   }, ExtArgs["result"]["shop"]>
   composites: {}
 }
@@ -2393,15 +2393,15 @@ readonly fields: ShopFieldRefs;
  */
 export interface Prisma__ShopClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  products<T extends Prisma.Shop$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  orders<T extends Prisma.Shop$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   conversations<T extends Prisma.Shop$conversationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$conversationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  vouchers<T extends Prisma.Shop$vouchersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$vouchersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  shopBalance<T extends Prisma.Shop$shopBalanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$shopBalanceArgs<ExtArgs>>): Prisma.Prisma__ShopBalanceClient<runtime.Types.Result.GetResult<Prisma.$ShopBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  withdrawalRequests<T extends Prisma.Shop$withdrawalRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$withdrawalRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WithdrawalRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  verificationRequests<T extends Prisma.Shop$verificationRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$verificationRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShopVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.Shop$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  products<T extends Prisma.Shop$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reports<T extends Prisma.Shop$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  shopBalance<T extends Prisma.Shop$shopBalanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$shopBalanceArgs<ExtArgs>>): Prisma.Prisma__ShopBalanceClient<runtime.Types.Result.GetResult<Prisma.$ShopBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  verificationRequests<T extends Prisma.Shop$verificationRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$verificationRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShopVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  vouchers<T extends Prisma.Shop$vouchersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$vouchersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  withdrawalRequests<T extends Prisma.Shop$withdrawalRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$withdrawalRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WithdrawalRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2442,9 +2442,9 @@ export interface ShopFieldRefs {
   readonly rating: Prisma.FieldRef<"Shop", 'Decimal'>
   readonly totalSales: Prisma.FieldRef<"Shop", 'Int'>
   readonly status: Prisma.FieldRef<"Shop", 'ShopStatus'>
-  readonly verificationStatus: Prisma.FieldRef<"Shop", 'VerificationStatus'>
   readonly createdAt: Prisma.FieldRef<"Shop", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Shop", 'DateTime'>
+  readonly verificationStatus: Prisma.FieldRef<"Shop", 'VerificationStatus'>
 }
     
 
@@ -2846,27 +2846,27 @@ export type ShopDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Shop.products
+ * Shop.conversations
  */
-export type Shop$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Shop$conversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Product
+   * Select specific fields to fetch from the ChatConversation
    */
-  select?: Prisma.ProductSelect<ExtArgs> | null
+  select?: Prisma.ChatConversationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Product
+   * Omit specific fields from the ChatConversation
    */
-  omit?: Prisma.ProductOmit<ExtArgs> | null
+  omit?: Prisma.ChatConversationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ProductInclude<ExtArgs> | null
-  where?: Prisma.ProductWhereInput
-  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
-  cursor?: Prisma.ProductWhereUniqueInput
+  include?: Prisma.ChatConversationInclude<ExtArgs> | null
+  where?: Prisma.ChatConversationWhereInput
+  orderBy?: Prisma.ChatConversationOrderByWithRelationInput | Prisma.ChatConversationOrderByWithRelationInput[]
+  cursor?: Prisma.ChatConversationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+  distinct?: Prisma.ChatConversationScalarFieldEnum | Prisma.ChatConversationScalarFieldEnum[]
 }
 
 /**
@@ -2894,51 +2894,51 @@ export type Shop$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 }
 
 /**
- * Shop.conversations
+ * Shop.products
  */
-export type Shop$conversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Shop$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ChatConversation
+   * Select specific fields to fetch from the Product
    */
-  select?: Prisma.ChatConversationSelect<ExtArgs> | null
+  select?: Prisma.ProductSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ChatConversation
+   * Omit specific fields from the Product
    */
-  omit?: Prisma.ChatConversationOmit<ExtArgs> | null
+  omit?: Prisma.ProductOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ChatConversationInclude<ExtArgs> | null
-  where?: Prisma.ChatConversationWhereInput
-  orderBy?: Prisma.ChatConversationOrderByWithRelationInput | Prisma.ChatConversationOrderByWithRelationInput[]
-  cursor?: Prisma.ChatConversationWhereUniqueInput
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ChatConversationScalarFieldEnum | Prisma.ChatConversationScalarFieldEnum[]
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
 }
 
 /**
- * Shop.vouchers
+ * Shop.reports
  */
-export type Shop$vouchersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Shop$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the Report
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.ReportSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the Report
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.ReportOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.VoucherInclude<ExtArgs> | null
-  where?: Prisma.VoucherWhereInput
-  orderBy?: Prisma.VoucherOrderByWithRelationInput | Prisma.VoucherOrderByWithRelationInput[]
-  cursor?: Prisma.VoucherWhereUniqueInput
+  include?: Prisma.ReportInclude<ExtArgs> | null
+  where?: Prisma.ReportWhereInput
+  orderBy?: Prisma.ReportOrderByWithRelationInput | Prisma.ReportOrderByWithRelationInput[]
+  cursor?: Prisma.ReportWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.VoucherScalarFieldEnum | Prisma.VoucherScalarFieldEnum[]
+  distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
 }
 
 /**
@@ -2958,30 +2958,6 @@ export type Shop$shopBalanceArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   include?: Prisma.ShopBalanceInclude<ExtArgs> | null
   where?: Prisma.ShopBalanceWhereInput
-}
-
-/**
- * Shop.withdrawalRequests
- */
-export type Shop$withdrawalRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the WithdrawalRequest
-   */
-  select?: Prisma.WithdrawalRequestSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the WithdrawalRequest
-   */
-  omit?: Prisma.WithdrawalRequestOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WithdrawalRequestInclude<ExtArgs> | null
-  where?: Prisma.WithdrawalRequestWhereInput
-  orderBy?: Prisma.WithdrawalRequestOrderByWithRelationInput | Prisma.WithdrawalRequestOrderByWithRelationInput[]
-  cursor?: Prisma.WithdrawalRequestWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.WithdrawalRequestScalarFieldEnum | Prisma.WithdrawalRequestScalarFieldEnum[]
 }
 
 /**
@@ -3009,27 +2985,51 @@ export type Shop$verificationRequestsArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
- * Shop.reports
+ * Shop.vouchers
  */
-export type Shop$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Shop$vouchersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Report
+   * Select specific fields to fetch from the Voucher
    */
-  select?: Prisma.ReportSelect<ExtArgs> | null
+  select?: Prisma.VoucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Report
+   * Omit specific fields from the Voucher
    */
-  omit?: Prisma.ReportOmit<ExtArgs> | null
+  omit?: Prisma.VoucherOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ReportInclude<ExtArgs> | null
-  where?: Prisma.ReportWhereInput
-  orderBy?: Prisma.ReportOrderByWithRelationInput | Prisma.ReportOrderByWithRelationInput[]
-  cursor?: Prisma.ReportWhereUniqueInput
+  include?: Prisma.VoucherInclude<ExtArgs> | null
+  where?: Prisma.VoucherWhereInput
+  orderBy?: Prisma.VoucherOrderByWithRelationInput | Prisma.VoucherOrderByWithRelationInput[]
+  cursor?: Prisma.VoucherWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
+  distinct?: Prisma.VoucherScalarFieldEnum | Prisma.VoucherScalarFieldEnum[]
+}
+
+/**
+ * Shop.withdrawalRequests
+ */
+export type Shop$withdrawalRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WithdrawalRequest
+   */
+  select?: Prisma.WithdrawalRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WithdrawalRequest
+   */
+  omit?: Prisma.WithdrawalRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalRequestInclude<ExtArgs> | null
+  where?: Prisma.WithdrawalRequestWhereInput
+  orderBy?: Prisma.WithdrawalRequestOrderByWithRelationInput | Prisma.WithdrawalRequestOrderByWithRelationInput[]
+  cursor?: Prisma.WithdrawalRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WithdrawalRequestScalarFieldEnum | Prisma.WithdrawalRequestScalarFieldEnum[]
 }
 
 /**

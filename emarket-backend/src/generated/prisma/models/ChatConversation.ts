@@ -30,63 +30,63 @@ export type ChatConversationAvgAggregateOutputType = {
   id: number | null
   userId: number | null
   shopId: number | null
-  assignedStaffId: number | null
   unreadUser: number | null
   unreadSeller: number | null
+  assignedStaffId: number | null
 }
 
 export type ChatConversationSumAggregateOutputType = {
   id: number | null
   userId: number | null
   shopId: number | null
-  assignedStaffId: number | null
   unreadUser: number | null
   unreadSeller: number | null
+  assignedStaffId: number | null
 }
 
 export type ChatConversationMinAggregateOutputType = {
   id: number | null
   userId: number | null
   shopId: number | null
-  assignedStaffId: number | null
-  assignedAt: Date | null
-  lastStaffActivity: Date | null
   type: $Enums.ChatType | null
   unreadUser: number | null
   unreadSeller: number | null
   lastMessage: string | null
   lastMessageAt: Date | null
   createdAt: Date | null
+  assignedAt: Date | null
+  assignedStaffId: number | null
+  lastStaffActivity: Date | null
 }
 
 export type ChatConversationMaxAggregateOutputType = {
   id: number | null
   userId: number | null
   shopId: number | null
-  assignedStaffId: number | null
-  assignedAt: Date | null
-  lastStaffActivity: Date | null
   type: $Enums.ChatType | null
   unreadUser: number | null
   unreadSeller: number | null
   lastMessage: string | null
   lastMessageAt: Date | null
   createdAt: Date | null
+  assignedAt: Date | null
+  assignedStaffId: number | null
+  lastStaffActivity: Date | null
 }
 
 export type ChatConversationCountAggregateOutputType = {
   id: number
   userId: number
   shopId: number
-  assignedStaffId: number
-  assignedAt: number
-  lastStaffActivity: number
   type: number
   unreadUser: number
   unreadSeller: number
   lastMessage: number
   lastMessageAt: number
   createdAt: number
+  assignedAt: number
+  assignedStaffId: number
+  lastStaffActivity: number
   _all: number
 }
 
@@ -95,63 +95,63 @@ export type ChatConversationAvgAggregateInputType = {
   id?: true
   userId?: true
   shopId?: true
-  assignedStaffId?: true
   unreadUser?: true
   unreadSeller?: true
+  assignedStaffId?: true
 }
 
 export type ChatConversationSumAggregateInputType = {
   id?: true
   userId?: true
   shopId?: true
-  assignedStaffId?: true
   unreadUser?: true
   unreadSeller?: true
+  assignedStaffId?: true
 }
 
 export type ChatConversationMinAggregateInputType = {
   id?: true
   userId?: true
   shopId?: true
-  assignedStaffId?: true
-  assignedAt?: true
-  lastStaffActivity?: true
   type?: true
   unreadUser?: true
   unreadSeller?: true
   lastMessage?: true
   lastMessageAt?: true
   createdAt?: true
+  assignedAt?: true
+  assignedStaffId?: true
+  lastStaffActivity?: true
 }
 
 export type ChatConversationMaxAggregateInputType = {
   id?: true
   userId?: true
   shopId?: true
-  assignedStaffId?: true
-  assignedAt?: true
-  lastStaffActivity?: true
   type?: true
   unreadUser?: true
   unreadSeller?: true
   lastMessage?: true
   lastMessageAt?: true
   createdAt?: true
+  assignedAt?: true
+  assignedStaffId?: true
+  lastStaffActivity?: true
 }
 
 export type ChatConversationCountAggregateInputType = {
   id?: true
   userId?: true
   shopId?: true
-  assignedStaffId?: true
-  assignedAt?: true
-  lastStaffActivity?: true
   type?: true
   unreadUser?: true
   unreadSeller?: true
   lastMessage?: true
   lastMessageAt?: true
   createdAt?: true
+  assignedAt?: true
+  assignedStaffId?: true
+  lastStaffActivity?: true
   _all?: true
 }
 
@@ -245,15 +245,15 @@ export type ChatConversationGroupByOutputType = {
   id: number
   userId: number
   shopId: number | null
-  assignedStaffId: number | null
-  assignedAt: Date | null
-  lastStaffActivity: Date | null
   type: $Enums.ChatType
   unreadUser: number
   unreadSeller: number
   lastMessage: string | null
   lastMessageAt: Date
   createdAt: Date
+  assignedAt: Date | null
+  assignedStaffId: number | null
+  lastStaffActivity: Date | null
   _count: ChatConversationCountAggregateOutputType | null
   _avg: ChatConversationAvgAggregateOutputType | null
   _sum: ChatConversationSumAggregateOutputType | null
@@ -283,17 +283,17 @@ export type ChatConversationWhereInput = {
   id?: Prisma.IntFilter<"ChatConversation"> | number
   userId?: Prisma.IntFilter<"ChatConversation"> | number
   shopId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
-  assignedStaffId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
-  assignedAt?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
-  lastStaffActivity?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
   type?: Prisma.EnumChatTypeFilter<"ChatConversation"> | $Enums.ChatType
   unreadUser?: Prisma.IntFilter<"ChatConversation"> | number
   unreadSeller?: Prisma.IntFilter<"ChatConversation"> | number
   lastMessage?: Prisma.StringNullableFilter<"ChatConversation"> | string | null
   lastMessageAt?: Prisma.DateTimeFilter<"ChatConversation"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"ChatConversation"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  assignedAt?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
+  assignedStaffId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
+  lastStaffActivity?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
   shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   messages?: Prisma.ChatMessageListRelationFilter
 }
 
@@ -301,17 +301,17 @@ export type ChatConversationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   shopId?: Prisma.SortOrderInput | Prisma.SortOrder
-  assignedStaffId?: Prisma.SortOrderInput | Prisma.SortOrder
-  assignedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastStaffActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   unreadUser?: Prisma.SortOrder
   unreadSeller?: Prisma.SortOrder
   lastMessage?: Prisma.SortOrderInput | Prisma.SortOrder
   lastMessageAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
+  assignedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  assignedStaffId?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastStaffActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   shop?: Prisma.ShopOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
   messages?: Prisma.ChatMessageOrderByRelationAggregateInput
 }
 
@@ -323,17 +323,17 @@ export type ChatConversationWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ChatConversationWhereInput | Prisma.ChatConversationWhereInput[]
   userId?: Prisma.IntFilter<"ChatConversation"> | number
   shopId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
-  assignedStaffId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
-  assignedAt?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
-  lastStaffActivity?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
   type?: Prisma.EnumChatTypeFilter<"ChatConversation"> | $Enums.ChatType
   unreadUser?: Prisma.IntFilter<"ChatConversation"> | number
   unreadSeller?: Prisma.IntFilter<"ChatConversation"> | number
   lastMessage?: Prisma.StringNullableFilter<"ChatConversation"> | string | null
   lastMessageAt?: Prisma.DateTimeFilter<"ChatConversation"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"ChatConversation"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  assignedAt?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
+  assignedStaffId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
+  lastStaffActivity?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
   shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   messages?: Prisma.ChatMessageListRelationFilter
 }, "id" | "userId_shopId">
 
@@ -341,15 +341,15 @@ export type ChatConversationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   shopId?: Prisma.SortOrderInput | Prisma.SortOrder
-  assignedStaffId?: Prisma.SortOrderInput | Prisma.SortOrder
-  assignedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastStaffActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   unreadUser?: Prisma.SortOrder
   unreadSeller?: Prisma.SortOrder
   lastMessage?: Prisma.SortOrderInput | Prisma.SortOrder
   lastMessageAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  assignedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  assignedStaffId?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastStaffActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ChatConversationCountOrderByAggregateInput
   _avg?: Prisma.ChatConversationAvgOrderByAggregateInput
   _max?: Prisma.ChatConversationMaxOrderByAggregateInput
@@ -364,29 +364,29 @@ export type ChatConversationScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"ChatConversation"> | number
   userId?: Prisma.IntWithAggregatesFilter<"ChatConversation"> | number
   shopId?: Prisma.IntNullableWithAggregatesFilter<"ChatConversation"> | number | null
-  assignedStaffId?: Prisma.IntNullableWithAggregatesFilter<"ChatConversation"> | number | null
-  assignedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ChatConversation"> | Date | string | null
-  lastStaffActivity?: Prisma.DateTimeNullableWithAggregatesFilter<"ChatConversation"> | Date | string | null
   type?: Prisma.EnumChatTypeWithAggregatesFilter<"ChatConversation"> | $Enums.ChatType
   unreadUser?: Prisma.IntWithAggregatesFilter<"ChatConversation"> | number
   unreadSeller?: Prisma.IntWithAggregatesFilter<"ChatConversation"> | number
   lastMessage?: Prisma.StringNullableWithAggregatesFilter<"ChatConversation"> | string | null
   lastMessageAt?: Prisma.DateTimeWithAggregatesFilter<"ChatConversation"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ChatConversation"> | Date | string
+  assignedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ChatConversation"> | Date | string | null
+  assignedStaffId?: Prisma.IntNullableWithAggregatesFilter<"ChatConversation"> | number | null
+  lastStaffActivity?: Prisma.DateTimeNullableWithAggregatesFilter<"ChatConversation"> | Date | string | null
 }
 
 export type ChatConversationCreateInput = {
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutConversationsInput
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
   shop?: Prisma.ShopCreateNestedOneWithoutConversationsInput
+  user: Prisma.UserCreateNestedOneWithoutConversationsInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutConversationInput
 }
 
@@ -394,30 +394,30 @@ export type ChatConversationUncheckedCreateInput = {
   id?: number
   userId: number
   shopId?: number | null
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutConversationInput
 }
 
 export type ChatConversationUpdateInput = {
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutConversationsNestedInput
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   shop?: Prisma.ShopUpdateOneWithoutConversationsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutConversationsNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutConversationNestedInput
 }
 
@@ -425,15 +425,15 @@ export type ChatConversationUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutConversationNestedInput
 }
 
@@ -441,42 +441,42 @@ export type ChatConversationCreateManyInput = {
   id?: number
   userId: number
   shopId?: number | null
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
 }
 
 export type ChatConversationUpdateManyMutationInput = {
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ChatConversationUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ChatConversationListRelationFilter = {
@@ -498,63 +498,63 @@ export type ChatConversationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   shopId?: Prisma.SortOrder
-  assignedStaffId?: Prisma.SortOrder
-  assignedAt?: Prisma.SortOrder
-  lastStaffActivity?: Prisma.SortOrder
   type?: Prisma.SortOrder
   unreadUser?: Prisma.SortOrder
   unreadSeller?: Prisma.SortOrder
   lastMessage?: Prisma.SortOrder
   lastMessageAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  assignedAt?: Prisma.SortOrder
+  assignedStaffId?: Prisma.SortOrder
+  lastStaffActivity?: Prisma.SortOrder
 }
 
 export type ChatConversationAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   shopId?: Prisma.SortOrder
-  assignedStaffId?: Prisma.SortOrder
   unreadUser?: Prisma.SortOrder
   unreadSeller?: Prisma.SortOrder
+  assignedStaffId?: Prisma.SortOrder
 }
 
 export type ChatConversationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   shopId?: Prisma.SortOrder
-  assignedStaffId?: Prisma.SortOrder
-  assignedAt?: Prisma.SortOrder
-  lastStaffActivity?: Prisma.SortOrder
   type?: Prisma.SortOrder
   unreadUser?: Prisma.SortOrder
   unreadSeller?: Prisma.SortOrder
   lastMessage?: Prisma.SortOrder
   lastMessageAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  assignedAt?: Prisma.SortOrder
+  assignedStaffId?: Prisma.SortOrder
+  lastStaffActivity?: Prisma.SortOrder
 }
 
 export type ChatConversationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   shopId?: Prisma.SortOrder
-  assignedStaffId?: Prisma.SortOrder
-  assignedAt?: Prisma.SortOrder
-  lastStaffActivity?: Prisma.SortOrder
   type?: Prisma.SortOrder
   unreadUser?: Prisma.SortOrder
   unreadSeller?: Prisma.SortOrder
   lastMessage?: Prisma.SortOrder
   lastMessageAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  assignedAt?: Prisma.SortOrder
+  assignedStaffId?: Prisma.SortOrder
+  lastStaffActivity?: Prisma.SortOrder
 }
 
 export type ChatConversationSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   shopId?: Prisma.SortOrder
-  assignedStaffId?: Prisma.SortOrder
   unreadUser?: Prisma.SortOrder
   unreadSeller?: Prisma.SortOrder
+  assignedStaffId?: Prisma.SortOrder
 }
 
 export type ChatConversationScalarRelationFilter = {
@@ -665,15 +665,15 @@ export type ChatConversationUpdateOneRequiredWithoutMessagesNestedInput = {
 }
 
 export type ChatConversationCreateWithoutUserInput = {
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
   shop?: Prisma.ShopCreateNestedOneWithoutConversationsInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutConversationInput
 }
@@ -681,15 +681,15 @@ export type ChatConversationCreateWithoutUserInput = {
 export type ChatConversationUncheckedCreateWithoutUserInput = {
   id?: number
   shopId?: number | null
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutConversationInput
 }
 
@@ -726,27 +726,27 @@ export type ChatConversationScalarWhereInput = {
   id?: Prisma.IntFilter<"ChatConversation"> | number
   userId?: Prisma.IntFilter<"ChatConversation"> | number
   shopId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
-  assignedStaffId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
-  assignedAt?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
-  lastStaffActivity?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
   type?: Prisma.EnumChatTypeFilter<"ChatConversation"> | $Enums.ChatType
   unreadUser?: Prisma.IntFilter<"ChatConversation"> | number
   unreadSeller?: Prisma.IntFilter<"ChatConversation"> | number
   lastMessage?: Prisma.StringNullableFilter<"ChatConversation"> | string | null
   lastMessageAt?: Prisma.DateTimeFilter<"ChatConversation"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"ChatConversation"> | Date | string
+  assignedAt?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
+  assignedStaffId?: Prisma.IntNullableFilter<"ChatConversation"> | number | null
+  lastStaffActivity?: Prisma.DateTimeNullableFilter<"ChatConversation"> | Date | string | null
 }
 
 export type ChatConversationCreateWithoutShopInput = {
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
   user: Prisma.UserCreateNestedOneWithoutConversationsInput
   messages?: Prisma.ChatMessageCreateNestedManyWithoutConversationInput
 }
@@ -754,15 +754,15 @@ export type ChatConversationCreateWithoutShopInput = {
 export type ChatConversationUncheckedCreateWithoutShopInput = {
   id?: number
   userId: number
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
   messages?: Prisma.ChatMessageUncheckedCreateNestedManyWithoutConversationInput
 }
 
@@ -793,32 +793,32 @@ export type ChatConversationUpdateManyWithWhereWithoutShopInput = {
 }
 
 export type ChatConversationCreateWithoutMessagesInput = {
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutConversationsInput
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
   shop?: Prisma.ShopCreateNestedOneWithoutConversationsInput
+  user: Prisma.UserCreateNestedOneWithoutConversationsInput
 }
 
 export type ChatConversationUncheckedCreateWithoutMessagesInput = {
   id?: number
   userId: number
   shopId?: number | null
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
 }
 
 export type ChatConversationCreateOrConnectWithoutMessagesInput = {
@@ -838,58 +838,58 @@ export type ChatConversationUpdateToOneWithWhereWithoutMessagesInput = {
 }
 
 export type ChatConversationUpdateWithoutMessagesInput = {
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutConversationsNestedInput
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   shop?: Prisma.ShopUpdateOneWithoutConversationsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutConversationsNestedInput
 }
 
 export type ChatConversationUncheckedUpdateWithoutMessagesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ChatConversationCreateManyUserInput = {
   id?: number
   shopId?: number | null
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
 }
 
 export type ChatConversationUpdateWithoutUserInput = {
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   shop?: Prisma.ShopUpdateOneWithoutConversationsNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutConversationNestedInput
 }
@@ -897,56 +897,56 @@ export type ChatConversationUpdateWithoutUserInput = {
 export type ChatConversationUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutConversationNestedInput
 }
 
 export type ChatConversationUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ChatConversationCreateManyShopInput = {
   id?: number
   userId: number
-  assignedStaffId?: number | null
-  assignedAt?: Date | string | null
-  lastStaffActivity?: Date | string | null
   type?: $Enums.ChatType
   unreadUser?: number
   unreadSeller?: number
   lastMessage?: string | null
   lastMessageAt?: Date | string
   createdAt?: Date | string
+  assignedAt?: Date | string | null
+  assignedStaffId?: number | null
+  lastStaffActivity?: Date | string | null
 }
 
 export type ChatConversationUpdateWithoutShopInput = {
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutConversationsNestedInput
   messages?: Prisma.ChatMessageUpdateManyWithoutConversationNestedInput
 }
@@ -954,30 +954,30 @@ export type ChatConversationUpdateWithoutShopInput = {
 export type ChatConversationUncheckedUpdateWithoutShopInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   messages?: Prisma.ChatMessageUncheckedUpdateManyWithoutConversationNestedInput
 }
 
 export type ChatConversationUncheckedUpdateManyWithoutShopInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   type?: Prisma.EnumChatTypeFieldUpdateOperationsInput | $Enums.ChatType
   unreadUser?: Prisma.IntFieldUpdateOperationsInput | number
   unreadSeller?: Prisma.IntFieldUpdateOperationsInput | number
   lastMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedStaffId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastStaffActivity?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1015,17 +1015,17 @@ export type ChatConversationSelect<ExtArgs extends runtime.Types.Extensions.Inte
   id?: boolean
   userId?: boolean
   shopId?: boolean
-  assignedStaffId?: boolean
-  assignedAt?: boolean
-  lastStaffActivity?: boolean
   type?: boolean
   unreadUser?: boolean
   unreadSeller?: boolean
   lastMessage?: boolean
   lastMessageAt?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  assignedAt?: boolean
+  assignedStaffId?: boolean
+  lastStaffActivity?: boolean
   shop?: boolean | Prisma.ChatConversation$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   messages?: boolean | Prisma.ChatConversation$messagesArgs<ExtArgs>
   _count?: boolean | Prisma.ChatConversationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chatConversation"]>
@@ -1034,87 +1034,87 @@ export type ChatConversationSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   id?: boolean
   userId?: boolean
   shopId?: boolean
-  assignedStaffId?: boolean
-  assignedAt?: boolean
-  lastStaffActivity?: boolean
   type?: boolean
   unreadUser?: boolean
   unreadSeller?: boolean
   lastMessage?: boolean
   lastMessageAt?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  assignedAt?: boolean
+  assignedStaffId?: boolean
+  lastStaffActivity?: boolean
   shop?: boolean | Prisma.ChatConversation$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chatConversation"]>
 
 export type ChatConversationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   shopId?: boolean
-  assignedStaffId?: boolean
-  assignedAt?: boolean
-  lastStaffActivity?: boolean
   type?: boolean
   unreadUser?: boolean
   unreadSeller?: boolean
   lastMessage?: boolean
   lastMessageAt?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  assignedAt?: boolean
+  assignedStaffId?: boolean
+  lastStaffActivity?: boolean
   shop?: boolean | Prisma.ChatConversation$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chatConversation"]>
 
 export type ChatConversationSelectScalar = {
   id?: boolean
   userId?: boolean
   shopId?: boolean
-  assignedStaffId?: boolean
-  assignedAt?: boolean
-  lastStaffActivity?: boolean
   type?: boolean
   unreadUser?: boolean
   unreadSeller?: boolean
   lastMessage?: boolean
   lastMessageAt?: boolean
   createdAt?: boolean
+  assignedAt?: boolean
+  assignedStaffId?: boolean
+  lastStaffActivity?: boolean
 }
 
-export type ChatConversationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "shopId" | "assignedStaffId" | "assignedAt" | "lastStaffActivity" | "type" | "unreadUser" | "unreadSeller" | "lastMessage" | "lastMessageAt" | "createdAt", ExtArgs["result"]["chatConversation"]>
+export type ChatConversationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "shopId" | "type" | "unreadUser" | "unreadSeller" | "lastMessage" | "lastMessageAt" | "createdAt" | "assignedAt" | "assignedStaffId" | "lastStaffActivity", ExtArgs["result"]["chatConversation"]>
 export type ChatConversationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   shop?: boolean | Prisma.ChatConversation$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   messages?: boolean | Prisma.ChatConversation$messagesArgs<ExtArgs>
   _count?: boolean | Prisma.ChatConversationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ChatConversationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   shop?: boolean | Prisma.ChatConversation$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ChatConversationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   shop?: boolean | Prisma.ChatConversation$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $ChatConversationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ChatConversation"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     shop: Prisma.$ShopPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs>
     messages: Prisma.$ChatMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     userId: number
     shopId: number | null
-    assignedStaffId: number | null
-    assignedAt: Date | null
-    lastStaffActivity: Date | null
     type: $Enums.ChatType
     unreadUser: number
     unreadSeller: number
     lastMessage: string | null
     lastMessageAt: Date
     createdAt: Date
+    assignedAt: Date | null
+    assignedStaffId: number | null
+    lastStaffActivity: Date | null
   }, ExtArgs["result"]["chatConversation"]>
   composites: {}
 }
@@ -1509,8 +1509,8 @@ readonly fields: ChatConversationFieldRefs;
  */
 export interface Prisma__ChatConversationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   shop<T extends Prisma.ChatConversation$shopArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ChatConversation$shopArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   messages<T extends Prisma.ChatConversation$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ChatConversation$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1544,15 +1544,15 @@ export interface ChatConversationFieldRefs {
   readonly id: Prisma.FieldRef<"ChatConversation", 'Int'>
   readonly userId: Prisma.FieldRef<"ChatConversation", 'Int'>
   readonly shopId: Prisma.FieldRef<"ChatConversation", 'Int'>
-  readonly assignedStaffId: Prisma.FieldRef<"ChatConversation", 'Int'>
-  readonly assignedAt: Prisma.FieldRef<"ChatConversation", 'DateTime'>
-  readonly lastStaffActivity: Prisma.FieldRef<"ChatConversation", 'DateTime'>
   readonly type: Prisma.FieldRef<"ChatConversation", 'ChatType'>
   readonly unreadUser: Prisma.FieldRef<"ChatConversation", 'Int'>
   readonly unreadSeller: Prisma.FieldRef<"ChatConversation", 'Int'>
   readonly lastMessage: Prisma.FieldRef<"ChatConversation", 'String'>
   readonly lastMessageAt: Prisma.FieldRef<"ChatConversation", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"ChatConversation", 'DateTime'>
+  readonly assignedAt: Prisma.FieldRef<"ChatConversation", 'DateTime'>
+  readonly assignedStaffId: Prisma.FieldRef<"ChatConversation", 'Int'>
+  readonly lastStaffActivity: Prisma.FieldRef<"ChatConversation", 'DateTime'>
 }
     
 

@@ -21,9 +21,9 @@ const CATEGORIES = [
 ];
 
 const SELLERS = [
-    { name: 'Nguyễn Văn An', email: 'seller1@emarket.com', shopName: 'Fashion Store An', shopAddress: '123 Nguyễn Trãi, Q.1, TP.HCM' },
-    { name: 'Trần Thị Bình', email: 'seller2@emarket.com', shopName: 'Tech World Bình', shopAddress: '45 Lê Lợi, Q.Hải Châu, Đà Nẵng' },
-    { name: 'Lê Hoàng Cường', email: 'seller3@emarket.com', shopName: 'Home & Living Cường', shopAddress: '78 Bà Triệu, Q.Hoàn Kiếm, Hà Nội' },
+    { name: 'Nguyễn Văn Cường', email: 'seller1@emarket.com', shopName: 'Fashion Store Cường', shopAddress: '123 Nguyễn Trãi, Q.1, TP.HCM' },
+    { name: 'Trần Thị Lan', email: 'seller2@emarket.com', shopName: 'Tech World Lan', shopAddress: '45 Lê Lợi, Q.Hải Châu, Đà Nẵng' },
+    { name: 'Lê Hoàng Long', email: 'seller3@emarket.com', shopName: 'Home & Living Long', shopAddress: '78 Bà Triệu, Q.Hoàn Kiếm, Hà Nội' },
     { name: 'Phạm Thị Dung', email: 'seller4@emarket.com', shopName: 'Beauty Corner Dung', shopAddress: '12 Trần Hưng Đạo, Q.3, TP.HCM' },
     { name: 'Hoàng Minh Em', email: 'seller5@emarket.com', shopName: 'Sport Zone Em', shopAddress: '99 Võ Thị Sáu, Q.Bình Thạnh, TP.HCM' },
 ];

@@ -61,20 +61,20 @@ export type OrderMinAggregateOutputType = {
   shippingAddress: string | null
   receiverName: string | null
   receiverPhone: string | null
-  momoOrderId: string | null
-  momoTransId: string | null
   paymentMethod: $Enums.PaymentMethod | null
   paymentStatus: $Enums.PaymentStatus | null
-  shippingMethod: $Enums.ShippingMethod | null
   status: $Enums.OrderStatus | null
   note: string | null
-  trackingCode: string | null
-  voucherId: number | null
-  isSettled: boolean | null
-  commission: runtime.Decimal | null
-  settlementAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  shippingMethod: $Enums.ShippingMethod | null
+  voucherId: number | null
+  momoOrderId: string | null
+  isSettled: boolean | null
+  settlementAt: Date | null
+  commission: runtime.Decimal | null
+  trackingCode: string | null
+  momoTransId: string | null
 }
 
 export type OrderMaxAggregateOutputType = {
@@ -88,20 +88,20 @@ export type OrderMaxAggregateOutputType = {
   shippingAddress: string | null
   receiverName: string | null
   receiverPhone: string | null
-  momoOrderId: string | null
-  momoTransId: string | null
   paymentMethod: $Enums.PaymentMethod | null
   paymentStatus: $Enums.PaymentStatus | null
-  shippingMethod: $Enums.ShippingMethod | null
   status: $Enums.OrderStatus | null
   note: string | null
-  trackingCode: string | null
-  voucherId: number | null
-  isSettled: boolean | null
-  commission: runtime.Decimal | null
-  settlementAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  shippingMethod: $Enums.ShippingMethod | null
+  voucherId: number | null
+  momoOrderId: string | null
+  isSettled: boolean | null
+  settlementAt: Date | null
+  commission: runtime.Decimal | null
+  trackingCode: string | null
+  momoTransId: string | null
 }
 
 export type OrderCountAggregateOutputType = {
@@ -115,20 +115,20 @@ export type OrderCountAggregateOutputType = {
   shippingAddress: number
   receiverName: number
   receiverPhone: number
-  momoOrderId: number
-  momoTransId: number
   paymentMethod: number
   paymentStatus: number
-  shippingMethod: number
   status: number
   note: number
-  trackingCode: number
-  voucherId: number
-  isSettled: number
-  commission: number
-  settlementAt: number
   createdAt: number
   updatedAt: number
+  shippingMethod: number
+  voucherId: number
+  momoOrderId: number
+  isSettled: number
+  settlementAt: number
+  commission: number
+  trackingCode: number
+  momoTransId: number
   _all: number
 }
 
@@ -168,20 +168,20 @@ export type OrderMinAggregateInputType = {
   shippingAddress?: true
   receiverName?: true
   receiverPhone?: true
-  momoOrderId?: true
-  momoTransId?: true
   paymentMethod?: true
   paymentStatus?: true
-  shippingMethod?: true
   status?: true
   note?: true
-  trackingCode?: true
-  voucherId?: true
-  isSettled?: true
-  commission?: true
-  settlementAt?: true
   createdAt?: true
   updatedAt?: true
+  shippingMethod?: true
+  voucherId?: true
+  momoOrderId?: true
+  isSettled?: true
+  settlementAt?: true
+  commission?: true
+  trackingCode?: true
+  momoTransId?: true
 }
 
 export type OrderMaxAggregateInputType = {
@@ -195,20 +195,20 @@ export type OrderMaxAggregateInputType = {
   shippingAddress?: true
   receiverName?: true
   receiverPhone?: true
-  momoOrderId?: true
-  momoTransId?: true
   paymentMethod?: true
   paymentStatus?: true
-  shippingMethod?: true
   status?: true
   note?: true
-  trackingCode?: true
-  voucherId?: true
-  isSettled?: true
-  commission?: true
-  settlementAt?: true
   createdAt?: true
   updatedAt?: true
+  shippingMethod?: true
+  voucherId?: true
+  momoOrderId?: true
+  isSettled?: true
+  settlementAt?: true
+  commission?: true
+  trackingCode?: true
+  momoTransId?: true
 }
 
 export type OrderCountAggregateInputType = {
@@ -222,20 +222,20 @@ export type OrderCountAggregateInputType = {
   shippingAddress?: true
   receiverName?: true
   receiverPhone?: true
-  momoOrderId?: true
-  momoTransId?: true
   paymentMethod?: true
   paymentStatus?: true
-  shippingMethod?: true
   status?: true
   note?: true
-  trackingCode?: true
-  voucherId?: true
-  isSettled?: true
-  commission?: true
-  settlementAt?: true
   createdAt?: true
   updatedAt?: true
+  shippingMethod?: true
+  voucherId?: true
+  momoOrderId?: true
+  isSettled?: true
+  settlementAt?: true
+  commission?: true
+  trackingCode?: true
+  momoTransId?: true
   _all?: true
 }
 
@@ -336,20 +336,20 @@ export type OrderGroupByOutputType = {
   shippingAddress: string
   receiverName: string | null
   receiverPhone: string | null
-  momoOrderId: string | null
-  momoTransId: string | null
   paymentMethod: $Enums.PaymentMethod
   paymentStatus: $Enums.PaymentStatus
-  shippingMethod: $Enums.ShippingMethod
   status: $Enums.OrderStatus
   note: string | null
-  trackingCode: string | null
-  voucherId: number | null
-  isSettled: boolean
-  commission: runtime.Decimal
-  settlementAt: Date | null
   createdAt: Date
   updatedAt: Date
+  shippingMethod: $Enums.ShippingMethod
+  voucherId: number | null
+  momoOrderId: string | null
+  isSettled: boolean
+  settlementAt: Date | null
+  commission: runtime.Decimal
+  trackingCode: string | null
+  momoTransId: string | null
   _count: OrderCountAggregateOutputType | null
   _avg: OrderAvgAggregateOutputType | null
   _sum: OrderSumAggregateOutputType | null
@@ -386,26 +386,26 @@ export type OrderWhereInput = {
   shippingAddress?: Prisma.StringFilter<"Order"> | string
   receiverName?: Prisma.StringNullableFilter<"Order"> | string | null
   receiverPhone?: Prisma.StringNullableFilter<"Order"> | string | null
-  momoOrderId?: Prisma.StringNullableFilter<"Order"> | string | null
-  momoTransId?: Prisma.StringNullableFilter<"Order"> | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFilter<"Order"> | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFilter<"Order"> | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
   note?: Prisma.StringNullableFilter<"Order"> | string | null
-  trackingCode?: Prisma.StringNullableFilter<"Order"> | string | null
-  voucherId?: Prisma.IntNullableFilter<"Order"> | number | null
-  isSettled?: Prisma.BoolFilter<"Order"> | boolean
-  commission?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  shippingMethod?: Prisma.EnumShippingMethodFilter<"Order"> | $Enums.ShippingMethod
+  voucherId?: Prisma.IntNullableFilter<"Order"> | number | null
+  momoOrderId?: Prisma.StringNullableFilter<"Order"> | string | null
+  isSettled?: Prisma.BoolFilter<"Order"> | boolean
+  settlementAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  commission?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.StringNullableFilter<"Order"> | string | null
+  momoTransId?: Prisma.StringNullableFilter<"Order"> | string | null
   shop?: Prisma.XOR<Prisma.ShopScalarRelationFilter, Prisma.ShopWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   voucher?: Prisma.XOR<Prisma.VoucherNullableScalarRelationFilter, Prisma.VoucherWhereInput> | null
   items?: Prisma.OrderItemListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
   returnRequest?: Prisma.XOR<Prisma.ReturnRequestNullableScalarRelationFilter, Prisma.ReturnRequestWhereInput> | null
+  reviews?: Prisma.ReviewListRelationFilter
 }
 
 export type OrderOrderByWithRelationInput = {
@@ -419,26 +419,26 @@ export type OrderOrderByWithRelationInput = {
   shippingAddress?: Prisma.SortOrder
   receiverName?: Prisma.SortOrderInput | Prisma.SortOrder
   receiverPhone?: Prisma.SortOrderInput | Prisma.SortOrder
-  momoOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
-  momoTransId?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  shippingMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   note?: Prisma.SortOrderInput | Prisma.SortOrder
-  trackingCode?: Prisma.SortOrderInput | Prisma.SortOrder
-  voucherId?: Prisma.SortOrderInput | Prisma.SortOrder
-  isSettled?: Prisma.SortOrder
-  commission?: Prisma.SortOrder
-  settlementAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
+  shippingMethod?: Prisma.SortOrder
+  voucherId?: Prisma.SortOrderInput | Prisma.SortOrder
+  momoOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isSettled?: Prisma.SortOrder
+  settlementAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  commission?: Prisma.SortOrder
+  trackingCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  momoTransId?: Prisma.SortOrderInput | Prisma.SortOrder
   shop?: Prisma.ShopOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
   voucher?: Prisma.VoucherOrderByWithRelationInput
   items?: Prisma.OrderItemOrderByRelationAggregateInput
-  reviews?: Prisma.ReviewOrderByRelationAggregateInput
   returnRequest?: Prisma.ReturnRequestOrderByWithRelationInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
 export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -455,26 +455,26 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   shippingAddress?: Prisma.StringFilter<"Order"> | string
   receiverName?: Prisma.StringNullableFilter<"Order"> | string | null
   receiverPhone?: Prisma.StringNullableFilter<"Order"> | string | null
-  momoOrderId?: Prisma.StringNullableFilter<"Order"> | string | null
-  momoTransId?: Prisma.StringNullableFilter<"Order"> | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFilter<"Order"> | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFilter<"Order"> | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
   note?: Prisma.StringNullableFilter<"Order"> | string | null
-  trackingCode?: Prisma.StringNullableFilter<"Order"> | string | null
-  voucherId?: Prisma.IntNullableFilter<"Order"> | number | null
-  isSettled?: Prisma.BoolFilter<"Order"> | boolean
-  commission?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  shippingMethod?: Prisma.EnumShippingMethodFilter<"Order"> | $Enums.ShippingMethod
+  voucherId?: Prisma.IntNullableFilter<"Order"> | number | null
+  momoOrderId?: Prisma.StringNullableFilter<"Order"> | string | null
+  isSettled?: Prisma.BoolFilter<"Order"> | boolean
+  settlementAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  commission?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.StringNullableFilter<"Order"> | string | null
+  momoTransId?: Prisma.StringNullableFilter<"Order"> | string | null
   shop?: Prisma.XOR<Prisma.ShopScalarRelationFilter, Prisma.ShopWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   voucher?: Prisma.XOR<Prisma.VoucherNullableScalarRelationFilter, Prisma.VoucherWhereInput> | null
   items?: Prisma.OrderItemListRelationFilter
-  reviews?: Prisma.ReviewListRelationFilter
   returnRequest?: Prisma.XOR<Prisma.ReturnRequestNullableScalarRelationFilter, Prisma.ReturnRequestWhereInput> | null
+  reviews?: Prisma.ReviewListRelationFilter
 }, "id">
 
 export type OrderOrderByWithAggregationInput = {
@@ -488,20 +488,20 @@ export type OrderOrderByWithAggregationInput = {
   shippingAddress?: Prisma.SortOrder
   receiverName?: Prisma.SortOrderInput | Prisma.SortOrder
   receiverPhone?: Prisma.SortOrderInput | Prisma.SortOrder
-  momoOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
-  momoTransId?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  shippingMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   note?: Prisma.SortOrderInput | Prisma.SortOrder
-  trackingCode?: Prisma.SortOrderInput | Prisma.SortOrder
-  voucherId?: Prisma.SortOrderInput | Prisma.SortOrder
-  isSettled?: Prisma.SortOrder
-  commission?: Prisma.SortOrder
-  settlementAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shippingMethod?: Prisma.SortOrder
+  voucherId?: Prisma.SortOrderInput | Prisma.SortOrder
+  momoOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isSettled?: Prisma.SortOrder
+  settlementAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  commission?: Prisma.SortOrder
+  trackingCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  momoTransId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.OrderCountOrderByAggregateInput
   _avg?: Prisma.OrderAvgOrderByAggregateInput
   _max?: Prisma.OrderMaxOrderByAggregateInput
@@ -523,20 +523,20 @@ export type OrderScalarWhereWithAggregatesInput = {
   shippingAddress?: Prisma.StringWithAggregatesFilter<"Order"> | string
   receiverName?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
   receiverPhone?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
-  momoOrderId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
-  momoTransId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
   paymentMethod?: Prisma.EnumPaymentMethodWithAggregatesFilter<"Order"> | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusWithAggregatesFilter<"Order"> | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodWithAggregatesFilter<"Order"> | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
   note?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
-  trackingCode?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
-  voucherId?: Prisma.IntNullableWithAggregatesFilter<"Order"> | number | null
-  isSettled?: Prisma.BoolWithAggregatesFilter<"Order"> | boolean
-  commission?: Prisma.DecimalWithAggregatesFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodWithAggregatesFilter<"Order"> | $Enums.ShippingMethod
+  voucherId?: Prisma.IntNullableWithAggregatesFilter<"Order"> | number | null
+  momoOrderId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
+  isSettled?: Prisma.BoolWithAggregatesFilter<"Order"> | boolean
+  settlementAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+  commission?: Prisma.DecimalWithAggregatesFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
+  momoTransId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
 }
 
 export type OrderCreateInput = {
@@ -547,25 +547,25 @@ export type OrderCreateInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutOrdersInput
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   shop: Prisma.ShopCreateNestedOneWithoutOrdersInput
+  user: Prisma.UserCreateNestedOneWithoutOrdersInput
   voucher?: Prisma.VoucherCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateInput = {
@@ -579,23 +579,23 @@ export type OrderUncheckedCreateInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUpdateInput = {
@@ -606,25 +606,25 @@ export type OrderUpdateInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shop?: Prisma.ShopUpdateOneRequiredWithoutOrdersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   voucher?: Prisma.VoucherUpdateOneWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateInput = {
@@ -638,23 +638,23 @@ export type OrderUncheckedUpdateInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderCreateManyInput = {
@@ -668,20 +668,20 @@ export type OrderCreateManyInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
 }
 
 export type OrderUpdateManyMutationInput = {
@@ -692,19 +692,19 @@ export type OrderUpdateManyMutationInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrderUncheckedUpdateManyInput = {
@@ -718,20 +718,20 @@ export type OrderUncheckedUpdateManyInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrderListRelationFilter = {
@@ -755,20 +755,20 @@ export type OrderCountOrderByAggregateInput = {
   shippingAddress?: Prisma.SortOrder
   receiverName?: Prisma.SortOrder
   receiverPhone?: Prisma.SortOrder
-  momoOrderId?: Prisma.SortOrder
-  momoTransId?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  shippingMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   note?: Prisma.SortOrder
-  trackingCode?: Prisma.SortOrder
-  voucherId?: Prisma.SortOrder
-  isSettled?: Prisma.SortOrder
-  commission?: Prisma.SortOrder
-  settlementAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shippingMethod?: Prisma.SortOrder
+  voucherId?: Prisma.SortOrder
+  momoOrderId?: Prisma.SortOrder
+  isSettled?: Prisma.SortOrder
+  settlementAt?: Prisma.SortOrder
+  commission?: Prisma.SortOrder
+  trackingCode?: Prisma.SortOrder
+  momoTransId?: Prisma.SortOrder
 }
 
 export type OrderAvgOrderByAggregateInput = {
@@ -794,20 +794,20 @@ export type OrderMaxOrderByAggregateInput = {
   shippingAddress?: Prisma.SortOrder
   receiverName?: Prisma.SortOrder
   receiverPhone?: Prisma.SortOrder
-  momoOrderId?: Prisma.SortOrder
-  momoTransId?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  shippingMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   note?: Prisma.SortOrder
-  trackingCode?: Prisma.SortOrder
-  voucherId?: Prisma.SortOrder
-  isSettled?: Prisma.SortOrder
-  commission?: Prisma.SortOrder
-  settlementAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shippingMethod?: Prisma.SortOrder
+  voucherId?: Prisma.SortOrder
+  momoOrderId?: Prisma.SortOrder
+  isSettled?: Prisma.SortOrder
+  settlementAt?: Prisma.SortOrder
+  commission?: Prisma.SortOrder
+  trackingCode?: Prisma.SortOrder
+  momoTransId?: Prisma.SortOrder
 }
 
 export type OrderMinOrderByAggregateInput = {
@@ -821,20 +821,20 @@ export type OrderMinOrderByAggregateInput = {
   shippingAddress?: Prisma.SortOrder
   receiverName?: Prisma.SortOrder
   receiverPhone?: Prisma.SortOrder
-  momoOrderId?: Prisma.SortOrder
-  momoTransId?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  shippingMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   note?: Prisma.SortOrder
-  trackingCode?: Prisma.SortOrder
-  voucherId?: Prisma.SortOrder
-  isSettled?: Prisma.SortOrder
-  commission?: Prisma.SortOrder
-  settlementAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shippingMethod?: Prisma.SortOrder
+  voucherId?: Prisma.SortOrder
+  momoOrderId?: Prisma.SortOrder
+  isSettled?: Prisma.SortOrder
+  settlementAt?: Prisma.SortOrder
+  commission?: Prisma.SortOrder
+  trackingCode?: Prisma.SortOrder
+  momoTransId?: Prisma.SortOrder
 }
 
 export type OrderSumOrderByAggregateInput = {
@@ -946,12 +946,12 @@ export type EnumPaymentStatusFieldUpdateOperationsInput = {
   set?: $Enums.PaymentStatus
 }
 
-export type EnumShippingMethodFieldUpdateOperationsInput = {
-  set?: $Enums.ShippingMethod
-}
-
 export type EnumOrderStatusFieldUpdateOperationsInput = {
   set?: $Enums.OrderStatus
+}
+
+export type EnumShippingMethodFieldUpdateOperationsInput = {
+  set?: $Enums.ShippingMethod
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -1050,24 +1050,24 @@ export type OrderCreateWithoutUserInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   shop: Prisma.ShopCreateNestedOneWithoutOrdersInput
   voucher?: Prisma.VoucherCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutUserInput = {
@@ -1080,23 +1080,23 @@ export type OrderUncheckedCreateWithoutUserInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutUserInput = {
@@ -1139,20 +1139,20 @@ export type OrderScalarWhereInput = {
   shippingAddress?: Prisma.StringFilter<"Order"> | string
   receiverName?: Prisma.StringNullableFilter<"Order"> | string | null
   receiverPhone?: Prisma.StringNullableFilter<"Order"> | string | null
-  momoOrderId?: Prisma.StringNullableFilter<"Order"> | string | null
-  momoTransId?: Prisma.StringNullableFilter<"Order"> | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFilter<"Order"> | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFilter<"Order"> | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
   note?: Prisma.StringNullableFilter<"Order"> | string | null
-  trackingCode?: Prisma.StringNullableFilter<"Order"> | string | null
-  voucherId?: Prisma.IntNullableFilter<"Order"> | number | null
-  isSettled?: Prisma.BoolFilter<"Order"> | boolean
-  commission?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFilter<"Order"> | $Enums.ShippingMethod
+  voucherId?: Prisma.IntNullableFilter<"Order"> | number | null
+  momoOrderId?: Prisma.StringNullableFilter<"Order"> | string | null
+  isSettled?: Prisma.BoolFilter<"Order"> | boolean
+  settlementAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  commission?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.StringNullableFilter<"Order"> | string | null
+  momoTransId?: Prisma.StringNullableFilter<"Order"> | string | null
 }
 
 export type OrderCreateWithoutShopInput = {
@@ -1163,24 +1163,24 @@ export type OrderCreateWithoutShopInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   user: Prisma.UserCreateNestedOneWithoutOrdersInput
   voucher?: Prisma.VoucherCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutShopInput = {
@@ -1193,23 +1193,23 @@ export type OrderUncheckedCreateWithoutShopInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutShopInput = {
@@ -1246,24 +1246,24 @@ export type OrderCreateWithoutItemsInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutOrdersInput
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   shop: Prisma.ShopCreateNestedOneWithoutOrdersInput
+  user: Prisma.UserCreateNestedOneWithoutOrdersInput
   voucher?: Prisma.VoucherCreateNestedOneWithoutOrdersInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutItemsInput = {
@@ -1277,22 +1277,22 @@ export type OrderUncheckedCreateWithoutItemsInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutItemsInput = {
@@ -1319,24 +1319,24 @@ export type OrderUpdateWithoutItemsInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shop?: Prisma.ShopUpdateOneRequiredWithoutOrdersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   voucher?: Prisma.VoucherUpdateOneWithoutOrdersNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutItemsInput = {
@@ -1350,22 +1350,22 @@ export type OrderUncheckedUpdateWithoutItemsInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderCreateWithoutReviewsInput = {
@@ -1376,21 +1376,21 @@ export type OrderCreateWithoutReviewsInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutOrdersInput
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   shop: Prisma.ShopCreateNestedOneWithoutOrdersInput
+  user: Prisma.UserCreateNestedOneWithoutOrdersInput
   voucher?: Prisma.VoucherCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutOrderInput
@@ -1407,20 +1407,20 @@ export type OrderUncheckedCreateWithoutReviewsInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutOrderInput
 }
@@ -1449,21 +1449,21 @@ export type OrderUpdateWithoutReviewsInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shop?: Prisma.ShopUpdateOneRequiredWithoutOrdersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   voucher?: Prisma.VoucherUpdateOneWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutOrderNestedInput
@@ -1480,20 +1480,20 @@ export type OrderUncheckedUpdateWithoutReviewsInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutOrderNestedInput
 }
@@ -1506,24 +1506,24 @@ export type OrderCreateWithoutVoucherInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutOrdersInput
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   shop: Prisma.ShopCreateNestedOneWithoutOrdersInput
+  user: Prisma.UserCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutVoucherInput = {
@@ -1537,22 +1537,22 @@ export type OrderUncheckedCreateWithoutVoucherInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
   returnRequest?: Prisma.ReturnRequestUncheckedCreateNestedOneWithoutOrderInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutVoucherInput = {
@@ -1589,21 +1589,21 @@ export type OrderCreateWithoutReturnRequestInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutOrdersInput
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   shop: Prisma.ShopCreateNestedOneWithoutOrdersInput
+  user: Prisma.UserCreateNestedOneWithoutOrdersInput
   voucher?: Prisma.VoucherCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutOrderInput
@@ -1620,20 +1620,20 @@ export type OrderUncheckedCreateWithoutReturnRequestInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutOrderInput
 }
@@ -1662,21 +1662,21 @@ export type OrderUpdateWithoutReturnRequestInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shop?: Prisma.ShopUpdateOneRequiredWithoutOrdersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   voucher?: Prisma.VoucherUpdateOneWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
@@ -1693,20 +1693,20 @@ export type OrderUncheckedUpdateWithoutReturnRequestInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
 }
@@ -1721,20 +1721,20 @@ export type OrderCreateManyUserInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
 }
 
 export type OrderUpdateWithoutUserInput = {
@@ -1745,24 +1745,24 @@ export type OrderUpdateWithoutUserInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shop?: Prisma.ShopUpdateOneRequiredWithoutOrdersNestedInput
   voucher?: Prisma.VoucherUpdateOneWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutUserInput = {
@@ -1775,23 +1775,23 @@ export type OrderUncheckedUpdateWithoutUserInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutUserInput = {
@@ -1804,20 +1804,20 @@ export type OrderUncheckedUpdateManyWithoutUserInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrderCreateManyShopInput = {
@@ -1830,20 +1830,20 @@ export type OrderCreateManyShopInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  voucherId?: number | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  voucherId?: number | null
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
 }
 
 export type OrderUpdateWithoutShopInput = {
@@ -1854,24 +1854,24 @@ export type OrderUpdateWithoutShopInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   voucher?: Prisma.VoucherUpdateOneWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutShopInput = {
@@ -1884,23 +1884,23 @@ export type OrderUncheckedUpdateWithoutShopInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutShopInput = {
@@ -1913,20 +1913,20 @@ export type OrderUncheckedUpdateManyWithoutShopInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  voucherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrderCreateManyVoucherInput = {
@@ -1940,19 +1940,19 @@ export type OrderCreateManyVoucherInput = {
   shippingAddress: string
   receiverName?: string | null
   receiverPhone?: string | null
-  momoOrderId?: string | null
-  momoTransId?: string | null
   paymentMethod?: $Enums.PaymentMethod
   paymentStatus?: $Enums.PaymentStatus
-  shippingMethod?: $Enums.ShippingMethod
   status?: $Enums.OrderStatus
   note?: string | null
-  trackingCode?: string | null
-  isSettled?: boolean
-  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  shippingMethod?: $Enums.ShippingMethod
+  momoOrderId?: string | null
+  isSettled?: boolean
+  settlementAt?: Date | string | null
+  commission?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: string | null
+  momoTransId?: string | null
 }
 
 export type OrderUpdateWithoutVoucherInput = {
@@ -1963,24 +1963,24 @@ export type OrderUpdateWithoutVoucherInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shop?: Prisma.ShopUpdateOneRequiredWithoutOrdersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutVoucherInput = {
@@ -1994,22 +1994,22 @@ export type OrderUncheckedUpdateWithoutVoucherInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
   returnRequest?: Prisma.ReturnRequestUncheckedUpdateOneWithoutOrderNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutVoucherInput = {
@@ -2023,19 +2023,19 @@ export type OrderUncheckedUpdateManyWithoutVoucherInput = {
   shippingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   receiverName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiverPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shippingMethod?: Prisma.EnumShippingMethodFieldUpdateOperationsInput | $Enums.ShippingMethod
+  momoOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSettled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  settlementAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  commission?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  trackingCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  momoTransId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -2089,26 +2089,26 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   shippingAddress?: boolean
   receiverName?: boolean
   receiverPhone?: boolean
-  momoOrderId?: boolean
-  momoTransId?: boolean
   paymentMethod?: boolean
   paymentStatus?: boolean
-  shippingMethod?: boolean
   status?: boolean
   note?: boolean
-  trackingCode?: boolean
-  voucherId?: boolean
-  isSettled?: boolean
-  commission?: boolean
-  settlementAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  shippingMethod?: boolean
+  voucherId?: boolean
+  momoOrderId?: boolean
+  isSettled?: boolean
+  settlementAt?: boolean
+  commission?: boolean
+  trackingCode?: boolean
+  momoTransId?: boolean
   shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   voucher?: boolean | Prisma.Order$voucherArgs<ExtArgs>
   items?: boolean | Prisma.Order$itemsArgs<ExtArgs>
-  reviews?: boolean | Prisma.Order$reviewsArgs<ExtArgs>
   returnRequest?: boolean | Prisma.Order$returnRequestArgs<ExtArgs>
+  reviews?: boolean | Prisma.Order$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
@@ -2123,22 +2123,22 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   shippingAddress?: boolean
   receiverName?: boolean
   receiverPhone?: boolean
-  momoOrderId?: boolean
-  momoTransId?: boolean
   paymentMethod?: boolean
   paymentStatus?: boolean
-  shippingMethod?: boolean
   status?: boolean
   note?: boolean
-  trackingCode?: boolean
-  voucherId?: boolean
-  isSettled?: boolean
-  commission?: boolean
-  settlementAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  shippingMethod?: boolean
+  voucherId?: boolean
+  momoOrderId?: boolean
+  isSettled?: boolean
+  settlementAt?: boolean
+  commission?: boolean
+  trackingCode?: boolean
+  momoTransId?: boolean
   shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   voucher?: boolean | Prisma.Order$voucherArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
@@ -2153,22 +2153,22 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   shippingAddress?: boolean
   receiverName?: boolean
   receiverPhone?: boolean
-  momoOrderId?: boolean
-  momoTransId?: boolean
   paymentMethod?: boolean
   paymentStatus?: boolean
-  shippingMethod?: boolean
   status?: boolean
   note?: boolean
-  trackingCode?: boolean
-  voucherId?: boolean
-  isSettled?: boolean
-  commission?: boolean
-  settlementAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  shippingMethod?: boolean
+  voucherId?: boolean
+  momoOrderId?: boolean
+  isSettled?: boolean
+  settlementAt?: boolean
+  commission?: boolean
+  trackingCode?: boolean
+  momoTransId?: boolean
   shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   voucher?: boolean | Prisma.Order$voucherArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
@@ -2183,52 +2183,52 @@ export type OrderSelectScalar = {
   shippingAddress?: boolean
   receiverName?: boolean
   receiverPhone?: boolean
-  momoOrderId?: boolean
-  momoTransId?: boolean
   paymentMethod?: boolean
   paymentStatus?: boolean
-  shippingMethod?: boolean
   status?: boolean
   note?: boolean
-  trackingCode?: boolean
-  voucherId?: boolean
-  isSettled?: boolean
-  commission?: boolean
-  settlementAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  shippingMethod?: boolean
+  voucherId?: boolean
+  momoOrderId?: boolean
+  isSettled?: boolean
+  settlementAt?: boolean
+  commission?: boolean
+  trackingCode?: boolean
+  momoTransId?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "shopId" | "subtotal" | "shippingFee" | "discount" | "total" | "shippingAddress" | "receiverName" | "receiverPhone" | "momoOrderId" | "momoTransId" | "paymentMethod" | "paymentStatus" | "shippingMethod" | "status" | "note" | "trackingCode" | "voucherId" | "isSettled" | "commission" | "settlementAt" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "shopId" | "subtotal" | "shippingFee" | "discount" | "total" | "shippingAddress" | "receiverName" | "receiverPhone" | "paymentMethod" | "paymentStatus" | "status" | "note" | "createdAt" | "updatedAt" | "shippingMethod" | "voucherId" | "momoOrderId" | "isSettled" | "settlementAt" | "commission" | "trackingCode" | "momoTransId", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   voucher?: boolean | Prisma.Order$voucherArgs<ExtArgs>
   items?: boolean | Prisma.Order$itemsArgs<ExtArgs>
-  reviews?: boolean | Prisma.Order$reviewsArgs<ExtArgs>
   returnRequest?: boolean | Prisma.Order$returnRequestArgs<ExtArgs>
+  reviews?: boolean | Prisma.Order$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   voucher?: boolean | Prisma.Order$voucherArgs<ExtArgs>
 }
 export type OrderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   voucher?: boolean | Prisma.Order$voucherArgs<ExtArgs>
 }
 
 export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Order"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     shop: Prisma.$ShopPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
     voucher: Prisma.$VoucherPayload<ExtArgs> | null
     items: Prisma.$OrderItemPayload<ExtArgs>[]
-    reviews: Prisma.$ReviewPayload<ExtArgs>[]
     returnRequest: Prisma.$ReturnRequestPayload<ExtArgs> | null
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -2241,20 +2241,20 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     shippingAddress: string
     receiverName: string | null
     receiverPhone: string | null
-    momoOrderId: string | null
-    momoTransId: string | null
     paymentMethod: $Enums.PaymentMethod
     paymentStatus: $Enums.PaymentStatus
-    shippingMethod: $Enums.ShippingMethod
     status: $Enums.OrderStatus
     note: string | null
-    trackingCode: string | null
-    voucherId: number | null
-    isSettled: boolean
-    commission: runtime.Decimal
-    settlementAt: Date | null
     createdAt: Date
     updatedAt: Date
+    shippingMethod: $Enums.ShippingMethod
+    voucherId: number | null
+    momoOrderId: string | null
+    isSettled: boolean
+    settlementAt: Date | null
+    commission: runtime.Decimal
+    trackingCode: string | null
+    momoTransId: string | null
   }, ExtArgs["result"]["order"]>
   composites: {}
 }
@@ -2649,12 +2649,12 @@ readonly fields: OrderFieldRefs;
  */
 export interface Prisma__OrderClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   shop<T extends Prisma.ShopDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShopDefaultArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   voucher<T extends Prisma.Order$voucherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$voucherArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Order$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reviews<T extends Prisma.Order$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   returnRequest<T extends Prisma.Order$returnRequestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$returnRequestArgs<ExtArgs>>): Prisma.Prisma__ReturnRequestClient<runtime.Types.Result.GetResult<Prisma.$ReturnRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  reviews<T extends Prisma.Order$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2694,20 +2694,20 @@ export interface OrderFieldRefs {
   readonly shippingAddress: Prisma.FieldRef<"Order", 'String'>
   readonly receiverName: Prisma.FieldRef<"Order", 'String'>
   readonly receiverPhone: Prisma.FieldRef<"Order", 'String'>
-  readonly momoOrderId: Prisma.FieldRef<"Order", 'String'>
-  readonly momoTransId: Prisma.FieldRef<"Order", 'String'>
   readonly paymentMethod: Prisma.FieldRef<"Order", 'PaymentMethod'>
   readonly paymentStatus: Prisma.FieldRef<"Order", 'PaymentStatus'>
-  readonly shippingMethod: Prisma.FieldRef<"Order", 'ShippingMethod'>
   readonly status: Prisma.FieldRef<"Order", 'OrderStatus'>
   readonly note: Prisma.FieldRef<"Order", 'String'>
-  readonly trackingCode: Prisma.FieldRef<"Order", 'String'>
-  readonly voucherId: Prisma.FieldRef<"Order", 'Int'>
-  readonly isSettled: Prisma.FieldRef<"Order", 'Boolean'>
-  readonly commission: Prisma.FieldRef<"Order", 'Decimal'>
-  readonly settlementAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly shippingMethod: Prisma.FieldRef<"Order", 'ShippingMethod'>
+  readonly voucherId: Prisma.FieldRef<"Order", 'Int'>
+  readonly momoOrderId: Prisma.FieldRef<"Order", 'String'>
+  readonly isSettled: Prisma.FieldRef<"Order", 'Boolean'>
+  readonly settlementAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly commission: Prisma.FieldRef<"Order", 'Decimal'>
+  readonly trackingCode: Prisma.FieldRef<"Order", 'String'>
+  readonly momoTransId: Prisma.FieldRef<"Order", 'String'>
 }
     
 
@@ -3152,6 +3152,25 @@ export type Order$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 }
 
 /**
+ * Order.returnRequest
+ */
+export type Order$returnRequestArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReturnRequest
+   */
+  select?: Prisma.ReturnRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReturnRequest
+   */
+  omit?: Prisma.ReturnRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReturnRequestInclude<ExtArgs> | null
+  where?: Prisma.ReturnRequestWhereInput
+}
+
+/**
  * Order.reviews
  */
 export type Order$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3173,25 +3192,6 @@ export type Order$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
-}
-
-/**
- * Order.returnRequest
- */
-export type Order$returnRequestArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ReturnRequest
-   */
-  select?: Prisma.ReturnRequestSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ReturnRequest
-   */
-  omit?: Prisma.ReturnRequestOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReturnRequestInclude<ExtArgs> | null
-  where?: Prisma.ReturnRequestWhereInput
 }
 
 /**

@@ -292,10 +292,10 @@ export type ReportWhereInput = {
   resolvedBy?: Prisma.IntNullableFilter<"Report"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Report"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   product?: Prisma.XOR<Prisma.ProductNullableScalarRelationFilter, Prisma.ProductWhereInput> | null
   review?: Prisma.XOR<Prisma.ReviewNullableScalarRelationFilter, Prisma.ReviewWhereInput> | null
   shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type ReportOrderByWithRelationInput = {
@@ -311,10 +311,10 @@ export type ReportOrderByWithRelationInput = {
   resolvedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
   product?: Prisma.ProductOrderByWithRelationInput
   review?: Prisma.ReviewOrderByWithRelationInput
   shop?: Prisma.ShopOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type ReportWhereUniqueInput = Prisma.AtLeast<{
@@ -333,10 +333,10 @@ export type ReportWhereUniqueInput = Prisma.AtLeast<{
   resolvedBy?: Prisma.IntNullableFilter<"Report"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Report"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   product?: Prisma.XOR<Prisma.ProductNullableScalarRelationFilter, Prisma.ProductWhereInput> | null
   review?: Prisma.XOR<Prisma.ReviewNullableScalarRelationFilter, Prisma.ReviewWhereInput> | null
   shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type ReportOrderByWithAggregationInput = {
@@ -385,10 +385,10 @@ export type ReportCreateInput = {
   resolvedBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutReportsInput
   product?: Prisma.ProductCreateNestedOneWithoutReportsInput
   review?: Prisma.ReviewCreateNestedOneWithoutReportsInput
   shop?: Prisma.ShopCreateNestedOneWithoutReportsInput
+  user: Prisma.UserCreateNestedOneWithoutReportsInput
 }
 
 export type ReportUncheckedCreateInput = {
@@ -414,10 +414,10 @@ export type ReportUpdateInput = {
   resolvedBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
   product?: Prisma.ProductUpdateOneWithoutReportsNestedInput
   review?: Prisma.ReviewUpdateOneWithoutReportsNestedInput
   shop?: Prisma.ShopUpdateOneWithoutReportsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
 }
 
 export type ReportUncheckedUpdateInput = {
@@ -803,9 +803,9 @@ export type ReportCreateWithoutShopInput = {
   resolvedBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutReportsInput
   product?: Prisma.ProductCreateNestedOneWithoutReportsInput
   review?: Prisma.ReviewCreateNestedOneWithoutReportsInput
+  user: Prisma.UserCreateNestedOneWithoutReportsInput
 }
 
 export type ReportUncheckedCreateWithoutShopInput = {
@@ -856,9 +856,9 @@ export type ReportCreateWithoutProductInput = {
   resolvedBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutReportsInput
   review?: Prisma.ReviewCreateNestedOneWithoutReportsInput
   shop?: Prisma.ShopCreateNestedOneWithoutReportsInput
+  user: Prisma.UserCreateNestedOneWithoutReportsInput
 }
 
 export type ReportUncheckedCreateWithoutProductInput = {
@@ -909,9 +909,9 @@ export type ReportCreateWithoutReviewInput = {
   resolvedBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutReportsInput
   product?: Prisma.ProductCreateNestedOneWithoutReportsInput
   shop?: Prisma.ShopCreateNestedOneWithoutReportsInput
+  user: Prisma.UserCreateNestedOneWithoutReportsInput
 }
 
 export type ReportUncheckedCreateWithoutReviewInput = {
@@ -1031,9 +1031,9 @@ export type ReportUpdateWithoutShopInput = {
   resolvedBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
   product?: Prisma.ProductUpdateOneWithoutReportsNestedInput
   review?: Prisma.ReviewUpdateOneWithoutReportsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutShopInput = {
@@ -1086,9 +1086,9 @@ export type ReportUpdateWithoutProductInput = {
   resolvedBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
   review?: Prisma.ReviewUpdateOneWithoutReportsNestedInput
   shop?: Prisma.ShopUpdateOneWithoutReportsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutProductInput = {
@@ -1141,9 +1141,9 @@ export type ReportUpdateWithoutReviewInput = {
   resolvedBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
   product?: Prisma.ProductUpdateOneWithoutReportsNestedInput
   shop?: Prisma.ShopUpdateOneWithoutReportsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutReviewInput = {
@@ -1189,10 +1189,10 @@ export type ReportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   resolvedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   product?: boolean | Prisma.Report$productArgs<ExtArgs>
   review?: boolean | Prisma.Report$reviewArgs<ExtArgs>
   shop?: boolean | Prisma.Report$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1208,10 +1208,10 @@ export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   resolvedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   product?: boolean | Prisma.Report$productArgs<ExtArgs>
   review?: boolean | Prisma.Report$reviewArgs<ExtArgs>
   shop?: boolean | Prisma.Report$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1227,10 +1227,10 @@ export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   resolvedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   product?: boolean | Prisma.Report$productArgs<ExtArgs>
   review?: boolean | Prisma.Report$reviewArgs<ExtArgs>
   shop?: boolean | Prisma.Report$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectScalar = {
@@ -1250,31 +1250,31 @@ export type ReportSelectScalar = {
 
 export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "type" | "productId" | "reviewId" | "shopId" | "reason" | "status" | "resolvedAt" | "resolvedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["report"]>
 export type ReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   product?: boolean | Prisma.Report$productArgs<ExtArgs>
   review?: boolean | Prisma.Report$reviewArgs<ExtArgs>
   shop?: boolean | Prisma.Report$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ReportIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   product?: boolean | Prisma.Report$productArgs<ExtArgs>
   review?: boolean | Prisma.Report$reviewArgs<ExtArgs>
   shop?: boolean | Prisma.Report$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ReportIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   product?: boolean | Prisma.Report$productArgs<ExtArgs>
   review?: boolean | Prisma.Report$reviewArgs<ExtArgs>
   shop?: boolean | Prisma.Report$shopArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Report"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     product: Prisma.$ProductPayload<ExtArgs> | null
     review: Prisma.$ReviewPayload<ExtArgs> | null
     shop: Prisma.$ShopPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1683,10 +1683,10 @@ readonly fields: ReportFieldRefs;
  */
 export interface Prisma__ReportClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   product<T extends Prisma.Report$productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Report$productArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   review<T extends Prisma.Report$reviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Report$reviewArgs<ExtArgs>>): Prisma.Prisma__ReviewClient<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   shop<T extends Prisma.Report$shopArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Report$shopArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

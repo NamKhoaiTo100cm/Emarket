@@ -330,18 +330,18 @@ export type EnumPaymentStatusFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
 }
 
-export type EnumShippingMethodFilter<$PrismaModel = never> = {
-  equals?: $Enums.ShippingMethod | Prisma.EnumShippingMethodFieldRefInput<$PrismaModel>
-  in?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel> | $Enums.ShippingMethod
-}
-
 export type EnumOrderStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.OrderStatus | Prisma.EnumOrderStatusFieldRefInput<$PrismaModel>
   in?: $Enums.OrderStatus[] | Prisma.ListEnumOrderStatusFieldRefInput<$PrismaModel>
   notIn?: $Enums.OrderStatus[] | Prisma.ListEnumOrderStatusFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel> | $Enums.OrderStatus
+}
+
+export type EnumShippingMethodFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShippingMethod | Prisma.EnumShippingMethodFieldRefInput<$PrismaModel>
+  in?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel> | $Enums.ShippingMethod
 }
 
 export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -375,16 +375,6 @@ export type EnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
 }
 
-export type EnumShippingMethodWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ShippingMethod | Prisma.EnumShippingMethodFieldRefInput<$PrismaModel>
-  in?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumShippingMethodWithAggregatesFilter<$PrismaModel> | $Enums.ShippingMethod
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel>
-}
-
 export type EnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.OrderStatus | Prisma.EnumOrderStatusFieldRefInput<$PrismaModel>
   in?: $Enums.OrderStatus[] | Prisma.ListEnumOrderStatusFieldRefInput<$PrismaModel>
@@ -393,6 +383,16 @@ export type EnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel>
+}
+
+export type EnumShippingMethodWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShippingMethod | Prisma.EnumShippingMethodFieldRefInput<$PrismaModel>
+  in?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumShippingMethodWithAggregatesFilter<$PrismaModel> | $Enums.ShippingMethod
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel>
 }
 
 export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -426,13 +426,6 @@ export type EnumBannerPositionWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumBannerPositionFilter<$PrismaModel>
 }
 
-export type EnumVoucherScopeFilter<$PrismaModel = never> = {
-  equals?: $Enums.VoucherScope | Prisma.EnumVoucherScopeFieldRefInput<$PrismaModel>
-  in?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel> | $Enums.VoucherScope
-}
-
 export type EnumDiscountTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.DiscountType | Prisma.EnumDiscountTypeFieldRefInput<$PrismaModel>
   in?: $Enums.DiscountType[] | Prisma.ListEnumDiscountTypeFieldRefInput<$PrismaModel>
@@ -440,14 +433,11 @@ export type EnumDiscountTypeFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumDiscountTypeFilter<$PrismaModel> | $Enums.DiscountType
 }
 
-export type EnumVoucherScopeWithAggregatesFilter<$PrismaModel = never> = {
+export type EnumVoucherScopeFilter<$PrismaModel = never> = {
   equals?: $Enums.VoucherScope | Prisma.EnumVoucherScopeFieldRefInput<$PrismaModel>
   in?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
   notIn?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumVoucherScopeWithAggregatesFilter<$PrismaModel> | $Enums.VoucherScope
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel>
+  not?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel> | $Enums.VoucherScope
 }
 
 export type EnumDiscountTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -458,6 +448,16 @@ export type EnumDiscountTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDiscountTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDiscountTypeFilter<$PrismaModel>
+}
+
+export type EnumVoucherScopeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoucherScope | Prisma.EnumVoucherScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoucherScopeWithAggregatesFilter<$PrismaModel> | $Enums.VoucherScope
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel>
 }
 
 export type EnumWithdrawalStatusFilter<$PrismaModel = never> = {
@@ -908,18 +908,18 @@ export type NestedEnumPaymentStatusFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
 }
 
-export type NestedEnumShippingMethodFilter<$PrismaModel = never> = {
-  equals?: $Enums.ShippingMethod | Prisma.EnumShippingMethodFieldRefInput<$PrismaModel>
-  in?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel> | $Enums.ShippingMethod
-}
-
 export type NestedEnumOrderStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.OrderStatus | Prisma.EnumOrderStatusFieldRefInput<$PrismaModel>
   in?: $Enums.OrderStatus[] | Prisma.ListEnumOrderStatusFieldRefInput<$PrismaModel>
   notIn?: $Enums.OrderStatus[] | Prisma.ListEnumOrderStatusFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel> | $Enums.OrderStatus
+}
+
+export type NestedEnumShippingMethodFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShippingMethod | Prisma.EnumShippingMethodFieldRefInput<$PrismaModel>
+  in?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel> | $Enums.ShippingMethod
 }
 
 export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -953,16 +953,6 @@ export type NestedEnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = 
   _max?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
 }
 
-export type NestedEnumShippingMethodWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ShippingMethod | Prisma.EnumShippingMethodFieldRefInput<$PrismaModel>
-  in?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumShippingMethodWithAggregatesFilter<$PrismaModel> | $Enums.ShippingMethod
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel>
-}
-
 export type NestedEnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.OrderStatus | Prisma.EnumOrderStatusFieldRefInput<$PrismaModel>
   in?: $Enums.OrderStatus[] | Prisma.ListEnumOrderStatusFieldRefInput<$PrismaModel>
@@ -971,6 +961,16 @@ export type NestedEnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumShippingMethodWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShippingMethod | Prisma.EnumShippingMethodFieldRefInput<$PrismaModel>
+  in?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ShippingMethod[] | Prisma.ListEnumShippingMethodFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumShippingMethodWithAggregatesFilter<$PrismaModel> | $Enums.ShippingMethod
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumShippingMethodFilter<$PrismaModel>
 }
 
 export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -1004,13 +1004,6 @@ export type NestedEnumBannerPositionWithAggregatesFilter<$PrismaModel = never> =
   _max?: Prisma.NestedEnumBannerPositionFilter<$PrismaModel>
 }
 
-export type NestedEnumVoucherScopeFilter<$PrismaModel = never> = {
-  equals?: $Enums.VoucherScope | Prisma.EnumVoucherScopeFieldRefInput<$PrismaModel>
-  in?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
-  notIn?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel> | $Enums.VoucherScope
-}
-
 export type NestedEnumDiscountTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.DiscountType | Prisma.EnumDiscountTypeFieldRefInput<$PrismaModel>
   in?: $Enums.DiscountType[] | Prisma.ListEnumDiscountTypeFieldRefInput<$PrismaModel>
@@ -1018,14 +1011,11 @@ export type NestedEnumDiscountTypeFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumDiscountTypeFilter<$PrismaModel> | $Enums.DiscountType
 }
 
-export type NestedEnumVoucherScopeWithAggregatesFilter<$PrismaModel = never> = {
+export type NestedEnumVoucherScopeFilter<$PrismaModel = never> = {
   equals?: $Enums.VoucherScope | Prisma.EnumVoucherScopeFieldRefInput<$PrismaModel>
   in?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
   notIn?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumVoucherScopeWithAggregatesFilter<$PrismaModel> | $Enums.VoucherScope
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel>
+  not?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel> | $Enums.VoucherScope
 }
 
 export type NestedEnumDiscountTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -1036,6 +1026,16 @@ export type NestedEnumDiscountTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDiscountTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDiscountTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumVoucherScopeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoucherScope | Prisma.EnumVoucherScopeFieldRefInput<$PrismaModel>
+  in?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoucherScope[] | Prisma.ListEnumVoucherScopeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoucherScopeWithAggregatesFilter<$PrismaModel> | $Enums.VoucherScope
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoucherScopeFilter<$PrismaModel>
 }
 
 export type NestedEnumWithdrawalStatusFilter<$PrismaModel = never> = {

@@ -276,8 +276,8 @@ export type WithdrawalRequestWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"WithdrawalRequest"> | Date | string
   resolvedAt?: Prisma.DateTimeNullableFilter<"WithdrawalRequest"> | Date | string | null
   shopBalanceId?: Prisma.IntNullableFilter<"WithdrawalRequest"> | number | null
-  shop?: Prisma.XOR<Prisma.ShopScalarRelationFilter, Prisma.ShopWhereInput>
   shopBalance?: Prisma.XOR<Prisma.ShopBalanceNullableScalarRelationFilter, Prisma.ShopBalanceWhereInput> | null
+  shop?: Prisma.XOR<Prisma.ShopScalarRelationFilter, Prisma.ShopWhereInput>
 }
 
 export type WithdrawalRequestOrderByWithRelationInput = {
@@ -292,8 +292,8 @@ export type WithdrawalRequestOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   resolvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   shopBalanceId?: Prisma.SortOrderInput | Prisma.SortOrder
-  shop?: Prisma.ShopOrderByWithRelationInput
   shopBalance?: Prisma.ShopBalanceOrderByWithRelationInput
+  shop?: Prisma.ShopOrderByWithRelationInput
 }
 
 export type WithdrawalRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -311,8 +311,8 @@ export type WithdrawalRequestWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"WithdrawalRequest"> | Date | string
   resolvedAt?: Prisma.DateTimeNullableFilter<"WithdrawalRequest"> | Date | string | null
   shopBalanceId?: Prisma.IntNullableFilter<"WithdrawalRequest"> | number | null
-  shop?: Prisma.XOR<Prisma.ShopScalarRelationFilter, Prisma.ShopWhereInput>
   shopBalance?: Prisma.XOR<Prisma.ShopBalanceNullableScalarRelationFilter, Prisma.ShopBalanceWhereInput> | null
+  shop?: Prisma.XOR<Prisma.ShopScalarRelationFilter, Prisma.ShopWhereInput>
 }, "id">
 
 export type WithdrawalRequestOrderByWithAggregationInput = {
@@ -360,8 +360,8 @@ export type WithdrawalRequestCreateInput = {
   note?: string | null
   createdAt?: Date | string
   resolvedAt?: Date | string | null
-  shop: Prisma.ShopCreateNestedOneWithoutWithdrawalRequestsInput
   shopBalance?: Prisma.ShopBalanceCreateNestedOneWithoutWithdrawalRequestsInput
+  shop: Prisma.ShopCreateNestedOneWithoutWithdrawalRequestsInput
 }
 
 export type WithdrawalRequestUncheckedCreateInput = {
@@ -387,8 +387,8 @@ export type WithdrawalRequestUpdateInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  shop?: Prisma.ShopUpdateOneRequiredWithoutWithdrawalRequestsNestedInput
   shopBalance?: Prisma.ShopBalanceUpdateOneWithoutWithdrawalRequestsNestedInput
+  shop?: Prisma.ShopUpdateOneRequiredWithoutWithdrawalRequestsNestedInput
 }
 
 export type WithdrawalRequestUncheckedUpdateInput = {
@@ -833,8 +833,8 @@ export type WithdrawalRequestSelect<ExtArgs extends runtime.Types.Extensions.Int
   createdAt?: boolean
   resolvedAt?: boolean
   shopBalanceId?: boolean
-  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
   shopBalance?: boolean | Prisma.WithdrawalRequest$shopBalanceArgs<ExtArgs>
+  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["withdrawalRequest"]>
 
 export type WithdrawalRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -849,8 +849,8 @@ export type WithdrawalRequestSelectCreateManyAndReturn<ExtArgs extends runtime.T
   createdAt?: boolean
   resolvedAt?: boolean
   shopBalanceId?: boolean
-  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
   shopBalance?: boolean | Prisma.WithdrawalRequest$shopBalanceArgs<ExtArgs>
+  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["withdrawalRequest"]>
 
 export type WithdrawalRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -865,8 +865,8 @@ export type WithdrawalRequestSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   createdAt?: boolean
   resolvedAt?: boolean
   shopBalanceId?: boolean
-  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
   shopBalance?: boolean | Prisma.WithdrawalRequest$shopBalanceArgs<ExtArgs>
+  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["withdrawalRequest"]>
 
 export type WithdrawalRequestSelectScalar = {
@@ -885,23 +885,23 @@ export type WithdrawalRequestSelectScalar = {
 
 export type WithdrawalRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shopId" | "amount" | "bankName" | "bankAccount" | "accountHolder" | "status" | "note" | "createdAt" | "resolvedAt" | "shopBalanceId", ExtArgs["result"]["withdrawalRequest"]>
 export type WithdrawalRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
   shopBalance?: boolean | Prisma.WithdrawalRequest$shopBalanceArgs<ExtArgs>
+  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
 }
 export type WithdrawalRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
   shopBalance?: boolean | Prisma.WithdrawalRequest$shopBalanceArgs<ExtArgs>
+  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
 }
 export type WithdrawalRequestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
   shopBalance?: boolean | Prisma.WithdrawalRequest$shopBalanceArgs<ExtArgs>
+  shop?: boolean | Prisma.ShopDefaultArgs<ExtArgs>
 }
 
 export type $WithdrawalRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "WithdrawalRequest"
   objects: {
-    shop: Prisma.$ShopPayload<ExtArgs>
     shopBalance: Prisma.$ShopBalancePayload<ExtArgs> | null
+    shop: Prisma.$ShopPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1309,8 +1309,8 @@ readonly fields: WithdrawalRequestFieldRefs;
  */
 export interface Prisma__WithdrawalRequestClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  shop<T extends Prisma.ShopDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShopDefaultArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   shopBalance<T extends Prisma.WithdrawalRequest$shopBalanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WithdrawalRequest$shopBalanceArgs<ExtArgs>>): Prisma.Prisma__ShopBalanceClient<runtime.Types.Result.GetResult<Prisma.$ShopBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  shop<T extends Prisma.ShopDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShopDefaultArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -28,146 +28,146 @@ export type AggregateVoucher = {
 
 export type VoucherAvgAggregateOutputType = {
   id: number | null
-  shopId: number | null
   discountValue: runtime.Decimal | null
   minOrder: runtime.Decimal | null
-  maxDiscount: runtime.Decimal | null
   maxUses: number | null
   usedCount: number | null
+  maxDiscount: runtime.Decimal | null
+  shopId: number | null
 }
 
 export type VoucherSumAggregateOutputType = {
   id: number | null
-  shopId: number | null
   discountValue: runtime.Decimal | null
   minOrder: runtime.Decimal | null
-  maxDiscount: runtime.Decimal | null
   maxUses: number | null
   usedCount: number | null
+  maxDiscount: runtime.Decimal | null
+  shopId: number | null
 }
 
 export type VoucherMinAggregateOutputType = {
   id: number | null
   code: string | null
-  scope: $Enums.VoucherScope | null
-  shopId: number | null
   discountType: $Enums.DiscountType | null
   discountValue: runtime.Decimal | null
   minOrder: runtime.Decimal | null
-  maxDiscount: runtime.Decimal | null
   maxUses: number | null
   usedCount: number | null
-  startAt: Date | null
   expiresAt: Date | null
   active: boolean | null
   createdAt: Date | null
+  maxDiscount: runtime.Decimal | null
+  scope: $Enums.VoucherScope | null
+  shopId: number | null
+  startAt: Date | null
 }
 
 export type VoucherMaxAggregateOutputType = {
   id: number | null
   code: string | null
-  scope: $Enums.VoucherScope | null
-  shopId: number | null
   discountType: $Enums.DiscountType | null
   discountValue: runtime.Decimal | null
   minOrder: runtime.Decimal | null
-  maxDiscount: runtime.Decimal | null
   maxUses: number | null
   usedCount: number | null
-  startAt: Date | null
   expiresAt: Date | null
   active: boolean | null
   createdAt: Date | null
+  maxDiscount: runtime.Decimal | null
+  scope: $Enums.VoucherScope | null
+  shopId: number | null
+  startAt: Date | null
 }
 
 export type VoucherCountAggregateOutputType = {
   id: number
   code: number
-  scope: number
-  shopId: number
   discountType: number
   discountValue: number
   minOrder: number
-  maxDiscount: number
   maxUses: number
   usedCount: number
-  startAt: number
   expiresAt: number
   active: number
   createdAt: number
+  maxDiscount: number
+  scope: number
+  shopId: number
+  startAt: number
   _all: number
 }
 
 
 export type VoucherAvgAggregateInputType = {
   id?: true
-  shopId?: true
   discountValue?: true
   minOrder?: true
-  maxDiscount?: true
   maxUses?: true
   usedCount?: true
+  maxDiscount?: true
+  shopId?: true
 }
 
 export type VoucherSumAggregateInputType = {
   id?: true
-  shopId?: true
   discountValue?: true
   minOrder?: true
-  maxDiscount?: true
   maxUses?: true
   usedCount?: true
+  maxDiscount?: true
+  shopId?: true
 }
 
 export type VoucherMinAggregateInputType = {
   id?: true
   code?: true
-  scope?: true
-  shopId?: true
   discountType?: true
   discountValue?: true
   minOrder?: true
-  maxDiscount?: true
   maxUses?: true
   usedCount?: true
-  startAt?: true
   expiresAt?: true
   active?: true
   createdAt?: true
+  maxDiscount?: true
+  scope?: true
+  shopId?: true
+  startAt?: true
 }
 
 export type VoucherMaxAggregateInputType = {
   id?: true
   code?: true
-  scope?: true
-  shopId?: true
   discountType?: true
   discountValue?: true
   minOrder?: true
-  maxDiscount?: true
   maxUses?: true
   usedCount?: true
-  startAt?: true
   expiresAt?: true
   active?: true
   createdAt?: true
+  maxDiscount?: true
+  scope?: true
+  shopId?: true
+  startAt?: true
 }
 
 export type VoucherCountAggregateInputType = {
   id?: true
   code?: true
-  scope?: true
-  shopId?: true
   discountType?: true
   discountValue?: true
   minOrder?: true
-  maxDiscount?: true
   maxUses?: true
   usedCount?: true
-  startAt?: true
   expiresAt?: true
   active?: true
   createdAt?: true
+  maxDiscount?: true
+  scope?: true
+  shopId?: true
+  startAt?: true
   _all?: true
 }
 
@@ -260,18 +260,18 @@ export type VoucherGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type VoucherGroupByOutputType = {
   id: number
   code: string
-  scope: $Enums.VoucherScope
-  shopId: number | null
   discountType: $Enums.DiscountType
   discountValue: runtime.Decimal
   minOrder: runtime.Decimal
-  maxDiscount: runtime.Decimal | null
   maxUses: number
   usedCount: number
-  startAt: Date | null
   expiresAt: Date | null
   active: boolean
   createdAt: Date
+  maxDiscount: runtime.Decimal | null
+  scope: $Enums.VoucherScope
+  shopId: number | null
+  startAt: Date | null
   _count: VoucherCountAggregateOutputType | null
   _avg: VoucherAvgAggregateOutputType | null
   _sum: VoucherSumAggregateOutputType | null
@@ -300,39 +300,39 @@ export type VoucherWhereInput = {
   NOT?: Prisma.VoucherWhereInput | Prisma.VoucherWhereInput[]
   id?: Prisma.IntFilter<"Voucher"> | number
   code?: Prisma.StringFilter<"Voucher"> | string
-  scope?: Prisma.EnumVoucherScopeFilter<"Voucher"> | $Enums.VoucherScope
-  shopId?: Prisma.IntNullableFilter<"Voucher"> | number | null
   discountType?: Prisma.EnumDiscountTypeFilter<"Voucher"> | $Enums.DiscountType
   discountValue?: Prisma.DecimalFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.DecimalNullableFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFilter<"Voucher"> | number
   usedCount?: Prisma.IntFilter<"Voucher"> | number
-  startAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
   active?: Prisma.BoolFilter<"Voucher"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Voucher"> | Date | string
-  shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
+  maxDiscount?: Prisma.DecimalNullableFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFilter<"Voucher"> | $Enums.VoucherScope
+  shopId?: Prisma.IntNullableFilter<"Voucher"> | number | null
+  startAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
   orders?: Prisma.OrderListRelationFilter
+  shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
 }
 
 export type VoucherOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  scope?: Prisma.SortOrder
-  shopId?: Prisma.SortOrderInput | Prisma.SortOrder
   discountType?: Prisma.SortOrder
   discountValue?: Prisma.SortOrder
   minOrder?: Prisma.SortOrder
-  maxDiscount?: Prisma.SortOrderInput | Prisma.SortOrder
   maxUses?: Prisma.SortOrder
   usedCount?: Prisma.SortOrder
-  startAt?: Prisma.SortOrderInput | Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  shop?: Prisma.ShopOrderByWithRelationInput
+  maxDiscount?: Prisma.SortOrderInput | Prisma.SortOrder
+  scope?: Prisma.SortOrder
+  shopId?: Prisma.SortOrderInput | Prisma.SortOrder
+  startAt?: Prisma.SortOrderInput | Prisma.SortOrder
   orders?: Prisma.OrderOrderByRelationAggregateInput
+  shop?: Prisma.ShopOrderByWithRelationInput
 }
 
 export type VoucherWhereUniqueInput = Prisma.AtLeast<{
@@ -342,37 +342,37 @@ export type VoucherWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.VoucherWhereInput[]
   NOT?: Prisma.VoucherWhereInput | Prisma.VoucherWhereInput[]
   code?: Prisma.StringFilter<"Voucher"> | string
-  scope?: Prisma.EnumVoucherScopeFilter<"Voucher"> | $Enums.VoucherScope
-  shopId?: Prisma.IntNullableFilter<"Voucher"> | number | null
   discountType?: Prisma.EnumDiscountTypeFilter<"Voucher"> | $Enums.DiscountType
   discountValue?: Prisma.DecimalFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.DecimalNullableFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFilter<"Voucher"> | number
   usedCount?: Prisma.IntFilter<"Voucher"> | number
-  startAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
   active?: Prisma.BoolFilter<"Voucher"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Voucher"> | Date | string
-  shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
+  maxDiscount?: Prisma.DecimalNullableFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFilter<"Voucher"> | $Enums.VoucherScope
+  shopId?: Prisma.IntNullableFilter<"Voucher"> | number | null
+  startAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
   orders?: Prisma.OrderListRelationFilter
+  shop?: Prisma.XOR<Prisma.ShopNullableScalarRelationFilter, Prisma.ShopWhereInput> | null
 }, "id" | "code_shopId">
 
 export type VoucherOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  scope?: Prisma.SortOrder
-  shopId?: Prisma.SortOrderInput | Prisma.SortOrder
   discountType?: Prisma.SortOrder
   discountValue?: Prisma.SortOrder
   minOrder?: Prisma.SortOrder
-  maxDiscount?: Prisma.SortOrderInput | Prisma.SortOrder
   maxUses?: Prisma.SortOrder
   usedCount?: Prisma.SortOrder
-  startAt?: Prisma.SortOrderInput | Prisma.SortOrder
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  maxDiscount?: Prisma.SortOrderInput | Prisma.SortOrder
+  scope?: Prisma.SortOrder
+  shopId?: Prisma.SortOrderInput | Prisma.SortOrder
+  startAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.VoucherCountOrderByAggregateInput
   _avg?: Prisma.VoucherAvgOrderByAggregateInput
   _max?: Prisma.VoucherMaxOrderByAggregateInput
@@ -386,137 +386,137 @@ export type VoucherScalarWhereWithAggregatesInput = {
   NOT?: Prisma.VoucherScalarWhereWithAggregatesInput | Prisma.VoucherScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Voucher"> | number
   code?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  scope?: Prisma.EnumVoucherScopeWithAggregatesFilter<"Voucher"> | $Enums.VoucherScope
-  shopId?: Prisma.IntNullableWithAggregatesFilter<"Voucher"> | number | null
   discountType?: Prisma.EnumDiscountTypeWithAggregatesFilter<"Voucher"> | $Enums.DiscountType
   discountValue?: Prisma.DecimalWithAggregatesFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalWithAggregatesFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.DecimalNullableWithAggregatesFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntWithAggregatesFilter<"Voucher"> | number
   usedCount?: Prisma.IntWithAggregatesFilter<"Voucher"> | number
-  startAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Voucher"> | Date | string | null
   expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Voucher"> | Date | string | null
   active?: Prisma.BoolWithAggregatesFilter<"Voucher"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Voucher"> | Date | string
+  maxDiscount?: Prisma.DecimalNullableWithAggregatesFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeWithAggregatesFilter<"Voucher"> | $Enums.VoucherScope
+  shopId?: Prisma.IntNullableWithAggregatesFilter<"Voucher"> | number | null
+  startAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Voucher"> | Date | string | null
 }
 
 export type VoucherCreateInput = {
   code: string
-  scope?: $Enums.VoucherScope
   discountType?: $Enums.DiscountType
   discountValue: runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: number
   usedCount?: number
-  startAt?: Date | string | null
   expiresAt?: Date | string | null
   active?: boolean
   createdAt?: Date | string
-  shop?: Prisma.ShopCreateNestedOneWithoutVouchersInput
+  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: $Enums.VoucherScope
+  startAt?: Date | string | null
   orders?: Prisma.OrderCreateNestedManyWithoutVoucherInput
+  shop?: Prisma.ShopCreateNestedOneWithoutVouchersInput
 }
 
 export type VoucherUncheckedCreateInput = {
   id?: number
   code: string
-  scope?: $Enums.VoucherScope
-  shopId?: number | null
   discountType?: $Enums.DiscountType
   discountValue: runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: number
   usedCount?: number
-  startAt?: Date | string | null
   expiresAt?: Date | string | null
   active?: boolean
   createdAt?: Date | string
+  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: $Enums.VoucherScope
+  shopId?: number | null
+  startAt?: Date | string | null
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shop?: Prisma.ShopUpdateOneWithoutVouchersNestedInput
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orders?: Prisma.OrderUpdateManyWithoutVoucherNestedInput
+  shop?: Prisma.ShopUpdateOneWithoutVouchersNestedInput
 }
 
 export type VoucherUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
-  shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orders?: Prisma.OrderUncheckedUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherCreateManyInput = {
   id?: number
   code: string
-  scope?: $Enums.VoucherScope
-  shopId?: number | null
   discountType?: $Enums.DiscountType
   discountValue: runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: number
   usedCount?: number
-  startAt?: Date | string | null
   expiresAt?: Date | string | null
   active?: boolean
   createdAt?: Date | string
+  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: $Enums.VoucherScope
+  shopId?: number | null
+  startAt?: Date | string | null
 }
 
 export type VoucherUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type VoucherUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
-  shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type VoucherListRelationFilter = {
@@ -542,72 +542,72 @@ export type VoucherCodeShopIdCompoundUniqueInput = {
 export type VoucherCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  scope?: Prisma.SortOrder
-  shopId?: Prisma.SortOrder
   discountType?: Prisma.SortOrder
   discountValue?: Prisma.SortOrder
   minOrder?: Prisma.SortOrder
-  maxDiscount?: Prisma.SortOrder
   maxUses?: Prisma.SortOrder
   usedCount?: Prisma.SortOrder
-  startAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  maxDiscount?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
+  shopId?: Prisma.SortOrder
+  startAt?: Prisma.SortOrder
 }
 
 export type VoucherAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  shopId?: Prisma.SortOrder
   discountValue?: Prisma.SortOrder
   minOrder?: Prisma.SortOrder
-  maxDiscount?: Prisma.SortOrder
   maxUses?: Prisma.SortOrder
   usedCount?: Prisma.SortOrder
+  maxDiscount?: Prisma.SortOrder
+  shopId?: Prisma.SortOrder
 }
 
 export type VoucherMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  scope?: Prisma.SortOrder
-  shopId?: Prisma.SortOrder
   discountType?: Prisma.SortOrder
   discountValue?: Prisma.SortOrder
   minOrder?: Prisma.SortOrder
-  maxDiscount?: Prisma.SortOrder
   maxUses?: Prisma.SortOrder
   usedCount?: Prisma.SortOrder
-  startAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  maxDiscount?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
+  shopId?: Prisma.SortOrder
+  startAt?: Prisma.SortOrder
 }
 
 export type VoucherMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  scope?: Prisma.SortOrder
-  shopId?: Prisma.SortOrder
   discountType?: Prisma.SortOrder
   discountValue?: Prisma.SortOrder
   minOrder?: Prisma.SortOrder
-  maxDiscount?: Prisma.SortOrder
   maxUses?: Prisma.SortOrder
   usedCount?: Prisma.SortOrder
-  startAt?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  maxDiscount?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
+  shopId?: Prisma.SortOrder
+  startAt?: Prisma.SortOrder
 }
 
 export type VoucherSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  shopId?: Prisma.SortOrder
   discountValue?: Prisma.SortOrder
   minOrder?: Prisma.SortOrder
-  maxDiscount?: Prisma.SortOrder
   maxUses?: Prisma.SortOrder
   usedCount?: Prisma.SortOrder
+  maxDiscount?: Prisma.SortOrder
+  shopId?: Prisma.SortOrder
 }
 
 export type VoucherCreateNestedManyWithoutShopInput = {
@@ -668,44 +668,44 @@ export type VoucherUpdateOneWithoutOrdersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VoucherUpdateToOneWithWhereWithoutOrdersInput, Prisma.VoucherUpdateWithoutOrdersInput>, Prisma.VoucherUncheckedUpdateWithoutOrdersInput>
 }
 
-export type EnumVoucherScopeFieldUpdateOperationsInput = {
-  set?: $Enums.VoucherScope
-}
-
 export type EnumDiscountTypeFieldUpdateOperationsInput = {
   set?: $Enums.DiscountType
 }
 
+export type EnumVoucherScopeFieldUpdateOperationsInput = {
+  set?: $Enums.VoucherScope
+}
+
 export type VoucherCreateWithoutShopInput = {
   code: string
-  scope?: $Enums.VoucherScope
   discountType?: $Enums.DiscountType
   discountValue: runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: number
   usedCount?: number
-  startAt?: Date | string | null
   expiresAt?: Date | string | null
   active?: boolean
   createdAt?: Date | string
+  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: $Enums.VoucherScope
+  startAt?: Date | string | null
   orders?: Prisma.OrderCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUncheckedCreateWithoutShopInput = {
   id?: number
   code: string
-  scope?: $Enums.VoucherScope
   discountType?: $Enums.DiscountType
   discountValue: runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: number
   usedCount?: number
-  startAt?: Date | string | null
   expiresAt?: Date | string | null
   active?: boolean
   createdAt?: Date | string
+  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: $Enums.VoucherScope
+  startAt?: Date | string | null
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutVoucherInput
 }
 
@@ -741,51 +741,51 @@ export type VoucherScalarWhereInput = {
   NOT?: Prisma.VoucherScalarWhereInput | Prisma.VoucherScalarWhereInput[]
   id?: Prisma.IntFilter<"Voucher"> | number
   code?: Prisma.StringFilter<"Voucher"> | string
-  scope?: Prisma.EnumVoucherScopeFilter<"Voucher"> | $Enums.VoucherScope
-  shopId?: Prisma.IntNullableFilter<"Voucher"> | number | null
   discountType?: Prisma.EnumDiscountTypeFilter<"Voucher"> | $Enums.DiscountType
   discountValue?: Prisma.DecimalFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.DecimalNullableFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFilter<"Voucher"> | number
   usedCount?: Prisma.IntFilter<"Voucher"> | number
-  startAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
   expiresAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
   active?: Prisma.BoolFilter<"Voucher"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Voucher"> | Date | string
+  maxDiscount?: Prisma.DecimalNullableFilter<"Voucher"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFilter<"Voucher"> | $Enums.VoucherScope
+  shopId?: Prisma.IntNullableFilter<"Voucher"> | number | null
+  startAt?: Prisma.DateTimeNullableFilter<"Voucher"> | Date | string | null
 }
 
 export type VoucherCreateWithoutOrdersInput = {
   code: string
-  scope?: $Enums.VoucherScope
   discountType?: $Enums.DiscountType
   discountValue: runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: number
   usedCount?: number
-  startAt?: Date | string | null
   expiresAt?: Date | string | null
   active?: boolean
   createdAt?: Date | string
+  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: $Enums.VoucherScope
+  startAt?: Date | string | null
   shop?: Prisma.ShopCreateNestedOneWithoutVouchersInput
 }
 
 export type VoucherUncheckedCreateWithoutOrdersInput = {
   id?: number
   code: string
-  scope?: $Enums.VoucherScope
-  shopId?: number | null
   discountType?: $Enums.DiscountType
   discountValue: runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: number
   usedCount?: number
-  startAt?: Date | string | null
   expiresAt?: Date | string | null
   active?: boolean
   createdAt?: Date | string
+  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: $Enums.VoucherScope
+  shopId?: number | null
+  startAt?: Date | string | null
 }
 
 export type VoucherCreateOrConnectWithoutOrdersInput = {
@@ -806,100 +806,100 @@ export type VoucherUpdateToOneWithWhereWithoutOrdersInput = {
 
 export type VoucherUpdateWithoutOrdersInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   shop?: Prisma.ShopUpdateOneWithoutVouchersNestedInput
 }
 
 export type VoucherUncheckedUpdateWithoutOrdersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
-  shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  shopId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type VoucherCreateManyShopInput = {
   id?: number
   code: string
-  scope?: $Enums.VoucherScope
   discountType?: $Enums.DiscountType
   discountValue: runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: number
   usedCount?: number
-  startAt?: Date | string | null
   expiresAt?: Date | string | null
   active?: boolean
   createdAt?: Date | string
+  maxDiscount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: $Enums.VoucherScope
+  startAt?: Date | string | null
 }
 
 export type VoucherUpdateWithoutShopInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orders?: Prisma.OrderUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateWithoutShopInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orders?: Prisma.OrderUncheckedUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateManyWithoutShopInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
   discountType?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   discountValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   minOrder?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   maxUses?: Prisma.IntFieldUpdateOperationsInput | number
   usedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxDiscount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  scope?: Prisma.EnumVoucherScopeFieldUpdateOperationsInput | $Enums.VoucherScope
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -936,80 +936,80 @@ export type VoucherCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.
 export type VoucherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
-  scope?: boolean
-  shopId?: boolean
   discountType?: boolean
   discountValue?: boolean
   minOrder?: boolean
-  maxDiscount?: boolean
   maxUses?: boolean
   usedCount?: boolean
-  startAt?: boolean
   expiresAt?: boolean
   active?: boolean
   createdAt?: boolean
-  shop?: boolean | Prisma.Voucher$shopArgs<ExtArgs>
+  maxDiscount?: boolean
+  scope?: boolean
+  shopId?: boolean
+  startAt?: boolean
   orders?: boolean | Prisma.Voucher$ordersArgs<ExtArgs>
+  shop?: boolean | Prisma.Voucher$shopArgs<ExtArgs>
   _count?: boolean | Prisma.VoucherCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["voucher"]>
 
 export type VoucherSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
-  scope?: boolean
-  shopId?: boolean
   discountType?: boolean
   discountValue?: boolean
   minOrder?: boolean
-  maxDiscount?: boolean
   maxUses?: boolean
   usedCount?: boolean
-  startAt?: boolean
   expiresAt?: boolean
   active?: boolean
   createdAt?: boolean
+  maxDiscount?: boolean
+  scope?: boolean
+  shopId?: boolean
+  startAt?: boolean
   shop?: boolean | Prisma.Voucher$shopArgs<ExtArgs>
 }, ExtArgs["result"]["voucher"]>
 
 export type VoucherSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   code?: boolean
-  scope?: boolean
-  shopId?: boolean
   discountType?: boolean
   discountValue?: boolean
   minOrder?: boolean
-  maxDiscount?: boolean
   maxUses?: boolean
   usedCount?: boolean
-  startAt?: boolean
   expiresAt?: boolean
   active?: boolean
   createdAt?: boolean
+  maxDiscount?: boolean
+  scope?: boolean
+  shopId?: boolean
+  startAt?: boolean
   shop?: boolean | Prisma.Voucher$shopArgs<ExtArgs>
 }, ExtArgs["result"]["voucher"]>
 
 export type VoucherSelectScalar = {
   id?: boolean
   code?: boolean
-  scope?: boolean
-  shopId?: boolean
   discountType?: boolean
   discountValue?: boolean
   minOrder?: boolean
-  maxDiscount?: boolean
   maxUses?: boolean
   usedCount?: boolean
-  startAt?: boolean
   expiresAt?: boolean
   active?: boolean
   createdAt?: boolean
+  maxDiscount?: boolean
+  scope?: boolean
+  shopId?: boolean
+  startAt?: boolean
 }
 
-export type VoucherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "scope" | "shopId" | "discountType" | "discountValue" | "minOrder" | "maxDiscount" | "maxUses" | "usedCount" | "startAt" | "expiresAt" | "active" | "createdAt", ExtArgs["result"]["voucher"]>
+export type VoucherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "discountType" | "discountValue" | "minOrder" | "maxUses" | "usedCount" | "expiresAt" | "active" | "createdAt" | "maxDiscount" | "scope" | "shopId" | "startAt", ExtArgs["result"]["voucher"]>
 export type VoucherInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  shop?: boolean | Prisma.Voucher$shopArgs<ExtArgs>
   orders?: boolean | Prisma.Voucher$ordersArgs<ExtArgs>
+  shop?: boolean | Prisma.Voucher$shopArgs<ExtArgs>
   _count?: boolean | Prisma.VoucherCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VoucherIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1022,24 +1022,24 @@ export type VoucherIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $VoucherPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Voucher"
   objects: {
-    shop: Prisma.$ShopPayload<ExtArgs> | null
     orders: Prisma.$OrderPayload<ExtArgs>[]
+    shop: Prisma.$ShopPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     code: string
-    scope: $Enums.VoucherScope
-    shopId: number | null
     discountType: $Enums.DiscountType
     discountValue: runtime.Decimal
     minOrder: runtime.Decimal
-    maxDiscount: runtime.Decimal | null
     maxUses: number
     usedCount: number
-    startAt: Date | null
     expiresAt: Date | null
     active: boolean
     createdAt: Date
+    maxDiscount: runtime.Decimal | null
+    scope: $Enums.VoucherScope
+    shopId: number | null
+    startAt: Date | null
   }, ExtArgs["result"]["voucher"]>
   composites: {}
 }
@@ -1434,8 +1434,8 @@ readonly fields: VoucherFieldRefs;
  */
 export interface Prisma__VoucherClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  shop<T extends Prisma.Voucher$shopArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voucher$shopArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   orders<T extends Prisma.Voucher$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voucher$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shop<T extends Prisma.Voucher$shopArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voucher$shopArgs<ExtArgs>>): Prisma.Prisma__ShopClient<runtime.Types.Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1467,18 +1467,18 @@ export interface Prisma__VoucherClient<T, Null = never, ExtArgs extends runtime.
 export interface VoucherFieldRefs {
   readonly id: Prisma.FieldRef<"Voucher", 'Int'>
   readonly code: Prisma.FieldRef<"Voucher", 'String'>
-  readonly scope: Prisma.FieldRef<"Voucher", 'VoucherScope'>
-  readonly shopId: Prisma.FieldRef<"Voucher", 'Int'>
   readonly discountType: Prisma.FieldRef<"Voucher", 'DiscountType'>
   readonly discountValue: Prisma.FieldRef<"Voucher", 'Decimal'>
   readonly minOrder: Prisma.FieldRef<"Voucher", 'Decimal'>
-  readonly maxDiscount: Prisma.FieldRef<"Voucher", 'Decimal'>
   readonly maxUses: Prisma.FieldRef<"Voucher", 'Int'>
   readonly usedCount: Prisma.FieldRef<"Voucher", 'Int'>
-  readonly startAt: Prisma.FieldRef<"Voucher", 'DateTime'>
   readonly expiresAt: Prisma.FieldRef<"Voucher", 'DateTime'>
   readonly active: Prisma.FieldRef<"Voucher", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Voucher", 'DateTime'>
+  readonly maxDiscount: Prisma.FieldRef<"Voucher", 'Decimal'>
+  readonly scope: Prisma.FieldRef<"Voucher", 'VoucherScope'>
+  readonly shopId: Prisma.FieldRef<"Voucher", 'Int'>
+  readonly startAt: Prisma.FieldRef<"Voucher", 'DateTime'>
 }
     
 
@@ -1880,25 +1880,6 @@ export type VoucherDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Voucher.shop
- */
-export type Voucher$shopArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Shop
-   */
-  select?: Prisma.ShopSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Shop
-   */
-  omit?: Prisma.ShopOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShopInclude<ExtArgs> | null
-  where?: Prisma.ShopWhereInput
-}
-
-/**
  * Voucher.orders
  */
 export type Voucher$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1920,6 +1901,25 @@ export type Voucher$ordersArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
+ * Voucher.shop
+ */
+export type Voucher$shopArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Shop
+   */
+  select?: Prisma.ShopSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Shop
+   */
+  omit?: Prisma.ShopOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShopInclude<ExtArgs> | null
+  where?: Prisma.ShopWhereInput
 }
 
 /**

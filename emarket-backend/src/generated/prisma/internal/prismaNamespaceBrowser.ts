@@ -97,7 +97,6 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
-  googleId: 'googleId',
   phone: 'phone',
   address: 'address',
   avatar: 'avatar',
@@ -105,7 +104,8 @@ export const UserScalarFieldEnum = {
   status: 'status',
   hashRefreshToken: 'hashRefreshToken',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  googleId: 'googleId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -123,9 +123,9 @@ export const ShopScalarFieldEnum = {
   rating: 'rating',
   totalSales: 'totalSales',
   status: 'status',
-  verificationStatus: 'verificationStatus',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  verificationStatus: 'verificationStatus'
 } as const
 
 export type ShopScalarFieldEnum = (typeof ShopScalarFieldEnum)[keyof typeof ShopScalarFieldEnum]
@@ -210,20 +210,20 @@ export const OrderScalarFieldEnum = {
   shippingAddress: 'shippingAddress',
   receiverName: 'receiverName',
   receiverPhone: 'receiverPhone',
-  momoOrderId: 'momoOrderId',
-  momoTransId: 'momoTransId',
   paymentMethod: 'paymentMethod',
   paymentStatus: 'paymentStatus',
-  shippingMethod: 'shippingMethod',
   status: 'status',
   note: 'note',
-  trackingCode: 'trackingCode',
-  voucherId: 'voucherId',
-  isSettled: 'isSettled',
-  commission: 'commission',
-  settlementAt: 'settlementAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  shippingMethod: 'shippingMethod',
+  voucherId: 'voucherId',
+  momoOrderId: 'momoOrderId',
+  isSettled: 'isSettled',
+  settlementAt: 'settlementAt',
+  commission: 'commission',
+  trackingCode: 'trackingCode',
+  momoTransId: 'momoTransId'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -268,10 +268,10 @@ export const ReviewScalarFieldEnum = {
   orderId: 'orderId',
   rating: 'rating',
   comment: 'comment',
+  createdAt: 'createdAt',
+  isHidden: 'isHidden',
   sellerReply: 'sellerReply',
   sellerReplyAt: 'sellerReplyAt',
-  isHidden: 'isHidden',
-  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
@@ -294,18 +294,18 @@ export type BannerScalarFieldEnum = (typeof BannerScalarFieldEnum)[keyof typeof 
 export const VoucherScalarFieldEnum = {
   id: 'id',
   code: 'code',
-  scope: 'scope',
-  shopId: 'shopId',
   discountType: 'discountType',
   discountValue: 'discountValue',
   minOrder: 'minOrder',
-  maxDiscount: 'maxDiscount',
   maxUses: 'maxUses',
   usedCount: 'usedCount',
-  startAt: 'startAt',
   expiresAt: 'expiresAt',
   active: 'active',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  maxDiscount: 'maxDiscount',
+  scope: 'scope',
+  shopId: 'shopId',
+  startAt: 'startAt'
 } as const
 
 export type VoucherScalarFieldEnum = (typeof VoucherScalarFieldEnum)[keyof typeof VoucherScalarFieldEnum]
@@ -356,15 +356,15 @@ export const ChatConversationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   shopId: 'shopId',
-  assignedStaffId: 'assignedStaffId',
-  assignedAt: 'assignedAt',
-  lastStaffActivity: 'lastStaffActivity',
   type: 'type',
   unreadUser: 'unreadUser',
   unreadSeller: 'unreadSeller',
   lastMessage: 'lastMessage',
   lastMessageAt: 'lastMessageAt',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  assignedAt: 'assignedAt',
+  assignedStaffId: 'assignedStaffId',
+  lastStaffActivity: 'lastStaffActivity'
 } as const
 
 export type ChatConversationScalarFieldEnum = (typeof ChatConversationScalarFieldEnum)[keyof typeof ChatConversationScalarFieldEnum]
