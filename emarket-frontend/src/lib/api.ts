@@ -6,13 +6,16 @@ export async function apiFetch(endpoint: string, options?: RequestInit, isPublic
     console.log('isFormData:', isFormData)
     console.log('body:', options?.body)
 
+    const isClient = typeof window !== 'undefined';
+    const baseUrl = isClient ? '/api' : (process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000');
+
     const buildHeaders = (opts?: RequestInit) => ({
         // Nếu là FormData thì KHÔNG set Content-Type, để browser tự set multipart boundary
         ...(!isFormData && { 'Content-Type': 'application/json' }),
         ...opts?.headers,
     })
 
-    let res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${endpoint}`, {
+    let res = await fetch(`${baseUrl}${endpoint}`, {
         credentials: 'include',
         ...options,
         headers: buildHeaders(options),
@@ -22,13 +25,13 @@ export async function apiFetch(endpoint: string, options?: RequestInit, isPublic
     if (res.status === 401 && endpoint !== '/auth/login' && endpoint !== '/auth/refresh') {
         try {
             // Cố gắng gọi API refresh token
-            const refreshRes = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`, {
+            const refreshRes = await fetch(`${baseUrl}/auth/refresh`, {
                 method: 'POST',
                 credentials: 'include', // Bắt buộc để gửi refresh_token từ cookie
             });
             console.log("refreshRes", refreshRes)
             if (refreshRes.ok) {
-                res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${endpoint}`, {
+                res = await fetch(`${baseUrl}${endpoint}`, {
                     credentials: 'include',
                     ...options,
                     headers: buildHeaders(options), // ← fix ở đây

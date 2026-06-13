@@ -51,7 +51,7 @@ export default async function middleware(request: NextRequest) {
 
     const isGuestOnly = ["/login", "/register"].includes(path);
 
-    const publicPaths = ["/", "/product-detail", "/shop-detail", "/search"];
+    const publicPaths = ["/", "/product-detail", "/shop-detail", "/search", "/callback"];
     const isPublic =
         publicPaths.some((p) => path === p || path.startsWith(p + "/")) ||
         isGuestOnly;

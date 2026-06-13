@@ -101,7 +101,7 @@ export class AuthController {
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
-        res.redirect(`${process.env.FRONTEND_URL}/callback`);
+        res.redirect(`${process.env.FRONTEND_URL}/callback?access_token=${access_token}&refresh_token=${refresh_token}`);
     }
 
 }

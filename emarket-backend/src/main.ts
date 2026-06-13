@@ -21,8 +21,14 @@ async function bootstrap() {
   app.use(cookieParser()); // Thêm dòng này
   app.enableCors({
     origin: (origin, callback) => {
-      // Cho phép localhost và mọi subdomain của vercel.app (cho link preview động)
-      if (!origin || origin.startsWith('http://localhost') || origin.endsWith('.vercel.app')) {
+      // Cho phép localhost, mọi subdomain của vercel.app, và FRONTEND_URL từ biến môi trường
+      const frontendUrl = process.env.FRONTEND_URL;
+      if (
+        !origin ||
+        origin.startsWith('http://localhost') ||
+        origin.endsWith('.vercel.app') ||
+        (frontendUrl && origin === frontendUrl)
+      ) {
         callback(null, true);
       } else {
         callback(new Error('Not allowed by CORS'));
