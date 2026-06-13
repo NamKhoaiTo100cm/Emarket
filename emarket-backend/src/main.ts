@@ -20,10 +20,14 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ResponseInterceptor());
   app.use(cookieParser()); // Thêm dòng này
   app.enableCors({
-    origin: [
-      "http://localhost:3000",
-      "https://emarket-frontend-smoky.vercel.app"
-    ],
+    origin: (origin, callback) => {
+      // Cho phép localhost và mọi subdomain của vercel.app (cho link preview động)
+      if (!origin || origin.startsWith('http://localhost') || origin.endsWith('.vercel.app')) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
   await app.listen(process.env.PORT || 8000);
