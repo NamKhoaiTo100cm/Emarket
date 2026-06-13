@@ -7,7 +7,7 @@ import ModeToggle from '../ui/ModeToggle'
 import { useCartStore } from '@/stores/useCartStore'
 import { useEffect, useState } from 'react'
 import CartPopup from './CartPopup'
-import { FaShoppingCart } from 'react-icons/fa'
+import { FaShoppingCart, FaSearch } from 'react-icons/fa'
 import { useRouter } from 'next/navigation'
 import { useLogout, useMe } from '../hooks/useAuth'
 import { queryClient } from '@/lib/queryClient'
@@ -72,11 +72,28 @@ export default function HeaderContent({ user }: { user: any }) {
                 {isShowDevMode && <div className='w-full! mx-0! text-center text-white bg-red-500'>Dev Mode</div>}
                 <NavigationMenu className=' px-4 py-2 lg:px-20 w-full! max-w-none! justify-between gap-5 dark/30 border-b z-30 backdrop-blur'>
                     <Link href={'/'}><h1 className='font-bold text-2xl'>Emarket</h1></Link>
-                    <Input className='md:max-w-100 lg:max-w-150 bg-white' placeholder='Tìm kiếm sản phẩm' value={searchText} onChange={(e) => setSearchText(e.target.value)} onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            handleSearch();
-                        }
-                    }}></Input>
+                    <div className='relative flex items-center w-full md:max-w-100 lg:max-w-150'>
+                        <Input 
+                            className='w-full bg-white pr-10' 
+                            placeholder='Tìm kiếm sản phẩm' 
+                            value={searchText} 
+                            onChange={(e) => setSearchText(e.target.value)} 
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    handleSearch();
+                                }
+                            }}
+                        />
+                        <Button 
+                            type="button"
+                            variant="ghost" 
+                            size="icon"
+                            onClick={handleSearch}
+                            className='absolute right-1 h-8 w-8 text-gray-500 hover:text-primary dark:text-gray-400'
+                        >
+                            <FaSearch className='h-4 w-4' />
+                        </Button>
+                    </div>
                     <NavigationMenuList className=''>
                         <NavigationMenuItem className='ml-auto'>
                             <div className='flex gap-1'>

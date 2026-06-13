@@ -46,7 +46,7 @@ export default function ErrorPage({
     }, [percentToReload])
 
     const fakeReasons = [
-        "Thằng dev code ngu vcl",
+        "Code ngu",
         // "Nhà kho đi lạc vào chiều không gian khác.",
         // "Server đang uống trà sữa.",
         // "Tối thứ 6 deploy.",
