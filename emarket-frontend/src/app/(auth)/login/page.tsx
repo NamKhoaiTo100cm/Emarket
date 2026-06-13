@@ -60,7 +60,7 @@ const LoginContent = () => {
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Đăng nhập</CardTitle>
           <CardDescription>
-            Sử dụng tài khoản Google
+            Đăng nhập tài khoản
           </CardDescription>
         </CardHeader>
 
@@ -96,12 +96,12 @@ const LoginContent = () => {
               <Field>
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Mật khẩu</FieldLabel>
-                  <a
+                  {/* <a
                     href="#"
                     className="ml-auto text-sm underline-offset-4 hover:underline"
                   >
                     Quên mật khẩu?
-                  </a>
+                  </a> */}
                 </div>
                 <Input
                   id="password"
@@ -123,10 +123,10 @@ const LoginContent = () => {
         </CardContent>
       </Card>
 
-      <FieldDescription className="px-6 text-center">
+      {/* <FieldDescription className="px-6 text-center">
         Bằng cách tiếp tục, bạn đồng ý với <a href="#">Điều khoản dịch vụ</a>{" "}
         và <a href="#">Chính sách bảo mật</a>.
-      </FieldDescription>
+      </FieldDescription> */}
     </div>
   )
 }
