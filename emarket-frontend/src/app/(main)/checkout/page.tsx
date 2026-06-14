@@ -332,8 +332,8 @@ const CheckOutPage = () => {
                 router.push(`/user/orders`);
             }
         } catch (err) {
-            console.log(err)
-            toast.error("Có lỗi xảy ra, thử lại sau");
+            console.error(err);
+            toast.error(err instanceof Error ? err.message : "Có lỗi xảy ra, thử lại sau");
         }
     };
 

@@ -51,7 +51,7 @@ export default function UserSidebar() {
                     asChild key={tab.value}>
                     <Link href={tab.path} >
                         {tab.name}
-                        <Badge className='h-5 min-w-5 px-1 tabular-nums'>{tab.count}</Badge>
+                        {/* <Badge className='h-5 min-w-5 px-1 tabular-nums'>{tab.count}</Badge> */}
                     </Link>
                 </TabsTrigger>
 

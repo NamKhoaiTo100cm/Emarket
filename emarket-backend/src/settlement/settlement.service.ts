@@ -79,10 +79,16 @@ export class SettlementService {
         settlementAt.setDate(settlementAt.getDate() + 3);
 
         for (const order of orders) {
+            const paymentStatusUpdate = order.paymentMethod === 'cod' ? 'paid' : undefined;
+
             await this.prisma.$transaction([
                 this.prisma.order.update({
                     where: { id: order.id },
-                    data: { status: 'delivered', settlementAt },
+                    data: {
+                        status: 'delivered',
+                        settlementAt,
+                        ...(paymentStatusUpdate ? { paymentStatus: paymentStatusUpdate } : {}),
+                    },
                 }),
                 this.prisma.shopBalance.upsert({
                     where: { shopId: order.shopId },

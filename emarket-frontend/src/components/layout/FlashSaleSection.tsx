@@ -58,8 +58,8 @@ export default function FlashSaleSection({ products }: FlashSaleSectionProps) {
                         <span className="bg-gray-900 px-2.5 py-1 rounded shadow-sm">{formatNumber(timeLeft.seconds)}</span>
                     </div>
                 </div>
-                <button 
-                    onClick={() => router.push("/search")} 
+                <button
+                    onClick={() => router.push("/search")}
                     className="text-orange-600 dark:text-orange-400 text-sm font-semibold hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
                 >
                     Xem tất cả &gt;
@@ -72,7 +72,14 @@ export default function FlashSaleSection({ products }: FlashSaleSectionProps) {
                     const salePrice = Number(item.salePrice);
                     const discountPercent = Math.floor(((originalPrice - salePrice) / originalPrice) * 100);
                     // Mock sold quantity progress
-                    const soldCount = item.soldCount || Math.floor(Math.random() * 10) + 1;
+                    const soldCount = item.soldCount || (() => {
+                        const idStr = String(item.id || "");
+                        let hash = 0;
+                        for (let i = 0; i < idStr.length; i++) {
+                            hash = idStr.charCodeAt(i) + ((hash << 5) - hash);
+                        }
+                        return (Math.abs(hash) % 10) + 1;
+                    })();
                     const totalLimit = 15;
                     const percentSold = Math.min(100, Math.floor((soldCount / totalLimit) * 100));
 
@@ -109,8 +116,8 @@ export default function FlashSaleSection({ products }: FlashSaleSectionProps) {
 
                                 {/* Progress bar */}
                                 <div className="mt-1 relative w-full h-4 bg-orange-100 dark:bg-orange-950/40 rounded-full overflow-hidden flex items-center justify-center">
-                                    <div 
-                                        className="absolute left-0 top-0 h-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-500" 
+                                    <div
+                                        className="absolute left-0 top-0 h-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-500"
                                         style={{ width: `${percentSold}%` }}
                                     />
                                     <span className="relative z-10 text-[9px] font-extrabold text-white uppercase drop-shadow-sm">

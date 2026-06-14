@@ -1,5 +1,4 @@
 
-
 import CategoryCards from "@/components/cards/CategoryList"
 import ProductList from "@/components/cards/ProductList"
 import BannerSlider from "@/components/layout/BannerSlider"
@@ -13,7 +12,7 @@ const HomePage = async () => {
     <div className="space-y-10 lg:mx-10 py-6">
       {/* Banner hero section */}
       <BannerSlider />
-      
+
       {/* Landing promo popup overlay */}
       <PromoPopup />
 

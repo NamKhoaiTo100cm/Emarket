@@ -28,7 +28,7 @@ export function AppSidebarSeller({ data, onSelectedNavMain, ...props }: { data: 
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} onSelectedNavMain={onSelectedNavMain} />
-        <NavProjects projects={data.projects} />
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

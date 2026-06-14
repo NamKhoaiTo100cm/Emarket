@@ -172,7 +172,7 @@ export default function UserProfilePage() {
                                 />
                             </Field>
 
-                            <Field className="flex flex-col gap-1.5">
+                            {/* <Field className="flex flex-col gap-1.5">
                                 <Label htmlFor="balance" className="text-sm font-medium text-slate-700 dark:text-slate-300">
                                     Số dư tài khoản
                                 </Label>
@@ -182,7 +182,7 @@ export default function UserProfilePage() {
                                     disabled
                                     className="w-full bg-slate-50 dark:bg-slate-800 text-slate-500 cursor-not-allowed font-semibold text-emerald-600 dark:text-emerald-400"
                                 />
-                            </Field>
+                            </Field> */}
 
                             <Field className="flex flex-col gap-1.5 md:col-span-2">
                                 <Label htmlFor="address" className="text-sm font-medium text-slate-700 dark:text-slate-300">
