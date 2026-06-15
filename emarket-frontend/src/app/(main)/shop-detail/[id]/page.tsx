@@ -41,7 +41,7 @@ export default async function ShopDetailPage({ params }: { params: { id: string 
                                 {shop?.isVerified && <VerifiedBadge size="lg" showLabel />}
                             </h1>
                             <div className="mt-2 flex justify-center md:justify-start gap-2">
-                                <Button variant="outline"><UserPlus />Theo dõi</Button>
+                                {/* <Button variant="outline"><UserPlus />Theo dõi</Button> */}
                                 <Link href={`/user/chat/${shop.id}`}><Button variant="default" className="ml-1"><MessageSquare />Chat</Button></Link>
                                 <ReportButton type="shop" targetId={shop.id} />
                             </div>

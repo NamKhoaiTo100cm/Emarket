@@ -65,10 +65,11 @@ export class ProductController {
     @Query('minPrice') minPrice?: string,
     @Query('maxPrice') maxPrice?: string,
     @Query('status') status?: string,
+    @Query('sortByPrice') sortByPrice?: 'asc' | 'desc',
   ) {
     const min = minPrice ? Number(minPrice) : undefined;
     const max = maxPrice ? Number(maxPrice) : undefined;
-    return this.productService.findAll(page, limit, minRating, keyword, categorySlug, min, max, status, req);
+    return this.productService.findAll(page, limit, minRating, keyword, categorySlug, min, max, status, req, sortByPrice);
   }
 
   @Public()

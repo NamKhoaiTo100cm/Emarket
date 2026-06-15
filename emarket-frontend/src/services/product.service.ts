@@ -1,11 +1,12 @@
 // services/auth.service.ts
 import { apiFetch } from '@/lib/api'
 export const productService = {
-    getAll: (page: number, limit: number, keyword: string = "", minRating: number = 0, categorySlug: string = "", minPrice?: number, maxPrice?: number, status?: string) => {
+    getAll: (page: number, limit: number, keyword: string = "", minRating: number = 0, categorySlug: string = "", minPrice?: number, maxPrice?: number, status?: string, sortByPrice?: string) => {
         let url = `/product?page=${page}&limit=${limit}&keyword=${keyword}&minRating=${minRating}&categorySlug=${categorySlug}`;
         if (minPrice !== undefined) url += `&minPrice=${minPrice}`;
         if (maxPrice !== undefined) url += `&maxPrice=${maxPrice}`;
         if (status !== undefined) url += `&status=${status}`;
+        if (sortByPrice !== undefined) url += `&sortByPrice=${sortByPrice}`;
         return apiFetch(url, {}, true);
     },
     getByIds: (ids: number[]) =>

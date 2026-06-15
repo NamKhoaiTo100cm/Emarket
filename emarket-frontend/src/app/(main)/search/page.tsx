@@ -43,6 +43,7 @@ const SearchContent = () => {
     const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
     const [categories, setCategories] = useState<any[]>([]);
     const [products, setProducts] = useState<any[]>([]);
+    const [sortByPrice, setSortByPrice] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         setCategorySlug(searchParams.get("categorySlug") || "");
@@ -56,7 +57,8 @@ const SearchContent = () => {
         rating,
         categorySlug,
         minPrice,
-        maxPrice
+        maxPrice,
+        sortByPrice
     );
 
     const handleApplyPriceRange = () => {
@@ -275,17 +277,24 @@ const SearchContent = () => {
                         <div className="flex justify-between">
                             <div className="flex items-center gap-2 w-full">
                                 <h1 className="text-sm">Sắp xếp theo</h1>
-                                <Button>Liên quan</Button>
-                                <Button>Bán chạy</Button>
+                                {/* <Button>Liên quan</Button>
+                                <Button>Bán chạy</Button> */}
 
-                                <Select>
+                                <Select
+                                    value={sortByPrice || "none"}
+                                    onValueChange={(val) => {
+                                        setSortByPrice(val === "none" ? undefined : val);
+                                        setPagination((prev) => ({ ...prev, page: 1 }));
+                                    }}
+                                >
                                     <SelectTrigger className="w-full max-w-48">
                                         <SelectValue placeholder="Giá" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectGroup>
-                                            <SelectItem value="asc">Từ thấp đến cao</SelectItem>
-                                            <SelectItem value="desc">Từ cao đến thấp</SelectItem>
+                                            <SelectItem value="none">Mặc định</SelectItem>
+                                            <SelectItem value="asc">Giá: Thấp đến Cao</SelectItem>
+                                            <SelectItem value="desc">Giá: Cao đến Thấp</SelectItem>
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>

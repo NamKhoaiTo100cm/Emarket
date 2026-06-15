@@ -181,7 +181,7 @@ export class ProductService {
     });
   }
 
-  async findAll(page: number, limit: number, minRating: number, keyword: string, categorySlug: string, minPrice?: number, maxPrice?: number, status?: string, req?: any) {
+  async findAll(page: number, limit: number, minRating: number, keyword: string, categorySlug: string, minPrice?: number, maxPrice?: number, status?: string, req?: any, sortByPrice?: 'asc' | 'desc') {
     keyword = keyword.trim();
 
     const role = await this.getRoleFromRequest(req);
@@ -233,6 +233,7 @@ export class ProductService {
           images: { where: { isMain: true } },
           shop: { select: { name: true } },
         },
+        orderBy: sortByPrice ? { price: sortByPrice } : { createdAt: 'desc' },
         take: limit,
         skip: (page - 1) * limit,
       }),
