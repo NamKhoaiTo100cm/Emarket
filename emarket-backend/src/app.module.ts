@@ -25,6 +25,7 @@ import { AddressModule } from './address/address.module';
 import { BannerModule } from './banner/banner.module';
 import { SystemConfigModule } from './system-config/system-config.module';
 import { ReportModule } from './report/report.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { ReportModule } from './report/report.module';
     AddressModule,
     BannerModule,
     SystemConfigModule,
+    NotificationModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },

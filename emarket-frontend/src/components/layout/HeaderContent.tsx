@@ -15,6 +15,15 @@ import AnnouncementBar from '../ui/announcement-bar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { QueryClient } from '@tanstack/react-query'
+import { Bell } from 'lucide-react'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import { ScrollArea } from '../ui/scroll-area'
+import {
+    useNotifications,
+    useNotificationUnreadCount,
+    useMarkNotificationRead,
+    useMarkAllNotificationsRead
+} from '../hooks/useNotification'
 
 
 
@@ -43,6 +52,26 @@ export default function HeaderContent({ user }: { user: any }) {
     const productInCart = useCartStore(state => state.productItems);
     const [showCart, setShowCart] = useState(false);
     const [searchText, setSearchText] = useState("");
+
+    const [isOpenNotif, setIsOpenNotif] = useState(false);
+    const { data: countRes } = useNotificationUnreadCount(!!user);
+    const unreadCount = countRes?.count || 0;
+
+    const { data: notifRes } = useNotifications(1, 20, !!user && isOpenNotif);
+    const notifications = notifRes?.data || [];
+
+    const { mutate: markRead } = useMarkNotificationRead();
+    const { mutate: markAllRead } = useMarkAllNotificationsRead();
+
+    const handleNotificationItemClick = (notif: any) => {
+        if (!notif.isRead) {
+            markRead(notif.id);
+        }
+        if (notif.type === 'order') {
+            router.push('/user/orders');
+        }
+        setIsOpenNotif(false);
+    };
 
     const handleSearch = () => {
         router.push(`/search?keyword=${searchText}`)
@@ -110,6 +139,63 @@ export default function HeaderContent({ user }: { user: any }) {
 
                                 </div>
 
+                                {user && (
+                                    <Popover open={isOpenNotif} onOpenChange={setIsOpenNotif}>
+                                        <PopoverTrigger asChild>
+                                            <Button variant="outline" size="icon" className="relative">
+                                                <Bell className="h-4 w-4" />
+                                                {unreadCount > 0 && (
+                                                    <span className="absolute bg-red-500 -top-1.5 -right-1.5 text-white rounded-full text-[9px] w-5 h-5 flex items-center justify-center font-bold animate-pulse">
+                                                        {unreadCount > 99 ? '99+' : unreadCount}
+                                                    </span>
+                                                )}
+                                            </Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-80 p-0" align="end">
+                                            <div className="p-3 border-b flex items-center justify-between">
+                                                <h4 className="font-semibold text-sm">Thông báo</h4>
+                                                {unreadCount > 0 && (
+                                                    <button
+                                                        onClick={() => markAllRead()}
+                                                        className="text-xs text-primary hover:underline font-medium transition-colors cursor-pointer"
+                                                    >
+                                                        Đọc tất cả
+                                                    </button>
+                                                )}
+                                            </div>
+                                            <ScrollArea className="h-72">
+                                                {notifications.length === 0 ? (
+                                                    <div className="flex flex-col items-center justify-center h-48 text-muted-foreground gap-1 p-4">
+                                                        <Bell className="h-8 w-8 opacity-20" />
+                                                        <p className="text-xs">Không có thông báo nào</p>
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex flex-col">
+                                                        {notifications.map((notif: any) => (
+                                                            <div
+                                                                key={notif.id}
+                                                                onClick={() => handleNotificationItemClick(notif)}
+                                                                className={`p-3 text-left border-b last:border-0 hover:bg-muted/50 cursor-pointer transition-colors flex flex-col gap-1 ${
+                                                                    !notif.isRead ? 'bg-primary/5 border-l-2 border-l-primary' : 'pl-3.5'
+                                                                }`}
+                                                            >
+                                                                <span className="font-semibold text-xs text-foreground">{notif.title}</span>
+                                                                {notif.message && (
+                                                                    <p className="text-[11px] text-muted-foreground leading-relaxed">
+                                                                        {notif.message}
+                                                                    </p>
+                                                                )}
+                                                                <span className="text-[9px] text-muted-foreground/80 mt-1">
+                                                                    {new Date(notif.createdAt).toLocaleString('vi-VN')}
+                                                                </span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </ScrollArea>
+                                        </PopoverContent>
+                                    </Popover>
+                                )}
 
                                 {user ? (
                                     // <Button onClick={() => handleLogout()}>Đăng xuất {user.name}</Button>

@@ -5,10 +5,16 @@ import { PrismaService } from '../prisma/prisma.service';
 import { ProductImage } from '../product-image/entities/product-image.entity';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { VoucherService } from '../voucher/voucher.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable()
 export class OrderService {
-  constructor(private prisma: PrismaService, private readonly cloudinaryService: CloudinaryService, private voucherService: VoucherService) { }
+  constructor(
+    private prisma: PrismaService,
+    private readonly cloudinaryService: CloudinaryService,
+    private voucherService: VoucherService,
+    private notificationService: NotificationService,
+  ) { }
   async create(
     createOrderDto: CreateOrderDto,
     userId: number,
@@ -403,10 +409,34 @@ export class OrderService {
       });
     }
 
-    await this.prisma.order.update({
+    const updatedOrder = await this.prisma.order.update({
       where: { id: orderId },
       data: updateData,
     });
+
+    try {
+      let title = '';
+      let message = '';
+      if (status === 'confirmed') {
+        title = 'Đơn hàng đã được xác nhận';
+        message = `Đơn hàng #${orderId} của bạn đã được shop xác nhận và đang được chuẩn bị.`;
+      } else if (status === 'shipping') {
+        title = 'Đơn hàng đang giao';
+        message = `Đơn hàng #${orderId} của bạn đã được bàn giao cho đơn vị vận chuyển. Mã vận đơn: ${updateData.trackingCode || order.trackingCode || ''}`;
+      } else if (status === 'delivered') {
+        title = 'Giao hàng thành công';
+        message = `Đơn hàng #${orderId} của bạn đã được giao thành công. Cảm ơn bạn đã mua sắm tại Emarket!`;
+      } else if (status === 'cancelled') {
+        title = 'Đơn hàng đã bị hủy';
+        message = `Đơn hàng #${orderId} của bạn đã bị hủy.`;
+      }
+
+      if (title && message) {
+        await this.notificationService.createNotification(order.userId, title, message, 'order');
+      }
+    } catch (err) {
+      console.error('Lỗi khi tạo thông báo cập nhật đơn hàng:', err);
+    }
 
     return { message: 'Order status updated successfully' };
   }
@@ -439,6 +469,17 @@ export class OrderService {
         create: { shopId: order.shopId, pendingBalance: order.total, balance: 0 },
       }),
     ]);
+
+    try {
+      await this.notificationService.createNotification(
+        order.userId,
+        'Giao hàng thành công',
+        `Đơn hàng #${orderId} của bạn đã được xác nhận giao thành công. Cảm ơn bạn đã mua sắm tại Emarket!`,
+        'order'
+      );
+    } catch (err) {
+      console.error('Lỗi khi tạo thông báo giao hàng thành công:', err);
+    }
 
     return { message: 'Xác nhận nhận hàng thành công' };
   }

@@ -43,6 +43,9 @@ export class AuthService {
         });
 
         if (!user) throw new UnauthorizedException('Email hoặc mật khẩu sai');
+        if (user.status === 'banned') {
+            throw new UnauthorizedException('Tài khoản của bạn đã bị khóa');
+        }
 
         const isMatch = await bcrypt.compare(dto.password, user.password || '');
         if (!isMatch) throw new UnauthorizedException('Email hoặc mật khẩu sai');
@@ -79,6 +82,9 @@ export class AuthService {
                 }
             });
             if (!user) throw new UnauthorizedException();
+            if (user.status === 'banned') {
+                throw new UnauthorizedException('Tài khoản của bạn đã bị khóa');
+            }
 
             // 3. Tạo Access Token mới (thường không cần tạo lại Refresh Token trừ khi bạn muốn rotate)
             const newPayload = { sub: user.id, email: user.email, role: user.role };
@@ -97,11 +103,32 @@ export class AuthService {
     async getMe(userId: number) {
         return this.prisma.user.findUnique({
             where: { id: userId },
-            select: { id: true, name: true, email: true, phone: true, role: true, createdAt: true },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                phone: true,
+                role: true,
+                createdAt: true,
+                shop: {
+                    select: {
+                        id: true,
+                        status: true,
+                    }
+                }
+            },
         });
     }
 
     async loginByGoogle(user: { id: number, email: string; name: string; avatar?: string; googleId: string, role: string }) {
+        const userDb = await this.prisma.user.findUnique({
+            where: { id: user.id },
+            select: { status: true },
+        });
+        if (userDb && userDb.status === 'banned') {
+            throw new UnauthorizedException('Tài khoản của bạn đã bị khóa');
+        }
+
         // generateTokens cần đúng shape { sub, email }
         const { access_token, refresh_token } = await this.generateTokens({
             sub: user.id,

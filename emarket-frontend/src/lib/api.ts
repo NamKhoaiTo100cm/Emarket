@@ -37,12 +37,34 @@ export async function apiFetch(endpoint: string, options?: RequestInit, isPublic
                     headers: buildHeaders(options), // ← fix ở đây
                 });
             } else {
-                // Refresh thất bại -> Token hoàn toàn hết hạn -> Cần bắt login lại
-                // (Có thể redirect user về trang /login ở đây)
-                if (typeof window !== 'undefined' && isPublic === false) {
-                    window.location.href = '/login';
+                // Refresh thất bại -> Token hoàn toàn hết hạn hoặc tài khoản bị khóa -> Gọi logout trên server để xóa cookie
+                try {
+                    await fetch(`${baseUrl}/auth/logout`, {
+                        method: 'POST',
+                        credentials: 'include',
+                    });
+                } catch (logoutErr) {
+                    console.error("Failed to clear cookies via logout:", logoutErr);
                 }
-                throw new Error('Phiên đăng nhập đã hết hạn');
+
+                let isBanned = false;
+                try {
+                    const errorJson = await refreshRes.json();
+                    if (errorJson && errorJson.message === 'Tài khoản của bạn đã bị khóa') {
+                        isBanned = true;
+                    }
+                } catch {}
+
+                if (typeof window !== 'undefined') {
+                    if (isBanned) {
+                        alert('Tài khoản của bạn đã bị khóa. Vui lòng liên hệ ban quản trị.');
+                        window.location.href = '/login';
+                    } else if (isPublic === false) {
+                        alert('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+                        window.location.href = '/login';
+                    }
+                }
+                throw new Error(isBanned ? 'Tài khoản của bạn đã bị khóa' : 'Phiên đăng nhập đã hết hạn');
             }
         } catch (error) {
             throw error;

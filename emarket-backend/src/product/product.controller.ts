@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFiles, BadRequestException, ParseIntPipe, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFiles, BadRequestException, ParseIntPipe, Query, Req } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -56,6 +56,7 @@ export class ProductController {
   @Public()
   @Get()
   async findAll(
+    @Req() req: any,
     @Query('page', ParseIntPipe) page: number = 1,
     @Query('limit', ParseIntPipe) limit: number = 10,
     @Query('minRating', ParseIntPipe) minRating: number = 0,
@@ -67,12 +68,12 @@ export class ProductController {
   ) {
     const min = minPrice ? Number(minPrice) : undefined;
     const max = maxPrice ? Number(maxPrice) : undefined;
-    return this.productService.findAll(page, limit, minRating, keyword, categorySlug, min, max, status);
+    return this.productService.findAll(page, limit, minRating, keyword, categorySlug, min, max, status, req);
   }
 
   @Public()
   @Get('/by-ids')
-  findByIds(@Query('ids') ids: string) {
+  findByIds(@Req() req: any, @Query('ids') ids: string) {
     if (!ids) throw new BadRequestException('ids is required');
 
     const parsedIds = ids
@@ -83,23 +84,24 @@ export class ProductController {
     if (parsedIds.length === 0)
       throw new BadRequestException('No valid ids provided');
 
-    return this.productService.findByIds(parsedIds);
+    return this.productService.findByIds(parsedIds, req);
   }
 
   @Public()
   @Get('shop/:shopId')
   async findByShopId(
+    @Req() req: any,
     @Param('shopId', ParseIntPipe) shopId: number,
     @Query('page', ParseIntPipe) page: number = 1,
     @Query('limit', ParseIntPipe) limit: number = 10,
   ) {
-    return this.productService.findByShopId(shopId, page, limit);
+    return this.productService.findByShopId(shopId, page, limit, req);
   }
 
   @Public()
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.productService.findOne(+id);
+  async findOne(@Req() req: any, @Param('id') id: string) {
+    return this.productService.findOne(+id, req);
   }
 
 

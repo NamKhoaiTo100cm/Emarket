@@ -234,6 +234,11 @@ export default function Page({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         if (resp) {
             const user = resp.data;
+            if (user.role === 'seller' && user.shop?.status === 'banned') {
+                alert('Cửa hàng của bạn đã bị khóa. Bạn không thể truy cập trang quản lý.');
+                window.location.href = '/';
+                return;
+            }
 
             setData1({ ...data, user: { name: user.name, email: user.email, avatar: user.avatar } });
             console.log("dt1: ", user)

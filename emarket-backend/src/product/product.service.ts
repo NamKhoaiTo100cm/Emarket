@@ -1,13 +1,37 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
-import { ProductStatus } from '../generated/prisma/enums';
+import { ProductStatus, ShopStatus } from '../generated/prisma/enums';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class ProductService {
-  constructor(private prisma: PrismaService, private cloudinaryService: CloudinaryService) { }
+  constructor(
+    private prisma: PrismaService,
+    private cloudinaryService: CloudinaryService,
+    private jwtService: JwtService,
+  ) { }
+
+  private async getRoleFromRequest(req?: any): Promise<string | null> {
+    if (!req) return null;
+    try {
+      const authHeader = req.headers?.authorization;
+      let token = null;
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        token = authHeader.substring(7);
+      } else {
+        token = req.cookies?.access_token;
+      }
+      if (!token) return null;
+      const payload = await this.jwtService.verifyAsync(token);
+      return payload?.role || null;
+    } catch {
+      return null;
+    }
+  }
+
 
 
   async create(dto: CreateProductDto, imageFiles: Express.Multer.File[]) {
@@ -157,12 +181,19 @@ export class ProductService {
     });
   }
 
-  async findAll(page: number, limit: number, minRating: number, keyword: string, categorySlug: string, minPrice?: number, maxPrice?: number, status?: string) {
+  async findAll(page: number, limit: number, minRating: number, keyword: string, categorySlug: string, minPrice?: number, maxPrice?: number, status?: string, req?: any) {
     keyword = keyword.trim();
+
+    const role = await this.getRoleFromRequest(req);
+    const isStaffOrAdmin = role === 'staff' || role === 'admin';
 
     const where: any = {
       rating: { gte: minRating },
     };
+
+    if (!isStaffOrAdmin) {
+      where.shop = { status: ShopStatus.active };
+    }
 
     if (keyword) {
       where.name = { contains: keyword, mode: 'insensitive' };
@@ -223,12 +254,21 @@ export class ProductService {
     return { data: result, pagination: { totalCount, page, limit } };
   }
 
-  async findByIds(ids: number[]) {
+  async findByIds(ids: number[], req?: any) {
+    const role = await this.getRoleFromRequest(req);
+    const isStaffOrAdmin = role === 'staff' || role === 'admin';
+
+    const where: any = {
+      id: { in: ids },
+    };
+
+    if (!isStaffOrAdmin) {
+      where.shop = { status: ShopStatus.active };
+    }
+
     const products = await this.prisma.product.findMany(
       {
-        where: {
-          id: { in: ids },
-        },
+        where,
         include: {
           images: {
             where: { isMain: true },
@@ -263,7 +303,19 @@ export class ProductService {
     return result;
   }
 
-  async findByShopId(shopId: number, page = 1, limit = 10) {
+  async findByShopId(shopId: number, page = 1, limit = 10, req?: any) {
+    const role = await this.getRoleFromRequest(req);
+    const isStaffOrAdmin = role === 'staff' || role === 'admin';
+
+    const shop = await this.prisma.shop.findUnique({
+      where: { id: shopId },
+      select: { status: true }
+    });
+
+    if (!shop || (shop.status !== ShopStatus.active && !isStaffOrAdmin)) {
+      return { data: [], pagination: { totalCount: 0, page, limit } };
+    }
+
     let products = await this.prisma.product.findMany(
       {
         where: {
@@ -305,7 +357,7 @@ export class ProductService {
     return { data: result, pagination: { totalCount, page, limit } };
   }
 
-  async findOne(id: number) {
+  async findOne(id: number, req?: any) {
     const product = await this.prisma.product.findUnique({
       where: { id },
       include: {
@@ -313,12 +365,24 @@ export class ProductService {
         variants: {
           orderBy: { sortOrder: 'asc' },
         },
+        shop: {
+          select: {
+            status: true
+          }
+        }
       },
     });
 
 
     if (!product) {
       throw new NotFoundException('Product not found');
+    }
+
+    const role = await this.getRoleFromRequest(req);
+    const isStaffOrAdmin = role === 'staff' || role === 'admin';
+
+    if (product.shop.status === ShopStatus.banned && !isStaffOrAdmin) {
+      throw new ForbiddenException('Sản phẩm này thuộc cửa hàng đã bị khóa');
     }
 
     let result: any = [];
@@ -336,7 +400,7 @@ export class ProductService {
     }
     console.log("result", result)
 
-    const { images, ...productRest } = product;
+    const { images, shop, ...productRest } = product;
 
     return { ...productRest, images: result }
   }

@@ -50,6 +50,7 @@ export class ShopController {
     }
 
     @Get('my-verification')
+    @Roles('seller')
     async getMyVerification(@Request() req) {
         const shop = await this.shopService.findOneByUserId(req.user.id);
         return await this.shopService.getMyVerification(shop.id);
@@ -62,6 +63,7 @@ export class ShopController {
     }
 
     @Get('my-shop/statistics')
+    @Roles('seller')
     async getShopStatistics(
         @Request() req,
         @Query('startDate') startDate?: string,
@@ -72,6 +74,7 @@ export class ShopController {
     }
 
     @Get('my-shop/:id')
+    @Roles('seller')
     async findOneByUserId(@Param('id', ParseIntPipe) id: number) {
         return await this.shopService.findOneByUserId(id);
     }
@@ -82,6 +85,7 @@ export class ShopController {
     }
 
     @Post('verification')
+    @Roles('seller')
     @UseInterceptors(FilesInterceptor('documents', 10))
     async submitVerification(
         @Request() req,
@@ -103,6 +107,7 @@ export class ShopController {
     }
 
     @Put('profile')
+    @Roles('seller')
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'avatarImage', maxCount: 1 },
         { name: 'bannerImage', maxCount: 1 },
@@ -117,11 +122,13 @@ export class ShopController {
     }
 
     @Put(':id')
+    @Roles('seller')
     async update(@Param('id') id: string, @Body() dto: UpdateShopDto) {
         return await this.shopService.update(+id, dto);
     }
 
     @Delete(':id')
+    @Roles('seller')
     async remove(@Param('id') id: string) {
         return await this.shopService.remove(+id);
     }
