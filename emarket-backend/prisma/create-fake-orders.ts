@@ -51,17 +51,6 @@ async function main() {
         // 3. Clear existing orders for this shop to get a clean chart
         console.log(`🗑️ Clearing existing orders for shop ID ${shop.id} to ensure clean statistics...`);
         
-        // First clear review images linked to shop orders
-        await prisma.reviewImage.deleteMany({
-            where: {
-                review: {
-                    order: {
-                        shopId: shop.id
-                    }
-                }
-            }
-        });
-
         // Then clear reviews linked to shop orders
         await prisma.review.deleteMany({
             where: {

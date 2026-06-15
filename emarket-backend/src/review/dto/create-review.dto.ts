@@ -1,5 +1,5 @@
-import { IsBoolean, IsInt, IsString, Max, Min } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsBoolean, IsInt, IsString, Max, Min, IsArray, IsOptional } from 'class-validator';
+import { Type, Transform } from 'class-transformer';
 
 export class CreateReviewDto {
 
@@ -22,9 +22,15 @@ export class CreateReviewDto {
     comment: string;
 
     @IsBoolean()
-    @Type(() => Boolean)
+    @Transform(({ value }) => {
+        if (value === 'true' || value === true) return true;
+        if (value === 'false' || value === false) return false;
+        return value;
+    })
     isHidden: boolean;
 
-
-
+    @IsArray()
+    @IsString({ each: true })
+    @IsOptional()
+    reviewImages?: string[];
 }

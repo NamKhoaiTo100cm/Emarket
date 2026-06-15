@@ -1,17 +1,35 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Request, UseInterceptors, UploadedFiles } from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
 import { Public } from '../common/decorators/public.decorator';
 import { Roles } from '../common/decorators/roles.decorator';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Controller('review')
 export class ReviewController {
-  constructor(private readonly reviewService: ReviewService) { }
+  constructor(
+    private readonly reviewService: ReviewService,
+    private readonly cloudinaryService: CloudinaryService
+  ) { }
 
   @Post()
-  create(@Body() createReviewDto: CreateReviewDto, @Request() req) {
-    return this.reviewService.create(createReviewDto, req.user.id);
+  @UseInterceptors(FilesInterceptor('reviewImages', 3))
+  async create(
+    @Body() createReviewDto: CreateReviewDto,
+    @UploadedFiles() files: Express.Multer.File[],
+    @Request() req
+  ) {
+    let imageUrls: string[] = [];
+    if (files && files.length > 0) {
+      const uploadPromises = files.map(file => this.cloudinaryService.uploadFile(file, 'reviews'));
+      imageUrls = await Promise.all(uploadPromises);
+    }
+    return this.reviewService.create({
+      ...createReviewDto,
+      reviewImages: imageUrls,
+    }, req.user.id);
   }
 
   @Get()

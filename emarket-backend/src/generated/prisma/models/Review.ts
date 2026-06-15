@@ -77,6 +77,7 @@ export type ReviewCountAggregateOutputType = {
   orderId: number
   rating: number
   comment: number
+  reviewImages: number
   createdAt: number
   isHidden: number
   sellerReply: number
@@ -137,6 +138,7 @@ export type ReviewCountAggregateInputType = {
   orderId?: true
   rating?: true
   comment?: true
+  reviewImages?: true
   createdAt?: true
   isHidden?: true
   sellerReply?: true
@@ -238,6 +240,7 @@ export type ReviewGroupByOutputType = {
   orderId: number
   rating: number
   comment: string | null
+  reviewImages: string[]
   createdAt: Date
   isHidden: boolean
   sellerReply: string | null
@@ -275,6 +278,7 @@ export type ReviewWhereInput = {
   orderId?: Prisma.IntFilter<"Review"> | number
   rating?: Prisma.IntFilter<"Review"> | number
   comment?: Prisma.StringNullableFilter<"Review"> | string | null
+  reviewImages?: Prisma.StringNullableListFilter<"Review">
   createdAt?: Prisma.DateTimeFilter<"Review"> | Date | string
   isHidden?: Prisma.BoolFilter<"Review"> | boolean
   sellerReply?: Prisma.StringNullableFilter<"Review"> | string | null
@@ -293,6 +297,7 @@ export type ReviewOrderByWithRelationInput = {
   orderId?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   comment?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewImages?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isHidden?: Prisma.SortOrder
   sellerReply?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -315,6 +320,7 @@ export type ReviewWhereUniqueInput = Prisma.AtLeast<{
   orderId?: Prisma.IntFilter<"Review"> | number
   rating?: Prisma.IntFilter<"Review"> | number
   comment?: Prisma.StringNullableFilter<"Review"> | string | null
+  reviewImages?: Prisma.StringNullableListFilter<"Review">
   createdAt?: Prisma.DateTimeFilter<"Review"> | Date | string
   isHidden?: Prisma.BoolFilter<"Review"> | boolean
   sellerReply?: Prisma.StringNullableFilter<"Review"> | string | null
@@ -333,6 +339,7 @@ export type ReviewOrderByWithAggregationInput = {
   orderId?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   comment?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewImages?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isHidden?: Prisma.SortOrder
   sellerReply?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -355,6 +362,7 @@ export type ReviewScalarWhereWithAggregatesInput = {
   orderId?: Prisma.IntWithAggregatesFilter<"Review"> | number
   rating?: Prisma.IntWithAggregatesFilter<"Review"> | number
   comment?: Prisma.StringNullableWithAggregatesFilter<"Review"> | string | null
+  reviewImages?: Prisma.StringNullableListFilter<"Review">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Review"> | Date | string
   isHidden?: Prisma.BoolWithAggregatesFilter<"Review"> | boolean
   sellerReply?: Prisma.StringNullableWithAggregatesFilter<"Review"> | string | null
@@ -365,6 +373,7 @@ export type ReviewScalarWhereWithAggregatesInput = {
 export type ReviewCreateInput = {
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -383,6 +392,7 @@ export type ReviewUncheckedCreateInput = {
   orderId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -394,6 +404,7 @@ export type ReviewUncheckedCreateInput = {
 export type ReviewUpdateInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -412,6 +423,7 @@ export type ReviewUncheckedUpdateInput = {
   orderId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -427,6 +439,7 @@ export type ReviewCreateManyInput = {
   orderId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -437,6 +450,7 @@ export type ReviewCreateManyInput = {
 export type ReviewUpdateManyMutationInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -451,6 +465,7 @@ export type ReviewUncheckedUpdateManyInput = {
   orderId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -468,6 +483,14 @@ export type ReviewOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type ReviewUserIdProductIdOrderIdCompoundUniqueInput = {
   userId: number
   productId: number
@@ -481,6 +504,7 @@ export type ReviewCountOrderByAggregateInput = {
   orderId?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   comment?: Prisma.SortOrder
+  reviewImages?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isHidden?: Prisma.SortOrder
   sellerReply?: Prisma.SortOrder
@@ -663,6 +687,15 @@ export type ReviewUncheckedUpdateManyWithoutOrderNestedInput = {
   deleteMany?: Prisma.ReviewScalarWhereInput | Prisma.ReviewScalarWhereInput[]
 }
 
+export type ReviewCreatereviewImagesInput = {
+  set: string[]
+}
+
+export type ReviewUpdatereviewImagesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type ReviewCreateNestedOneWithoutReportsInput = {
   create?: Prisma.XOR<Prisma.ReviewCreateWithoutReportsInput, Prisma.ReviewUncheckedCreateWithoutReportsInput>
   connectOrCreate?: Prisma.ReviewCreateOrConnectWithoutReportsInput
@@ -682,6 +715,7 @@ export type ReviewUpdateOneWithoutReportsNestedInput = {
 export type ReviewCreateWithoutUserInput = {
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -698,6 +732,7 @@ export type ReviewUncheckedCreateWithoutUserInput = {
   orderId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -742,6 +777,7 @@ export type ReviewScalarWhereInput = {
   orderId?: Prisma.IntFilter<"Review"> | number
   rating?: Prisma.IntFilter<"Review"> | number
   comment?: Prisma.StringNullableFilter<"Review"> | string | null
+  reviewImages?: Prisma.StringNullableListFilter<"Review">
   createdAt?: Prisma.DateTimeFilter<"Review"> | Date | string
   isHidden?: Prisma.BoolFilter<"Review"> | boolean
   sellerReply?: Prisma.StringNullableFilter<"Review"> | string | null
@@ -752,6 +788,7 @@ export type ReviewScalarWhereInput = {
 export type ReviewCreateWithoutProductInput = {
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -768,6 +805,7 @@ export type ReviewUncheckedCreateWithoutProductInput = {
   orderId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -805,6 +843,7 @@ export type ReviewUpdateManyWithWhereWithoutProductInput = {
 export type ReviewCreateWithoutOrderInput = {
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -821,6 +860,7 @@ export type ReviewUncheckedCreateWithoutOrderInput = {
   productId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -858,6 +898,7 @@ export type ReviewUpdateManyWithWhereWithoutOrderInput = {
 export type ReviewCreateWithoutReportsInput = {
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -875,6 +916,7 @@ export type ReviewUncheckedCreateWithoutReportsInput = {
   orderId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -901,6 +943,7 @@ export type ReviewUpdateToOneWithWhereWithoutReportsInput = {
 export type ReviewUpdateWithoutReportsInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -918,6 +961,7 @@ export type ReviewUncheckedUpdateWithoutReportsInput = {
   orderId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -931,6 +975,7 @@ export type ReviewCreateManyUserInput = {
   orderId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -941,6 +986,7 @@ export type ReviewCreateManyUserInput = {
 export type ReviewUpdateWithoutUserInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -957,6 +1003,7 @@ export type ReviewUncheckedUpdateWithoutUserInput = {
   orderId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -971,6 +1018,7 @@ export type ReviewUncheckedUpdateManyWithoutUserInput = {
   orderId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -984,6 +1032,7 @@ export type ReviewCreateManyProductInput = {
   orderId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -994,6 +1043,7 @@ export type ReviewCreateManyProductInput = {
 export type ReviewUpdateWithoutProductInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1010,6 +1060,7 @@ export type ReviewUncheckedUpdateWithoutProductInput = {
   orderId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1024,6 +1075,7 @@ export type ReviewUncheckedUpdateManyWithoutProductInput = {
   orderId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1037,6 +1089,7 @@ export type ReviewCreateManyOrderInput = {
   productId: number
   rating: number
   comment?: string | null
+  reviewImages?: Prisma.ReviewCreatereviewImagesInput | string[]
   createdAt?: Date | string
   isHidden?: boolean
   sellerReply?: string | null
@@ -1047,6 +1100,7 @@ export type ReviewCreateManyOrderInput = {
 export type ReviewUpdateWithoutOrderInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1063,6 +1117,7 @@ export type ReviewUncheckedUpdateWithoutOrderInput = {
   productId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1077,6 +1132,7 @@ export type ReviewUncheckedUpdateManyWithoutOrderInput = {
   productId?: Prisma.IntFieldUpdateOperationsInput | number
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewImages?: Prisma.ReviewUpdatereviewImagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sellerReply?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1122,6 +1178,7 @@ export type ReviewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   orderId?: boolean
   rating?: boolean
   comment?: boolean
+  reviewImages?: boolean
   createdAt?: boolean
   isHidden?: boolean
   sellerReply?: boolean
@@ -1141,6 +1198,7 @@ export type ReviewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   orderId?: boolean
   rating?: boolean
   comment?: boolean
+  reviewImages?: boolean
   createdAt?: boolean
   isHidden?: boolean
   sellerReply?: boolean
@@ -1158,6 +1216,7 @@ export type ReviewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   orderId?: boolean
   rating?: boolean
   comment?: boolean
+  reviewImages?: boolean
   createdAt?: boolean
   isHidden?: boolean
   sellerReply?: boolean
@@ -1175,6 +1234,7 @@ export type ReviewSelectScalar = {
   orderId?: boolean
   rating?: boolean
   comment?: boolean
+  reviewImages?: boolean
   createdAt?: boolean
   isHidden?: boolean
   sellerReply?: boolean
@@ -1182,7 +1242,7 @@ export type ReviewSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ReviewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "productId" | "orderId" | "rating" | "comment" | "createdAt" | "isHidden" | "sellerReply" | "sellerReplyAt" | "updatedAt", ExtArgs["result"]["review"]>
+export type ReviewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "productId" | "orderId" | "rating" | "comment" | "reviewImages" | "createdAt" | "isHidden" | "sellerReply" | "sellerReplyAt" | "updatedAt", ExtArgs["result"]["review"]>
 export type ReviewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   reports?: boolean | Prisma.Review$reportsArgs<ExtArgs>
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
@@ -1216,6 +1276,7 @@ export type $ReviewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     orderId: number
     rating: number
     comment: string | null
+    reviewImages: string[]
     createdAt: Date
     isHidden: boolean
     sellerReply: string | null
@@ -1654,6 +1715,7 @@ export interface ReviewFieldRefs {
   readonly orderId: Prisma.FieldRef<"Review", 'Int'>
   readonly rating: Prisma.FieldRef<"Review", 'Int'>
   readonly comment: Prisma.FieldRef<"Review", 'String'>
+  readonly reviewImages: Prisma.FieldRef<"Review", 'String[]'>
   readonly createdAt: Prisma.FieldRef<"Review", 'DateTime'>
   readonly isHidden: Prisma.FieldRef<"Review", 'Boolean'>
   readonly sellerReply: Prisma.FieldRef<"Review", 'String'>

@@ -1,9 +1,9 @@
 import { apiFetch } from "@/lib/api";
 
 export const reviewService = {
-    create: (review: any) => apiFetch('/review', {
+    create: (review: FormData | any) => apiFetch('/review', {
         method: 'POST',
-        body: JSON.stringify(review),
+        body: review instanceof FormData ? review : JSON.stringify(review),
     }),
     getByProductId: (productId: number, page: number = 1, limit: number = 10) =>
         apiFetch(`/review/product/${productId}?page=${page}&limit=${limit}`, {}, true),

@@ -268,6 +268,7 @@ export const ReviewScalarFieldEnum = {
   orderId: 'orderId',
   rating: 'rating',
   comment: 'comment',
+  reviewImages: 'reviewImages',
   createdAt: 'createdAt',
   isHidden: 'isHidden',
   sellerReply: 'sellerReply',

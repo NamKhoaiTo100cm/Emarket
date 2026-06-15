@@ -68,8 +68,13 @@ export class ReviewService {
     const formattedReviews = reviews.map(review => {
       const imageUrl = review.product.images[0]?.imagePath ? !review.product.images[0].imagePath.startsWith("https") ? this.cloudinary.getUrl(review.product.images[0].imagePath, { width: 100, height: 100, crop: 'fill' }) : review.product.images[0].imagePath : null;
       const userAvatarUrl = review.user.avatar ? !review.user.avatar.startsWith("https") ? this.cloudinary.getUrl(review.user.avatar, { width: 100, height: 100, crop: 'fill' }) : review.user.avatar : null;
+      const reviewImagesUrls = review.reviewImages?.map(img => 
+        img && !img.startsWith("https") ? this.cloudinary.getUrl(img) : img
+      ).filter(Boolean) ?? [];
+
       return {
         ...review,
+        reviewImages: reviewImagesUrls,
         user: {
           ...review.user,
           avatar: userAvatarUrl
@@ -122,8 +127,24 @@ export class ReviewService {
 
     });
 
+    const formattedReviews = reviews.map(review => {
+      const userAvatarUrl = review.user.avatar ? !review.user.avatar.startsWith("https") ? this.cloudinary.getUrl(review.user.avatar, { width: 100, height: 100, crop: 'fill' }) : review.user.avatar : null;
+      const reviewImagesUrls = review.reviewImages?.map(img => 
+        img && !img.startsWith("https") ? this.cloudinary.getUrl(img) : img
+      ).filter(Boolean) ?? [];
+
+      return {
+        ...review,
+        reviewImages: reviewImagesUrls,
+        user: {
+          ...review.user,
+          avatar: userAvatarUrl
+        }
+      };
+    });
+
     console.log("reviewableOrder: ", reviewableOrder);
-    return { reviews, reviewableOrder };
+    return { reviews: formattedReviews, reviewableOrder };
 
     // const userHasOrdered = await this.prisma.order.findFirst({
     //   where: {

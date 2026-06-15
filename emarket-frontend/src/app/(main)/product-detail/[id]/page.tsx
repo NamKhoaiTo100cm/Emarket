@@ -3,7 +3,7 @@ import CarouselWithThumbs from '@/components/carousel-09';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { AlertCircleIcon, HdIcon, Icon, MessagesSquare, ShoppingCart, Star, StarHalf, Store, Zap } from 'lucide-react';
+import { AlertCircleIcon, Camera, HdIcon, Icon, MessagesSquare, ShoppingCart, Star, StarHalf, Store, X, Zap } from 'lucide-react';
 import { RxAvatar } from "react-icons/rx";
 import {
   Table,
@@ -158,6 +158,8 @@ const ProductDetailPage = () => {
   const [reviewText, setReviewText] = useState("");
 
   const [hoverStarPosition, setHoverStarPosition] = useState(0);
+  const [reviewImages, setReviewImages] = useState<File[]>([]);
+  const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
 
   const getProductReview = async (productId: number) => {
     await reviewService.getByProductId(productId).then((res) => {
@@ -451,6 +453,64 @@ const ProductDetailPage = () => {
               <Label>Thêm đánh giá</Label>
               <Textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} placeholder='Nhập đánh giá'></Textarea>
             </Field>
+
+            {/* Review images selector */}
+            <div className="mt-3 mb-4">
+              <Label className="block mb-2 font-medium">Hình ảnh sản phẩm (Tối đa 3 ảnh, không bắt buộc)</Label>
+              <div className="flex flex-wrap gap-3 items-center">
+                {reviewImages.map((file, idx) => {
+                  const url = URL.createObjectURL(file);
+                  return (
+                    <div key={idx} className="relative w-20 h-20 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 group shadow-sm bg-slate-50">
+                      <Image
+                        src={url}
+                        alt={`Preview ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setReviewImages(prev => prev.filter((_, i) => i !== idx));
+                        }}
+                        className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-1 opacity-90 hover:opacity-100 hover:bg-black/80 transition-all shadow-md cursor-pointer"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  );
+                })}
+
+                {reviewImages.length < 3 && (
+                  <label className="flex flex-col items-center justify-center w-20 h-20 border-2 border-dashed border-slate-300 dark:border-slate-800 hover:border-primary/50 rounded-lg cursor-pointer transition-colors bg-slate-50 dark:bg-slate-900 hover:bg-slate-100">
+                    <div className="flex flex-col items-center justify-center pt-2 pb-2 text-muted-foreground hover:text-foreground">
+                      <Camera className="w-6 h-6 mb-1 text-slate-400" />
+                      <span className="text-[10px] font-semibold">Tải ảnh</span>
+                    </div>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className="hidden"
+                      onChange={(e) => {
+                        if (e.target.files) {
+                          const filesArray = Array.from(e.target.files);
+                          const totalFiles = reviewImages.length + filesArray.length;
+                          if (totalFiles > 3) {
+                            toast.error("Bạn chỉ được chọn tối đa 3 ảnh");
+                            const allowedLength = 3 - reviewImages.length;
+                            setReviewImages(prev => [...prev, ...filesArray.slice(0, allowedLength)]);
+                          } else {
+                            setReviewImages(prev => [...prev, ...filesArray]);
+                          }
+                        }
+                      }}
+                    />
+                  </label>
+                )}
+              </div>
+            </div>
+
             <div className='flex items-center gap-2'>Chọn sao:
               {Array.from({ length: 5 }).map((_, index) => (
                 <Star className={`mt-1 cursor-pointer ${index < (hoverStarPosition || selectedStar) ? 'text-yellow-400 fill-yellow-400' : 'text-yellow-400'}`} onMouseEnter={() => setHoverStarPosition(index + 1)} onMouseLeave={() => setHoverStarPosition(0)} onClick={() => setSelectedStar(index + 1)} key={index} />
@@ -468,19 +528,24 @@ const ProductDetailPage = () => {
                 })
                 return;
               }
-              const review = {
-                productId: Number(productId),
-                rating: selectedStar,
-                comment: reviewText,
-                isHidden: false,
-                orderId: Number(orderIdCanReview)
-              }
-              reviewService.create(review).then((res) => {
+
+              const formData = new FormData();
+              formData.append('productId', String(productId));
+              formData.append('rating', String(selectedStar));
+              formData.append('comment', reviewText);
+              formData.append('isHidden', 'false');
+              formData.append('orderId', String(orderIdCanReview));
+              reviewImages.forEach((file) => {
+                formData.append('reviewImages', file);
+              });
+
+              reviewService.create(formData).then((res) => {
                 console.log(res);
                 getProductReview(Number(productId));
                 setReviewText("");
                 setSelectedStar(0);
                 setHoverStarPosition(0);
+                setReviewImages([]);
               });
             }}>Thêm đánh giá</Button>
           </>
@@ -524,6 +589,24 @@ const ProductDetailPage = () => {
               <CardDescription className="mt-1">
                 <p>{review.comment}</p>
               </CardDescription>
+              {review.reviewImages && review.reviewImages.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {review.reviewImages.map((imgUrl: string, idx: number) => (
+                    <div 
+                      key={idx} 
+                      className="relative w-16 h-16 rounded-md overflow-hidden border border-slate-200 dark:border-slate-800 cursor-zoom-in group transition-transform duration-200 hover:scale-105"
+                      onClick={() => setPreviewImageUrl(imgUrl)}
+                    >
+                      <Image 
+                        src={imgUrl} 
+                        alt={`Review image ${idx + 1}`} 
+                        fill 
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <ReportButton type="review" targetId={review.id} variant="icon" className="shrink-0" />
@@ -533,6 +616,29 @@ const ProductDetailPage = () => {
       }
       <Button className='block mx-auto my-3'>Tải thêm đánh giá</Button>
 
+      {previewImageUrl && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity"
+          onClick={() => setPreviewImageUrl(null)}
+        >
+          <div className="relative max-w-3xl max-h-[80vh] overflow-hidden rounded-lg bg-background p-1 shadow-2xl animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+            <button 
+              className="absolute top-2 right-2 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-black/80 transition-colors cursor-pointer"
+              onClick={() => setPreviewImageUrl(null)}
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="relative w-96 h-96 max-w-full max-h-full min-w-[300px] md:min-w-[500px] md:min-h-[500px]">
+              <Image 
+                src={previewImageUrl} 
+                alt="Full size review image" 
+                fill 
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
 
 

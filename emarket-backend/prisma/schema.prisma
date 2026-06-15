@@ -200,6 +200,7 @@ model Review {
   orderId       Int
   rating        Int
   comment       String?
+  reviewImages  String[]  @default([])
   createdAt     DateTime  @default(now())
   isHidden      Boolean   @default(false)
   sellerReply   String?
