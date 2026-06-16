@@ -15,7 +15,7 @@ import AnnouncementBar from '../ui/announcement-bar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { QueryClient } from '@tanstack/react-query'
-import { Bell } from 'lucide-react'
+import { Bell, Store } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { ScrollArea } from '../ui/scroll-area'
 import {
@@ -27,15 +27,11 @@ import {
 
 
 
-export default function HeaderContent({ user }: { user: any }) {
+export default function HeaderContent({ user: initialUser }: { user: any }) {
     const router = useRouter();
     const { data: res, isLoading } = useMe();
+    const user = res?.data || initialUser;
     const isShowDevMode = false;
-    useEffect(() => {
-        if (user === null || user === undefined) {
-            user = res?.data;
-        }
-    }, [res]);
 
     // const user = res?.data;
     // const [queryClient] = useState(() => {
@@ -125,7 +121,15 @@ export default function HeaderContent({ user }: { user: any }) {
                     </div>
                     <NavigationMenuList className=''>
                         <NavigationMenuItem className='ml-auto'>
-                            <div className='flex gap-1'>
+                            <div className='flex gap-1.5 items-center'>
+                                {user && user.role === 'seller' && (
+                                    <Link href="/seller/dashboard/products-manager">
+                                        <Button variant="outline" className="flex items-center gap-1.5 font-medium text-xs h-9">
+                                            <Store className="w-4 h-4 text-primary" />
+                                            <span className="hidden sm:inline">Kênh Người Bán</span>
+                                        </Button>
+                                    </Link>
+                                )}
                                 <ModeToggle />
                                 <div onMouseLeave={() => setShowCart(false)} className='relative ' onMouseEnter={() => setShowCart(true)} >
                                     <Button variant="outline" onClick={() => handleCartClick()}><FaShoppingCart /><span className='absolute bg-red-500 right-1 -top-1 text-white rounded-full w-5'>{productInCart.length || 0}</span>
