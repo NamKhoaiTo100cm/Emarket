@@ -212,16 +212,20 @@ export class OrderService {
 
 
 
+    const whereCondition = {
+      shopId: shopId,
+      OR: [
+        { paymentMethod: 'cod' as const },
+        { paymentStatus: 'paid' as const }
+      ]
+    };
+
     const [totalCount, orders] = await Promise.all([
       await this.prisma.order.count({
-        where: {
-          shopId: shopId
-        }
+        where: whereCondition
       }),
       await this.prisma.order.findMany({
-        where: {
-          shopId: shopId
-        },
+        where: whereCondition,
         include: {
           items: true,
           returnRequest: true,
@@ -589,5 +593,37 @@ export class OrderService {
     }
 
     return { message: `Yêu cầu hoàn hàng đã được ${status === 'APPROVED' ? 'chấp nhận' : 'từ chối'}` };
+  }
+
+  async userCancelOrder(userId: number, orderId: number) {
+    const order = await this.prisma.order.findUnique({
+      where: { id: orderId }
+    });
+    if (!order) throw new NotFoundException('Đơn hàng không tồn tại');
+    if (order.userId !== userId) throw new ForbiddenException('Bạn không có quyền hủy đơn hàng này');
+    if (order.status !== 'pending') throw new BadRequestException('Chỉ có thể hủy đơn hàng ở trạng thái chờ xử lý');
+
+    const paymentStatusUpdate = order.paymentStatus === 'processing' || order.paymentStatus === 'pending' ? 'failed' : undefined;
+
+    await this.prisma.order.update({
+      where: { id: orderId },
+      data: {
+        status: 'cancelled',
+        ...(paymentStatusUpdate ? { paymentStatus: paymentStatusUpdate } : {})
+      }
+    });
+
+    try {
+      await this.notificationService.createNotification(
+        order.userId,
+        'Đơn hàng đã bị hủy',
+        `Đơn hàng #${orderId} của bạn đã được hủy thành công.`,
+        'order'
+      );
+    } catch (err) {
+      console.error('Lỗi khi tạo thông báo hủy đơn hàng:', err);
+    }
+
+    return { message: 'Hủy đơn hàng thành công' };
   }
 }

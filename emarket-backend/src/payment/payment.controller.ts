@@ -33,6 +33,12 @@ export class PaymentController {
     return this.paymentService.processPayment(body.orderIds, req.user.id);
   }
 
+  @Post('momo/verify')
+  @Public()
+  async verifyPayment(@Body() body: any) {
+    return this.paymentService.verifyPayment(body);
+  }
+
   // MoMo POST về đây — phải @Public()
   @Post('momo/ipn')
   @Public()

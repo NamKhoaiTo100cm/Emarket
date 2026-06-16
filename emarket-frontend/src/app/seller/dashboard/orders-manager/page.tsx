@@ -125,7 +125,7 @@ const OrdersManagerPage = () => {
                                     currency: "VND",
                                 }).format(order.total)}
                             </TableCell>
-                            <TableCell><BadgeOrderStatus status={order?.status || 'pending'} /></TableCell>
+                            <TableCell><BadgeOrderStatus status={order?.status || 'pending'} paymentMethod={order?.paymentMethod} paymentStatus={order?.paymentStatus} /></TableCell>
                             <TableCell>
                                 <div>
                                     <span>{order.shippingMethod.toUpperCase()}</span>

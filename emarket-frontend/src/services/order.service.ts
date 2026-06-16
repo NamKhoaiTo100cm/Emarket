@@ -19,6 +19,10 @@ export const orderService = {
         apiFetch(`/order/user-confirm-delivery/${orderId}`, {
             method: "PATCH",
         }),
+    userCancelOrder: (orderId: number) =>
+        apiFetch(`/order/user-cancel-order/${orderId}`, {
+            method: "PATCH",
+        }),
     findByUserId: (page = 1, limit = 10) =>
         apiFetch(`/order/user?page=${page}&limit=${limit}`),
 

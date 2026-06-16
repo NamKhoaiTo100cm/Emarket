@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { orderService } from "@/services/order.service";
+import { paymentService } from "@/services/payment.service";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GiConfirmed } from "react-icons/gi";
@@ -24,15 +25,27 @@ const PaymentCallbackContent = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!success || orderIds.length === 0) {
+        if (orderIds.length === 0) {
             setLoading(false);
             return;
         }
 
-        Promise.all(orderIds.map((id) => orderService.getOrderById(id)))
-            .then((results) => setOrders(results.map((r) => r.data)))
+        const params: Record<string, string> = {};
+        searchParams.forEach((value, key) => {
+            params[key] = value;
+        });
+
+        paymentService.verifyMomoPayment(params)
+            .then((res) => {
+                if (res.data?.success && res.data?.orders) {
+                    setOrders(res.data.orders);
+                }
+            })
+            .catch((err) => {
+                console.error("Lỗi xác thực thanh toán:", err);
+            })
             .finally(() => setLoading(false));
-    }, [success, orderIds]);
+    }, [orderIds, searchParams]);
 
     if (loading) {
         return (

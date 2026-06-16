@@ -3,11 +3,17 @@ import { Badge } from "./badge";
 
 export default function BadgeOrderStatus({
     status,
+    paymentMethod,
+    paymentStatus,
 }: {
     status: "pending" | "confirmed" | "shipping" | "delivered" | "cancelled" | "returned";
+    paymentMethod?: string;
+    paymentStatus?: string;
 }) {
+    const isUnpaidOnline = status === "pending" && paymentMethod === "momo" && (paymentStatus === "processing" || paymentStatus === "pending");
+
     const statusStyle: Record<string, string> = {
-        pending: "bg-yellow-300 text-yellow-900",
+        pending: isUnpaidOnline ? "bg-orange-300 text-orange-950" : "bg-yellow-300 text-yellow-900",
         confirmed: "bg-blue-300 text-blue-900",
         shipping: "bg-purple-300 text-purple-900",
         delivered: "bg-green-300 text-green-900",
@@ -16,7 +22,7 @@ export default function BadgeOrderStatus({
     };
 
     const statusText: Record<string, string> = {
-        pending: "Chờ xác nhận",
+        pending: isUnpaidOnline ? "Chờ thanh toán" : "Chờ xác nhận",
         confirmed: "Đã xác nhận",
         shipping: "Đang giao hàng",
         delivered: "Đã giao hàng",

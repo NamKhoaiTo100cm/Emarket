@@ -13,8 +13,12 @@ export const paymentService = {
         });
         // if (!res.ok) throw new Error('Failed');
         return res;
-
-
+    },
+    verifyMomoPayment: async (params: any) => {
+        return await apiFetch('/payment/momo/verify', {
+            method: 'POST',
+            body: JSON.stringify(params),
+        });
     }
 }
 

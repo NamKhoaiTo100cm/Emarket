@@ -2,6 +2,7 @@
 import BadgeOrderStatus from "@/components/ui/bagge-order-status";
 import { Button } from "@/components/ui/button";
 import { orderService } from "@/services/order.service";
+import { paymentService } from "@/services/payment.service";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { MessageCircle, Store, Truck, AlertCircle, Plus, X, PackageCheck } from "lucide-react";
@@ -33,6 +34,10 @@ export default function UserOrdersPage() {
     const [openReturnDialog, setOpenReturnDialog] = useState<boolean>(false);
     const [isSubmittingReturn, setIsSubmittingReturn] = useState<boolean>(false);
     const [isConfirmingDelivery, setIsConfirmingDelivery] = useState<number | null>(null);
+    const [isCancellingOrder, setIsCancellingOrder] = useState<number | null>(null);
+    const [isRepayingMomo, setIsRepayingMomo] = useState<number | null>(null);
+    const [selectedDetailOrder, setSelectedDetailOrder] = useState<any | null>(null);
+    const [openDetailDialog, setOpenDetailDialog] = useState<boolean>(false);
 
     const fetchOrders = async () => {
         const res = await orderService.findByUserId(pagination.page, pagination.pageSize);
@@ -60,6 +65,36 @@ export default function UserOrdersPage() {
             toast.error(error.message || "Không thể xác nhận nhận hàng");
         } finally {
             setIsConfirmingDelivery(null);
+        }
+    };
+
+    const handleCancelOrder = async (orderId: number) => {
+        if (!window.confirm("Bạn có chắc chắn muốn hủy đơn hàng này?")) return;
+        setIsCancellingOrder(orderId);
+        try {
+            await orderService.userCancelOrder(orderId);
+            toast.success("Hủy đơn hàng thành công!");
+            fetchOrders();
+        } catch (error: any) {
+            toast.error(error.message || "Không thể hủy đơn hàng");
+        } finally {
+            setIsCancellingOrder(null);
+        }
+    };
+
+    const handleRepayMomo = async (orderId: number) => {
+        setIsRepayingMomo(orderId);
+        try {
+            const res = await paymentService.createMomoPayment([orderId]);
+            if (res.data?.payUrl) {
+                window.location.href = res.data.payUrl;
+            } else {
+                toast.error("Không nhận được link thanh toán");
+            }
+        } catch (error: any) {
+            toast.error(error.message || "Không thể thực hiện thanh toán");
+        } finally {
+            setIsRepayingMomo(null);
         }
     };
 
@@ -127,7 +162,7 @@ export default function UserOrdersPage() {
                                 }}>Xem shop</Button>
                             </div>
                             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                <BadgeOrderStatus status={order.status} />
+                                <BadgeOrderStatus status={order.status} paymentMethod={order.paymentMethod} paymentStatus={order.paymentStatus} />
                             </div>
                         </div>
 
@@ -253,7 +288,39 @@ export default function UserOrdersPage() {
                                     </Button>
                                 )}
 
-                                <Button variant="outline" size="sm">Chi tiết</Button>
+                                {order.status === "pending" && (
+                                    <div className="flex gap-2">
+                                        <Button
+                                            variant="destructive"
+                                            size="sm"
+                                            disabled={isCancellingOrder === order.id}
+                                            onClick={() => handleCancelOrder(order.id)}
+                                        >
+                                            {isCancellingOrder === order.id ? "Đang hủy..." : "Hủy đơn"}
+                                        </Button>
+                                        {order.paymentMethod === "momo" && (order.paymentStatus === "processing" || order.paymentStatus === "pending") && (
+                                            <Button
+                                                size="sm"
+                                                className="bg-orange-500 hover:bg-orange-600 text-white border-0"
+                                                disabled={isRepayingMomo === order.id}
+                                                onClick={() => handleRepayMomo(order.id)}
+                                            >
+                                                {isRepayingMomo === order.id ? "Đang tạo link..." : "Thanh toán ngay"}
+                                            </Button>
+                                        )}
+                                    </div>
+                                )}
+
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => {
+                                        setSelectedDetailOrder(order);
+                                        setOpenDetailDialog(true);
+                                    }}
+                                >
+                                    Chi tiết
+                                </Button>
                                 <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white border-0" onClick={() => {
                                     order.items.forEach((item: any) => {
                                         addToCart(item.productId)
@@ -391,6 +458,155 @@ export default function UserOrdersPage() {
                         >
                             {isSubmittingReturn ? "Đang gửi..." : "Gửi yêu cầu"}
                         </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            {/* Detail Dialog */}
+            <Dialog open={openDetailDialog} onOpenChange={setOpenDetailDialog}>
+                <DialogContent className="max-w-xl max-h-[85vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>Chi tiết đơn hàng #{selectedDetailOrder?.id}</DialogTitle>
+                        <DialogDescription>
+                            Thông tin chi tiết về đơn hàng của bạn.
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    {selectedDetailOrder && (
+                        <div className="space-y-4 py-2 text-sm">
+                            {/* Status and dates */}
+                            <div className="flex justify-between items-center bg-muted/50 p-3 rounded-lg border">
+                                <div>
+                                    <p className="text-xs text-muted-foreground uppercase font-semibold">Trạng thái đơn hàng</p>
+                                    <div className="mt-1">
+                                        <BadgeOrderStatus 
+                                            status={selectedDetailOrder.status} 
+                                            paymentMethod={selectedDetailOrder.paymentMethod} 
+                                            paymentStatus={selectedDetailOrder.paymentStatus} 
+                                        />
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <p className="text-xs text-muted-foreground uppercase font-semibold">Ngày đặt hàng</p>
+                                    <p className="font-medium mt-1">{new Date(selectedDetailOrder.createdAt).toLocaleString("vi-VN")}</p>
+                                </div>
+                            </div>
+
+                            {/* Shipping info */}
+                            <div className="space-y-2">
+                                <h4 className="font-semibold border-b pb-1 text-muted-foreground text-xs uppercase tracking-wider">Thông tin giao nhận</h4>
+                                <div className="grid grid-cols-2 gap-2 bg-muted/20 p-3 rounded-lg border">
+                                    <div>
+                                        <p className="text-xs text-muted-foreground">Người nhận</p>
+                                        <p className="font-medium mt-0.5">{selectedDetailOrder.receiverName}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-muted-foreground">Số điện thoại</p>
+                                        <p className="font-medium mt-0.5">{selectedDetailOrder.receiverPhone}</p>
+                                    </div>
+                                    <div className="col-span-2 mt-1">
+                                        <p className="text-xs text-muted-foreground">Địa chỉ nhận hàng</p>
+                                        <p className="font-medium mt-0.5">{selectedDetailOrder.shippingAddress}</p>
+                                    </div>
+                                    <div className="mt-1">
+                                        <p className="text-xs text-muted-foreground">Phương thức vận chuyển</p>
+                                        <p className="font-medium mt-0.5 uppercase">{selectedDetailOrder.shippingMethod}</p>
+                                    </div>
+                                    {selectedDetailOrder.trackingCode && (
+                                        <div className="mt-1">
+                                            <p className="text-xs text-muted-foreground">Mã vận đơn</p>
+                                            <p className="font-medium mt-0.5 text-purple-600 font-mono">{selectedDetailOrder.trackingCode}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Payment info */}
+                            <div className="space-y-2">
+                                <h4 className="font-semibold border-b pb-1 text-muted-foreground text-xs uppercase tracking-wider">Phương thức thanh toán</h4>
+                                <div className="grid grid-cols-2 gap-2 bg-muted/20 p-3 rounded-lg border">
+                                    <div>
+                                        <p className="text-xs text-muted-foreground">Hình thức</p>
+                                        <p className="font-medium mt-0.5 text-primary">
+                                            {selectedDetailOrder.paymentMethod === 'cod' && 'Thanh toán khi nhận hàng (COD)'}
+                                            {selectedDetailOrder.paymentMethod === 'momo' && 'Ví điện tử MoMo'}
+                                            {selectedDetailOrder.paymentMethod === 'banking' && 'Chuyển khoản ngân hàng'}
+                                            {selectedDetailOrder.paymentMethod === 'zalopay' && 'Ví ZaloPay'}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-muted-foreground">Trạng thái thanh toán</p>
+                                        <p className={`font-semibold mt-0.5 ${
+                                            selectedDetailOrder.paymentStatus === 'paid' ? 'text-green-600' :
+                                            selectedDetailOrder.paymentStatus === 'failed' ? 'text-red-600' :
+                                            selectedDetailOrder.paymentStatus === 'processing' ? 'text-orange-500' : 'text-amber-500'
+                                        }`}>
+                                            {selectedDetailOrder.paymentStatus === 'paid' && 'Đã thanh toán'}
+                                            {selectedDetailOrder.paymentStatus === 'failed' && 'Thanh toán thất bại/Đã hủy'}
+                                            {selectedDetailOrder.paymentStatus === 'processing' && 'Đang xử lý thanh toán'}
+                                            {selectedDetailOrder.paymentStatus === 'pending' && 'Chờ thanh toán'}
+                                        </p>
+                                    </div>
+                                    {selectedDetailOrder.momoTransId && (
+                                        <div className="col-span-2 mt-1">
+                                            <p className="text-xs text-muted-foreground">Mã giao dịch MoMo</p>
+                                            <p className="font-medium mt-0.5 text-xs font-mono">{selectedDetailOrder.momoTransId}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Order items */}
+                            <div className="space-y-2">
+                                <h4 className="font-semibold border-b pb-1 text-muted-foreground text-xs uppercase tracking-wider">Danh sách sản phẩm</h4>
+                                <div className="space-y-2 border rounded-lg p-2 max-h-[200px] overflow-y-auto bg-muted/10">
+                                    {selectedDetailOrder.items?.map((item: any) => (
+                                        <div key={item.id} className="flex justify-between items-center text-xs py-1.5 border-b last:border-b-0">
+                                            <div className="flex-1 pr-4">
+                                                <p className="font-medium">{item.productName}</p>
+                                                {item.variantName && <p className="text-muted-foreground text-[10px]">Phân loại: {item.variantName}</p>}
+                                                <p className="text-muted-foreground text-[10px]">Đơn giá: {Number(item.price).toLocaleString("vi-VN")}đ x {item.quantity}</p>
+                                            </div>
+                                            <span className="font-medium">
+                                                {(Number(item.price) * item.quantity).toLocaleString("vi-VN")}đ
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Summary cost */}
+                            <div className="space-y-1 bg-muted/30 p-3 rounded-lg border">
+                                <div className="flex justify-between text-xs text-muted-foreground">
+                                    <span>Tạm tính</span>
+                                    <span>{Number(selectedDetailOrder.subtotal).toLocaleString("vi-VN")}đ</span>
+                                </div>
+                                <div className="flex justify-between text-xs text-muted-foreground">
+                                    <span>Phí vận chuyển</span>
+                                    <span>+{Number(selectedDetailOrder.shippingFee).toLocaleString("vi-VN")}đ</span>
+                                </div>
+                                <div className="flex justify-between text-xs text-muted-foreground">
+                                    <span>Giảm giá</span>
+                                    <span>-{Number(selectedDetailOrder.discount).toLocaleString("vi-VN")}đ</span>
+                                </div>
+                                <div className="flex justify-between font-semibold border-t pt-1.5 text-sm text-orange-600 mt-1">
+                                    <span>Tổng tiền</span>
+                                    <span>{Number(selectedDetailOrder.total).toLocaleString("vi-VN")}đ</span>
+                                </div>
+                            </div>
+
+                            {/* Note */}
+                            {selectedDetailOrder.note && (
+                                <div className="bg-yellow-50 dark:bg-yellow-950/20 p-2.5 rounded border border-yellow-200 dark:border-yellow-800 text-xs">
+                                    <span className="font-semibold text-yellow-800 dark:text-yellow-400 block mb-0.5">Ghi chú từ khách hàng:</span>
+                                    <p className="italic text-muted-foreground">"{selectedDetailOrder.note}"</p>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setOpenDetailDialog(false)}>Đóng</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

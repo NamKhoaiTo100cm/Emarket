@@ -68,6 +68,11 @@ export class OrderController {
     return this.orderService.updateOrderStatus(+orderId, body.status, true);
   }
 
+  @Patch('user-cancel-order/:orderId')
+  userCancelOrder(@Param('orderId', ParseIntPipe) orderId: number, @Req() req) {
+    return this.orderService.userCancelOrder(req.user.id, orderId);
+  }
+
   @Patch('user-confirm-delivery/:orderId')
   userConfirmDelivery(@Param('orderId', ParseIntPipe) orderId: number, @Req() req) {
     return this.orderService.userConfirmDelivery(req.user.id, orderId);

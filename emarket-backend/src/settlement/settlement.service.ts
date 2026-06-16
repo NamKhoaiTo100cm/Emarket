@@ -58,6 +58,38 @@ export class SettlementService {
     }
 
     /**
+     * Tự động hủy đơn hàng thanh toán MoMo quá hạn (10 phút không thanh toán)
+     */
+    @Cron(CronExpression.EVERY_MINUTE)
+    async cancelExpiredMomoOrders() {
+        const cutoff = new Date(Date.now() - 10 * 60 * 1000);
+
+        const expiredOrders = await this.prisma.order.findMany({
+            where: {
+                paymentMethod: 'momo',
+                paymentStatus: 'processing',
+                status: 'pending',
+                createdAt: { lte: cutoff }
+            },
+            select: { id: true }
+        });
+
+        if (expiredOrders.length === 0) return;
+
+        const expiredIds = expiredOrders.map(o => o.id);
+
+        await this.prisma.order.updateMany({
+            where: { id: { in: expiredIds } },
+            data: {
+                paymentStatus: 'failed',
+                status: 'cancelled'
+            }
+        });
+
+        this.logger.log(`[AutoCancel] Cancelled ${expiredOrders.length} expired unpaid Momo orders`);
+    }
+
+    /**
      * Tự động xác nhận nhận hàng khi User không bấm "Đã nhận hàng"
      * Thời gian chờ có thể cấu hình qua System Config key: auto_confirm_minutes
      */

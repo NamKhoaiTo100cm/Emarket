@@ -133,8 +133,8 @@ export class PaymentService {
     if (orders.some(o => o.userId !== userId))
       throw new BadRequestException('Not your order');
 
-    if (orders.some(o => o.paymentStatus !== 'pending'))
-      throw new BadRequestException('Một số order đã được thanh toán');
+    if (orders.some(o => o.paymentStatus !== 'pending' && o.paymentStatus !== 'processing'))
+      throw new BadRequestException('Một số order đã được thanh toán hoặc thất bại');
 
     // Tổng tiền tất cả orders
     const totalAmount = orders.reduce((sum, o) => sum + Number(o.total), 0);
@@ -216,11 +216,13 @@ export class PaymentService {
       return { received: true };
 
     const paymentStatus = resultCode === 0 ? 'paid' : 'failed';
+    const orderStatus = resultCode === 0 ? 'pending' : 'cancelled';
 
     await this.prisma.order.updateMany({
       where: { momoOrderId },
       data: {
         paymentStatus,
+        status: orderStatus,
         // Lưu mã giao dịch MoMo khi thanh toán thành công
         ...(paymentStatus === 'paid' && transId ? { momoTransId: String(transId) } : {}),
       },
@@ -236,6 +238,95 @@ export class PaymentService {
     }
 
     return { received: true };
+  }
+
+  // Frontend calls to verify payment result directly (handles local sandbox where IPN doesn't work)
+  async verifyPayment(payload: any) {
+    const { orderId: momoOrderId, resultCode, transId } = payload;
+    const isSuccess = Number(resultCode) === 0;
+
+    // Verify signature for authenticity
+    if (!this.verifyRedirectSignature(payload)) {
+      throw new BadRequestException('Invalid signature');
+    }
+
+    const orders = await this.prisma.order.findMany({
+      where: { momoOrderId },
+      include: {
+        items: { select: { productId: true, quantity: true } },
+      },
+    });
+
+    if (!orders.length) throw new NotFoundException('Orders not found');
+
+    // Idempotent check
+    if (orders.every(o => o.paymentStatus !== 'processing')) {
+      const updatedOrders = await this.prisma.order.findMany({
+        where: { momoOrderId },
+        include: { items: true },
+      });
+      return { success: true, orders: updatedOrders };
+    }
+
+    const paymentStatus = isSuccess ? 'paid' : 'failed';
+    const orderStatus = isSuccess ? 'pending' : 'cancelled';
+
+    await this.prisma.order.updateMany({
+      where: { momoOrderId },
+      data: {
+        paymentStatus,
+        status: orderStatus,
+        ...(isSuccess && transId ? { momoTransId: String(transId) } : {}),
+      },
+    });
+
+    if (isSuccess) {
+      const allItems = orders.flatMap(o => o.items);
+      await Promise.all(
+        allItems.map(item =>
+          this.productService.increaseProductSales(item.productId, item.quantity)
+        )
+      );
+    }
+
+    const updatedOrders = await this.prisma.order.findMany({
+      where: { momoOrderId },
+      include: { items: true },
+    });
+
+    return { success: true, orders: updatedOrders };
+  }
+
+  private verifyRedirectSignature(payload: any): boolean {
+    const {
+      amount, extraData = '', message = '',
+      orderId, orderInfo = '', orderType = '', partnerCode,
+      payType = '', requestId, responseTime, resultCode,
+      transId = '', signature,
+    } = payload;
+
+    const rawSignature = [
+      `accessKey=${this.accessKey}`,
+      `amount=${amount}`,
+      `extraData=${extraData}`,
+      `message=${message}`,
+      `orderId=${orderId}`,
+      `orderInfo=${orderInfo}`,
+      `orderType=${orderType}`,
+      `partnerCode=${partnerCode}`,
+      `payType=${payType}`,
+      `requestId=${requestId}`,
+      `responseTime=${responseTime}`,
+      `resultCode=${resultCode}`,
+      `transId=${transId}`,
+    ].join('&');
+
+    const expected = crypto
+      .createHmac('sha256', this.secretKey)
+      .update(rawSignature)
+      .digest('hex');
+
+    return expected === signature;
   }
 
   private verifyIpnSignature(payload: any): boolean {
