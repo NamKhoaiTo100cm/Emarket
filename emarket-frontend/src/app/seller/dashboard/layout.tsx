@@ -21,7 +21,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useMe } from "@/components/hooks/useAuth"
 import { useParams } from "next/navigation"
 import { Children, useEffect, useState } from "react"
-import { AudioLinesIcon, FrameIcon, MapIcon, MessageCircle, Package, PieChartIcon, PlusIcon, Settings2Icon, ShieldCheck, ShoppingCart, Store, Tag, TerminalIcon } from "lucide-react"
+import { AudioLinesIcon, FrameIcon, MapIcon, MessageCircle, MessageSquare, Package, PieChartIcon, PlusIcon, Settings2Icon, ShieldCheck, ShoppingCart, Store, Tag, TerminalIcon } from "lucide-react"
 import { AppSidebarSeller } from "@/components/app-sidebar"
 
 const data = {
@@ -146,6 +146,13 @@ const data = {
             url: "/seller/dashboard/chat",
             icon: (
                 <MessageCircle />
+            ),
+        },
+        {
+            title: "Quản lý đánh giá",
+            url: "/seller/dashboard/reviews-manager",
+            icon: (
+                <MessageSquare />
             ),
         },
         {

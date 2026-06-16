@@ -184,7 +184,7 @@ export default function UserProfilePage() {
                                 />
                             </Field> */}
 
-                            <Field className="flex flex-col gap-1.5 md:col-span-2">
+                            {/* <Field className="flex flex-col gap-1.5 md:col-span-2">
                                 <Label htmlFor="address" className="text-sm font-medium text-slate-700 dark:text-slate-300">
                                     Địa chỉ giao hàng mặc định
                                 </Label>
@@ -196,7 +196,7 @@ export default function UserProfilePage() {
                                     disabled={loading}
                                     className="w-full"
                                 />
-                            </Field>
+                            </Field> */}
                         </div>
 
                         {/* Action Buttons */}

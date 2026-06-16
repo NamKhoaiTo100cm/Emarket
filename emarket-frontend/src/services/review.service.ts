@@ -14,4 +14,11 @@ export const reviewService = {
             method: 'PATCH',
             body: JSON.stringify({ isHidden }),
         }, true),
+    getSellerReviews: () =>
+        apiFetch('/review/seller/reviews'),
+    sellerReplyReview: (reviewId: number, sellerReply: string) =>
+        apiFetch(`/review/seller/reply/${reviewId}`, {
+            method: 'PATCH',
+            body: JSON.stringify({ sellerReply })
+        }),
 }

@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Reques
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
+import { ReplyReviewDto } from './dto/reply-review.dto';
 import { Public } from '../common/decorators/public.decorator';
 import { Roles } from '../common/decorators/roles.decorator';
 import { FilesInterceptor } from '@nestjs/platform-express';
@@ -62,5 +63,21 @@ export class ReviewController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.reviewService.remove(+id);
+  }
+
+  @Roles('seller')
+  @Get('seller/reviews')
+  async findSellerReviews(@Request() req) {
+    return this.reviewService.findSellerReviews(req.user.id);
+  }
+
+  @Roles('seller')
+  @Patch('seller/reply/:id')
+  async replyToReview(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() replyReviewDto: ReplyReviewDto,
+    @Request() req
+  ) {
+    return this.reviewService.replyToReview(id, req.user.id, replyReviewDto.sellerReply);
   }
 }

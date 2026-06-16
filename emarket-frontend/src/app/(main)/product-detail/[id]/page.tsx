@@ -153,6 +153,7 @@ const ProductDetailPage = () => {
 
   ];
   const [reviews, setReviews] = useState([]);
+  const [starFilter, setStarFilter] = useState<string>("all");
   // store selected star
   const [selectedStar, setSelectedStar] = useState(0);
   const [reviewText, setReviewText] = useState("");
@@ -553,9 +554,8 @@ const ProductDetailPage = () => {
         }
       </div>
 
-      <div className='mt-3 flex flex-wrap gap-2'>
-        <p>Lọc đánh giá:</p>
-        <Select>
+      <div className='mt-3 flex flex-wrap gap-2 max-w-[150px]'>
+        <Select value={starFilter} onValueChange={setStarFilter}>
           <SelectTrigger>
             <SelectValue placeholder="Lọc đánh giá" />
           </SelectTrigger>
@@ -569,51 +569,69 @@ const ProductDetailPage = () => {
           </SelectContent>
         </Select>
       </div>
-      {reviews && reviews.length > 0 ? reviews?.map((review: any) => (
-        <Card className='flex flex-row mb-3 px-3 py-3 justify-between items-start' key={review.id}>
-          <div className="flex flex-row gap-3">
-            <RxAvatar className='w-8 h-8 shrink-0' />
-            <div>
-              <CardTitle className='flex items-center gap-2'>
-                <p>{review.user.name}</p>
-                <div className='flex flex-warp'>
-                  {Array.from({ length: Math.floor(review.rating) }).map((_, index) => (
-                    <Star className="mt-1 text-yellow-400 fill-yellow-400" key={index} />
+      {(() => {
+        const filteredReviews = reviews.filter((review: any) => {
+          if (starFilter === "all") return true;
+          return Number(review.rating) === Number(starFilter);
+        });
 
-                  ))}
-                  {review.rating % 1 != 0 && (<StarHalf className="mt-1 text-yellow-400 fill-yellow-400" />)}
-                </div>
+        return filteredReviews && filteredReviews.length > 0 ? filteredReviews.map((review: any) => (
+          <Card className='flex flex-row mb-3 px-3 py-3 justify-between items-start' key={review.id}>
+            <div className="flex flex-row gap-3">
+              <RxAvatar className='w-8 h-8 shrink-0' />
+              <div>
+                <CardTitle className='flex items-center gap-2'>
+                  <p>{review.user.name}</p>
+                  <div className='flex flex-warp'>
+                    {Array.from({ length: Math.floor(review.rating) }).map((_, index) => (
+                      <Star className="mt-1 text-yellow-400 fill-yellow-400" key={index} />
+                    ))}
+                    {review.rating % 1 != 0 && (<StarHalf className="mt-1 text-yellow-400 fill-yellow-400" />)}
+                  </div>
 
-                <div>{new Date(review.createdAt).toLocaleDateString()}</div>
-              </CardTitle>
-              <CardDescription className="mt-1">
-                <p>{review.comment}</p>
-              </CardDescription>
-              {review.reviewImages && review.reviewImages.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {review.reviewImages.map((imgUrl: string, idx: number) => (
-                    <div 
-                      key={idx} 
-                      className="relative w-16 h-16 rounded-md overflow-hidden border border-slate-200 dark:border-slate-800 cursor-zoom-in group transition-transform duration-200 hover:scale-105"
-                      onClick={() => setPreviewImageUrl(imgUrl)}
-                    >
-                      <Image 
-                        src={imgUrl} 
-                        alt={`Review image ${idx + 1}`} 
-                        fill 
-                        className="object-cover"
-                      />
+                  <div>{new Date(review.createdAt).toLocaleDateString()}</div>
+                </CardTitle>
+                <CardDescription className="mt-1">
+                  <p>{review.comment}</p>
+                </CardDescription>
+                {review.reviewImages && review.reviewImages.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {review.reviewImages.map((imgUrl: string, idx: number) => (
+                      <div 
+                        key={idx} 
+                        className="relative w-16 h-16 rounded-md overflow-hidden border border-slate-200 dark:border-slate-800 cursor-zoom-in group transition-transform duration-200 hover:scale-105"
+                        onClick={() => setPreviewImageUrl(imgUrl)}
+                      >
+                        <Image 
+                          src={imgUrl} 
+                          alt={`Review image ${idx + 1}`} 
+                          fill 
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {review.sellerReply && (
+                  <div className="mt-3 bg-slate-50 dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 text-xs space-y-1 max-w-[500px]">
+                    <div className="flex justify-between items-center font-semibold text-primary">
+                      <span className="flex items-center gap-1">🏪 Phản hồi của Người bán</span>
+                      {review.sellerReplyAt && (
+                        <span className="text-[10px] text-muted-foreground font-normal">
+                          {new Date(review.sellerReplyAt).toLocaleDateString("vi-VN")}
+                        </span>
+                      )}
                     </div>
-                  ))}
-                </div>
-              )}
+                    <p className="text-muted-foreground italic">"{review.sellerReply}"</p>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-          <ReportButton type="review" targetId={review.id} variant="icon" className="shrink-0" />
-        </Card>
-      ))
-        : <p>Chưa có đánh giá</p>
-      }
+            <ReportButton type="review" targetId={review.id} variant="icon" className="shrink-0" />
+          </Card>
+        )) : <p>Chưa có đánh giá</p>;
+      })()}
       <Button className='block mx-auto my-3'>Tải thêm đánh giá</Button>
 
       {previewImageUrl && (

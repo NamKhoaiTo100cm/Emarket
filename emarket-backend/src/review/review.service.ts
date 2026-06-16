@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -179,5 +179,97 @@ export class ReviewService {
 
   remove(id: number) {
     return `This action removes a #${id} review`;
+  }
+
+  async findSellerReviews(userId: number) {
+    const shop = await this.prisma.shop.findUnique({
+      where: { userId },
+    });
+    if (!shop) {
+      throw new NotFoundException('Shop not found');
+    }
+
+    const reviews = await this.prisma.review.findMany({
+      where: {
+        product: {
+          shopId: shop.id,
+        },
+      },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            avatar: true,
+          },
+        },
+        product: {
+          select: {
+            id: true,
+            name: true,
+            price: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    const formattedReviews = reviews.map((review) => {
+      const userAvatarUrl = review.user.avatar
+        ? !review.user.avatar.startsWith('https')
+          ? this.cloudinary.getUrl(review.user.avatar, { width: 100, height: 100, crop: 'fill' })
+          : review.user.avatar
+        : null;
+      const reviewImagesUrls =
+        review.reviewImages
+          ?.map((img) => (img && !img.startsWith('https') ? this.cloudinary.getUrl(img) : img))
+          .filter(Boolean) ?? [];
+
+      return {
+        ...review,
+        reviewImages: reviewImagesUrls,
+        user: {
+          ...review.user,
+          avatar: userAvatarUrl,
+        },
+      };
+    });
+
+    return formattedReviews;
+  }
+
+  async replyToReview(reviewId: number, userId: number, sellerReply: string) {
+    const shop = await this.prisma.shop.findUnique({
+      where: { userId },
+    });
+    if (!shop) {
+      throw new NotFoundException('Shop not found');
+    }
+
+    const review = await this.prisma.review.findUnique({
+      where: { id: reviewId },
+      include: {
+        product: true,
+      },
+    });
+    if (!review) {
+      throw new NotFoundException('Review not found');
+    }
+
+    if (review.product.shopId !== shop.id) {
+      throw new ForbiddenException('You can only reply to reviews of products belonging to your shop');
+    }
+
+    const updatedReview = await this.prisma.review.update({
+      where: { id: reviewId },
+      data: {
+        sellerReply,
+        sellerReplyAt: new Date(),
+      },
+    });
+
+    return updatedReview;
   }
 }

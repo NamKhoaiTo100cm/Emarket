@@ -27,12 +27,12 @@ export default function UserSidebar() {
             path: '/user/chat',
         },
 
-        {
-            name: 'Cài đặt',
-            value: 'settings',
-            count: 6,
-            path: '/user/settings',
-        }
+        // {
+        //     name: 'Cài đặt',
+        //     value: 'settings',
+        //     count: 6,
+        //     path: '/user/settings',
+        // }
     ]
 
 
