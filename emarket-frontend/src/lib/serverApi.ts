@@ -6,6 +6,8 @@ export async function serverFetch(
     endpoint: string,
     options?: RequestInit
 ) {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+
     // =========================================================
     // BƯỚC 1: Đọc cookie từ incoming request (browser → Next.js)
     // cookies() đọc cookie mà browser đính kèm khi gọi lên server
@@ -34,7 +36,7 @@ export async function serverFetch(
     // BƯỚC 3: Gọi backend lần đầu với access token hiện tại
     // =========================================================
     let res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}${endpoint}`,
+        `${baseUrl}${endpoint}`,
         { ...options, headers, cache: "no-store" }
     );
 
@@ -48,7 +50,7 @@ export async function serverFetch(
     if (res.status === 401 && refreshToken) {
 
         const refreshRes = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`,
+            `${baseUrl}/auth/refresh`,
             {
                 method: "POST",
                 headers: { Cookie: `refresh_token=${refreshToken}` },
@@ -84,7 +86,7 @@ export async function serverFetch(
             //     console.log("set cookie failed in render phase", error)
             // }
             res = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}${endpoint}`,
+                `${baseUrl}${endpoint}`,
                 { ...options, headers, cache: "no-store" }
             );
         }

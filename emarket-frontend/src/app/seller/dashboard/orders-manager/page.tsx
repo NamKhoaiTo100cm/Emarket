@@ -17,6 +17,8 @@ import { toast } from "sonner";
 const OrdersManagerPage = () => {
     const [printOrder, setPrintOrder] = useState<any>(null);
     const [previewOpen, setPreviewOpen] = useState(false);
+    const [selectedDetailOrder, setSelectedDetailOrder] = useState<any>(null);
+    const [detailOpen, setDetailOpen] = useState(false);
 
     const { data: resUser } = useMe();
     const { data: resShop } = useMyShop(resUser?.data?.id, !!resUser?.data?.id);
@@ -149,7 +151,15 @@ const OrdersManagerPage = () => {
                                     </>
                                     )}
 
-                                    <Button size="icon" variant="outline">
+                                    <Button 
+                                        size="icon" 
+                                        variant="outline"
+                                        onClick={() => {
+                                            setSelectedDetailOrder(order);
+                                            setDetailOpen(true);
+                                        }}
+                                        title="Xem chi tiết"
+                                    >
                                         <Eye />
                                     </Button>
                                     {/* Nút in phiếu + Giao hàng */}
@@ -245,6 +255,134 @@ const OrdersManagerPage = () => {
                         <Button onClick={() => handlePrint()}>
                             <Printer className="w-4 h-4 mr-2" />
                             In phiếu
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            {/* Dialog xem chi tiết đơn hàng */}
+            <Dialog open={detailOpen} onOpenChange={setDetailOpen}>
+                <DialogContent className="w-[95vw] sm:w-[90vw] md:max-w-3xl overflow-y-auto max-h-[90vh] p-4 sm:p-6">
+                    <DialogHeader>
+                        <DialogTitle className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-lg font-bold border-b pb-2 gap-2 text-left">
+                            <span>Chi tiết đơn hàng #{selectedDetailOrder?.id}</span>
+                            <span className="text-xs sm:text-sm font-normal text-muted-foreground">
+                                Ngày đặt: {selectedDetailOrder?.createdAt ? new Date(selectedDetailOrder.createdAt).toLocaleString("vi-VN") : ""}
+                            </span>
+                        </DialogTitle>
+                    </DialogHeader>
+                    {selectedDetailOrder && (
+                        <div className="space-y-6">
+                            {/* Thông tin khách hàng & Giao hàng */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted/30 p-4 rounded-lg border">
+                                <div>
+                                    <h3 className="font-semibold text-sm mb-2 text-primary">Thông tin nhận hàng</h3>
+                                    <p className="text-sm"><span className="font-medium">Người nhận:</span> {selectedDetailOrder.receiverName}</p>
+                                    <p className="text-sm"><span className="font-medium">Điện thoại:</span> {selectedDetailOrder.receiverPhone}</p>
+                                    <p className="text-sm"><span className="font-medium">Địa chỉ:</span> {selectedDetailOrder.shippingAddress}</p>
+                                    {selectedDetailOrder.note && (
+                                        <p className="text-sm mt-1 text-muted-foreground italic"><span className="font-medium text-foreground not-italic">Ghi chú của khách:</span> "{selectedDetailOrder.note}"</p>
+                                    )}
+                                </div>
+                                <div>
+                                    <h3 className="font-semibold text-sm mb-2 text-primary">Thông tin vận chuyển & Thanh toán</h3>
+                                    <p className="text-sm"><span className="font-medium">Vận chuyển:</span> {selectedDetailOrder.shippingMethod?.toUpperCase()}</p>
+                                    {selectedDetailOrder.trackingCode && (
+                                        <p className="text-sm"><span className="font-medium">Mã vận đơn:</span> #{selectedDetailOrder.trackingCode}</p>
+                                    )}
+                                    <p className="text-sm"><span className="font-medium">Thanh toán:</span> {selectedDetailOrder.paymentMethod?.toUpperCase()}</p>
+                                    <div className="text-sm flex gap-1 items-center mt-1">
+                                        <span className="font-medium">Trạng thái thanh toán:</span>
+                                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                                            selectedDetailOrder.paymentStatus === 'paid' ? 'bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300'
+                                        }`}>
+                                            {selectedDetailOrder.paymentStatus === 'paid' ? 'Đã thanh toán' : selectedDetailOrder.paymentStatus === 'processing' ? 'Đang xử lý' : 'Chưa thanh toán'}
+                                        </span>
+                                    </div>
+                                    <div className="text-sm flex gap-1.5 items-center mt-1">
+                                        <span className="font-medium">Trạng thái đơn hàng:</span>
+                                        <BadgeOrderStatus 
+                                            status={selectedDetailOrder.status} 
+                                            paymentMethod={selectedDetailOrder.paymentMethod} 
+                                            paymentStatus={selectedDetailOrder.paymentStatus} 
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Danh sách sản phẩm */}
+                            <div>
+                                <h3 className="font-semibold text-sm mb-3">Sản phẩm trong đơn hàng</h3>
+                                <div className="border rounded-lg overflow-x-auto w-full">
+                                    <Table className="min-w-[600px] w-full">
+                                        <TableHeader className="bg-muted/50">
+                                            <TableRow>
+                                                <TableHead>Sản phẩm</TableHead>
+                                                <TableHead className="text-center w-[100px]">Số lượng</TableHead>
+                                                <TableHead className="text-right w-[120px]">Đơn giá</TableHead>
+                                                <TableHead className="text-right w-[150px]">Thành tiền</TableHead>
+                                            </TableRow>
+                                        </TableHeader>
+                                        <TableBody>
+                                            {selectedDetailOrder.items.map((item: any) => (
+                                                <TableRow key={item.id}>
+                                                    <TableCell className="flex items-center gap-3">
+                                                        <Image
+                                                            src={item.productImage || "/iphone-17-pro-max.webp"}
+                                                            alt=""
+                                                            width={45}
+                                                            height={45}
+                                                            className="rounded object-cover border shrink-0"
+                                                        />
+                                                        <div className="min-w-0">
+                                                            <p className="font-medium text-sm truncate max-w-[250px]" title={item.productName}>{item.productName}</p>
+                                                            {item.variantName && (
+                                                                <p className="text-xs text-muted-foreground mt-0.5">Phân loại: {item.variantName}</p>
+                                                            )}
+                                                        </div>
+                                                    </TableCell>
+                                                    <TableCell className="text-center text-sm">{item.quantity}</TableCell>
+                                                    <TableCell className="text-right text-sm">
+                                                        {Number(item.price).toLocaleString("vi-VN")} đ
+                                                    </TableCell>
+                                                    <TableCell className="text-right font-medium text-sm">
+                                                        {(Number(item.price) * item.quantity).toLocaleString("vi-VN")} đ
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </div>
+                            </div>
+
+                            {/* Chi tiết thanh toán */}
+                            <div className="flex justify-end">
+                                <div className="w-full sm:w-80 space-y-2 text-sm border p-4 rounded-lg bg-muted/10">
+                                    <div className="flex justify-between">
+                                        <span className="text-muted-foreground">Tạm tính:</span>
+                                        <span>{Number(selectedDetailOrder.subtotal).toLocaleString("vi-VN")} đ</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span className="text-muted-foreground">Phí vận chuyển:</span>
+                                        <span>+{Number(selectedDetailOrder.shippingFee).toLocaleString("vi-VN")} đ</span>
+                                    </div>
+                                    {Number(selectedDetailOrder.discount) > 0 && (
+                                        <div className="flex justify-between text-destructive">
+                                            <span>Giảm giá (Voucher):</span>
+                                            <span>-{Number(selectedDetailOrder.discount).toLocaleString("vi-VN")} đ</span>
+                                        </div>
+                                    )}
+                                    <div className="flex justify-between border-t pt-2 font-semibold text-base text-primary">
+                                        <span>Tổng cộng:</span>
+                                        <span>{Number(selectedDetailOrder.total).toLocaleString("vi-VN")} đ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    <div className="flex justify-end gap-2 border-t pt-4">
+                        <Button variant="outline" onClick={() => setDetailOpen(false)}>
+                            Đóng
                         </Button>
                     </div>
                 </DialogContent>

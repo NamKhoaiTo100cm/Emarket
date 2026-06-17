@@ -72,7 +72,7 @@ export default async function middleware(request: NextRequest) {
     if (needsRefresh) {
         try {
             const refreshRes = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`,
+                `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'}/auth/refresh`,
                 {
                     method: "POST",
                     headers: { Cookie: `refresh_token=${refreshToken}` },

@@ -71,7 +71,9 @@ const LoginContent = () => {
                 <Button
                   variant="outline"
                   type="button"
-                  onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google`}
+                  onClick={() => {
+                    window.location.href = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'}/auth/google`;
+                  }}
                 >
                   Đăng nhập bằng Google
                 </Button>

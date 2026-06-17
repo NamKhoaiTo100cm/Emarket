@@ -7,7 +7,7 @@ export async function apiFetch(endpoint: string, options?: RequestInit, isPublic
     console.log('body:', options?.body)
 
     const isClient = typeof window !== 'undefined';
-    const baseUrl = isClient ? '/api' : (process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000');
+    const baseUrl = isClient ? '/api' : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1');
 
     const buildHeaders = (opts?: RequestInit) => ({
         // Nếu là FormData thì KHÔNG set Content-Type, để browser tự set multipart boundary

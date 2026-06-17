@@ -4,10 +4,23 @@ import { ChatService } from './chat.service';
 
 @WebSocketGateway({
     cors: {
-        origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'],
+        origin: (origin, callback) => {
+            const frontendUrl = process.env.FRONTEND_URL;
+            if (
+                !origin ||
+                origin.startsWith('http://localhost') ||
+                origin.endsWith('.vercel.app') ||
+                (frontendUrl && origin === frontendUrl)
+            ) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
         credentials: true,
     },
     namespace: '/chat',
+    transports: ['websocket'],
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @WebSocketServer()

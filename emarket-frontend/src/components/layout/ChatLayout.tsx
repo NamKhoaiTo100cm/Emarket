@@ -163,9 +163,10 @@ export default function ChatLayout({ role }: { role: Role }) {
     useEffect(() => {
         if (!userId) return;
 
-        const socket = io(`${process.env.NEXT_PUBLIC_BACKEND_URL}/chat`, {
+        const socket = io(`${process.env.NEXT_PUBLIC_WS_URL || 'http://localhost:8000'}/chat`, {
             auth: { userId },
             withCredentials: true,
+            transports: ['websocket'],
         });
 
         socket.on('connect', () => {

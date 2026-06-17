@@ -22,15 +22,16 @@ export function useChat(conversationId: number, userId: number) {
 
     // Thêm vào useChat.ts, trước useEffect socket
     useEffect(() => {
-        apiFetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/chat/conversation/${conversationId}/messages`)
+        apiFetch(`/chat/conversation/${conversationId}/messages`)
             .then(r => r.json())
             .then(data => setMessages(data.data ?? data));
     }, [conversationId]);
 
     useEffect(() => {
-        const socket = io(`${process.env.NEXT_PUBLIC_BACKEND_URL}/chat`, {
+        const socket = io(`${process.env.NEXT_PUBLIC_WS_URL || 'http://localhost:8000'}/chat`, {
             auth: { userId },
             withCredentials: true,
+            transports: ['websocket'],
         });
 
 
