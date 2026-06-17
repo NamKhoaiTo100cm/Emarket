@@ -125,6 +125,7 @@ export class OrderService {
     const shippingFee = shippingFeeMap[createOrderDto.shippingMethod ?? 'standard'] ?? 30000;
 
     let shopDiscount = 0;
+    let voucherId: number | null = null;
 
     // voucher shop
     if (createOrderDto.shopVoucherCode) {
@@ -134,6 +135,7 @@ export class OrderService {
         shopId
       );
       shopDiscount = this.voucherService.calculateDiscount(voucher, subTotal);
+      voucherId = voucher.id;
     }
 
     const discount = shopDiscount;
@@ -143,49 +145,48 @@ export class OrderService {
       shippingFee -
       discount;
 
-    const order =
-      await this.prisma.order.create({
+    const order = await this.prisma.$transaction(async (tx) => {
+      const createdOrder = await tx.order.create({
         data: {
           userId,
           shopId,
-
+          voucherId,
           subtotal: subTotal,
           shippingFee,
           discount,
           total,
-
-          paymentMethod:
-            createOrderDto.paymentMethod,
-
-          shippingMethod:
-            createOrderDto.shippingMethod,
-
-          shippingAddress:
-            createOrderDto.shippingAddress,
-
-          receiverName:
-            createOrderDto.receiverName,
-
-          receiverPhone:
-            createOrderDto.receiverPhone.toString(),
-
-          note:
-            createOrderDto.note,
-
+          paymentMethod: createOrderDto.paymentMethod,
+          shippingMethod: createOrderDto.shippingMethod ?? 'standard',
+          shippingAddress: createOrderDto.shippingAddress,
+          receiverName: createOrderDto.receiverName,
+          receiverPhone: createOrderDto.receiverPhone.toString(),
+          note: createOrderDto.note,
           status: "pending",
           paymentStatus: "pending",
-
           items: {
             createMany: {
-              data: orderItems
-            }
-          }
+              data: orderItems,
+            },
+          },
         },
-
         include: {
-          items: true
-        }
+          items: true,
+        },
       });
+
+      if (voucherId) {
+        await tx.voucher.update({
+          where: { id: voucherId },
+          data: {
+            usedCount: {
+              increment: 1,
+            },
+          },
+        });
+      }
+
+      return createdOrder;
+    });
 
     return order;
   }

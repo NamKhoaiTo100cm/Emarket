@@ -16,4 +16,13 @@ export const voucherService = {
     }),
 
     validateShopVoucher: (data: any) => apiFetch(`/voucher/validate/shop?code=${data.code}&orderTotal=${data.orderTotal}&shopId=${data.shopId}`),
+
+    updateVoucher: (id: number, data: any) => apiFetch(`/voucher/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+    }),
+
+    deleteVoucher: (id: number) => apiFetch(`/voucher/${id}`, {
+        method: 'DELETE',
+    }),
 }

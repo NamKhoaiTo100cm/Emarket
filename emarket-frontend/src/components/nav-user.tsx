@@ -22,6 +22,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { ChevronsUpDownIcon, SparklesIcon, BadgeCheckIcon, CreditCardIcon, BellIcon, LogOutIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function NavUser({
   user,
@@ -30,11 +31,13 @@ export function NavUser({
     name: string
     email: string
     avatar: string
+    role: string
   },
 
 }) {
   const { isMobile } = useSidebar()
-
+  const router = useRouter();
+  // console.log("navuser: ", user)
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -73,17 +76,17 @@ export function NavUser({
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            {/* <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <SparklesIcon
                 />
                 Upgrade to Pro
               </DropdownMenuItem>
-            </DropdownMenuGroup>
+            </DropdownMenuGroup> */}
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              {/* <DropdownMenuItem>
                 <BadgeCheckIcon
                 />
                 Account
@@ -92,18 +95,24 @@ export function NavUser({
                 <CreditCardIcon
                 />
                 Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <BellIcon
-                />
-                Notifications
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
+              {
+                user.role === "seller" && (
+                  <DropdownMenuItem onClick={() => {
+                    router.push("/")
+                  }}>
+                    <BellIcon />
+                    Chuyển sang trang người mua
+                  </DropdownMenuItem>
+                )
+              }
+
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => { logoutAction() }}>
               <LogOutIcon
               />
-              Log out
+              Đăng xuất
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -68,6 +68,7 @@ export class VoucherController {
   }
 
   @Delete(':id')
+  @Roles('admin', 'seller')
   remove(@Param('id', ParseIntPipe) id: number, @Req() req: any) {
     return this.voucherService.remove(id, +req.user.id, req.user.role);
   }

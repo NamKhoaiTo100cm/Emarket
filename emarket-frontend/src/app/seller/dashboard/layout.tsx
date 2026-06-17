@@ -29,10 +29,11 @@ const data = {
         name: "shadcn",
         email: "m@example.com",
         avatar: "/avatars/shadcn.jpg",
+        role: "user"
     },
     teams: [
         {
-            name: "Acme Inc",
+            name: "Emarket",
             logo: (
                 // <Image src="https://res.cloudinary.com/dxsf6iomu/image/upload/v1777483395/shops/avatars/oikskkhdb2izkbgiellh.png" alt="" width={30} height={30} className="w-8 h-8 rounded-full" />
                 <Store
@@ -176,32 +177,32 @@ const data = {
                 <ShieldCheck />
             ),
         },
-        {
-            title: "Settings",
-            url: "#",
-            icon: (
-                <Settings2Icon
-                />
-            ),
-            // items: [
-            //   {
-            //     title: "General",
-            //     url: "#",
-            //   },
-            //   {
-            //     title: "Team",
-            //     url: "#",
-            //   },
-            //   {
-            //     title: "Billing",
-            //     url: "#",
-            //   },
-            //   {
-            //     title: "Limits",
-            //     url: "#",
-            //   },
-            // ],
-        },
+        // {
+        //     title: "Settings",
+        //     url: "#",
+        //     icon: (
+        //         <Settings2Icon
+        //         />
+        //     ),
+        //     // items: [
+        //     //   {
+        //     //     title: "General",
+        //     //     url: "#",
+        //     //   },
+        //     //   {
+        //     //     title: "Team",
+        //     //     url: "#",
+        //     //   },
+        //     //   {
+        //     //     title: "Billing",
+        //     //     url: "#",
+        //     //   },
+        //     //   {
+        //     //     title: "Limits",
+        //     //     url: "#",
+        //     //   },
+        //     // ],
+        // },
     ],
     projects: [
         {
@@ -247,7 +248,7 @@ export default function Page({ children }: { children: React.ReactNode }) {
                 return;
             }
 
-            setData1({ ...data, user: { name: user.name, email: user.email, avatar: user.avatar } });
+            setData1({ ...data, user: { name: user.name, email: user.email, avatar: user.avatar, role: user.role } });
             console.log("dt1: ", user)
         }
     }, [resp]);
