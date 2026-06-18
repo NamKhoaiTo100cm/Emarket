@@ -15,7 +15,7 @@ model User {
   password         String?
   phone            String?
   address          String?
-  avatar           String?            @default("default-avatar.png")
+  avatar           String?
   role             Role               @default(user)
   status           UserStatus         @default(active)
   hashRefreshToken String?
@@ -38,8 +38,8 @@ model Shop {
   userId               Int                 @unique
   name                 String
   description          String?
-  logo                 String?             @default("default-shop.png")
-  banner               String?             @default("default-banner.jpg")
+  logo                 String?
+  banner               String?
   address              String?
   phone                String?
   rating               Decimal             @default(0) @db.Decimal(3, 2)
@@ -424,6 +424,7 @@ enum PaymentStatus {
   paid
   processing
   failed
+  refunded
 }
 
 enum BannerPosition {

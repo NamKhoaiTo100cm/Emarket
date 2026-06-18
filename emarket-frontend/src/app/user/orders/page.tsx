@@ -538,10 +538,12 @@ export default function UserOrdersPage() {
                                         <p className="text-xs text-muted-foreground">Trạng thái thanh toán</p>
                                         <p className={`font-semibold mt-0.5 ${
                                             selectedDetailOrder.paymentStatus === 'paid' ? 'text-green-600' :
+                                            selectedDetailOrder.paymentStatus === 'refunded' ? 'text-blue-600' :
                                             selectedDetailOrder.paymentStatus === 'failed' ? 'text-red-600' :
                                             selectedDetailOrder.paymentStatus === 'processing' ? 'text-orange-500' : 'text-amber-500'
                                         }`}>
                                             {selectedDetailOrder.paymentStatus === 'paid' && 'Đã thanh toán'}
+                                            {selectedDetailOrder.paymentStatus === 'refunded' && 'Đã hoàn tiền (Refunded)'}
                                             {selectedDetailOrder.paymentStatus === 'failed' && 'Thanh toán thất bại/Đã hủy'}
                                             {selectedDetailOrder.paymentStatus === 'processing' && 'Đang xử lý thanh toán'}
                                             {selectedDetailOrder.paymentStatus === 'pending' && 'Chờ thanh toán'}

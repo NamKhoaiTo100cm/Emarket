@@ -294,9 +294,13 @@ const OrdersManagerPage = () => {
                                     <div className="text-sm flex gap-1 items-center mt-1">
                                         <span className="font-medium">Trạng thái thanh toán:</span>
                                         <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                                            selectedDetailOrder.paymentStatus === 'paid' ? 'bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300'
+                                            selectedDetailOrder.paymentStatus === 'paid' ? 'bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300' :
+                                            selectedDetailOrder.paymentStatus === 'refunded' ? 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300' :
+                                            'bg-yellow-100 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300'
                                         }`}>
-                                            {selectedDetailOrder.paymentStatus === 'paid' ? 'Đã thanh toán' : selectedDetailOrder.paymentStatus === 'processing' ? 'Đang xử lý' : 'Chưa thanh toán'}
+                                            {selectedDetailOrder.paymentStatus === 'paid' ? 'Đã thanh toán' :
+                                             selectedDetailOrder.paymentStatus === 'refunded' ? 'Đã hoàn tiền' :
+                                             selectedDetailOrder.paymentStatus === 'processing' ? 'Đang xử lý' : 'Chưa thanh toán'}
                                         </span>
                                     </div>
                                     <div className="text-sm flex gap-1.5 items-center mt-1">

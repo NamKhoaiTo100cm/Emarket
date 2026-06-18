@@ -48,6 +48,17 @@ export class OrderController {
     return res;
   }
 
+  @Get('admin/all')
+  @Roles('staff', 'admin')
+  async getAdminOrders(
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', ParseIntPipe) limit: number,
+    @Query('keyword') keyword?: string,
+    @Query('status') status?: string,
+  ) {
+    return this.orderService.getAdminOrders(page, limit, keyword, status);
+  }
+
   @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {

@@ -397,6 +397,12 @@ export class OrderService {
 
     const updateData: any = { status };
 
+    if (status === 'cancelled') {
+      if (order.paymentStatus === 'paid') {
+        updateData.paymentStatus = 'refunded';
+      }
+    }
+
     // Tự sinh mã vận đơn nội bộ khi chuyển sang shipping
     if (status === 'shipping') {
       updateData.trackingCode = `EMK${String(orderId).padStart(10, '0')}`;
@@ -433,7 +439,9 @@ export class OrderService {
         message = `Đơn hàng #${orderId} của bạn đã được giao thành công. Cảm ơn bạn đã mua sắm tại Emarket!`;
       } else if (status === 'cancelled') {
         title = 'Đơn hàng đã bị hủy';
-        message = `Đơn hàng #${orderId} của bạn đã bị hủy.`;
+        message = order.paymentStatus === 'paid'
+          ? `Đơn hàng #${orderId} của bạn đã bị shop hủy. Số tiền ${Number(order.total).toLocaleString('vi-VN')} đ đã được hoàn tự động về ví MoMo của bạn.`
+          : `Đơn hàng #${orderId} của bạn đã bị shop hủy.`;
       }
 
       if (title && message) {
@@ -579,7 +587,7 @@ export class OrderService {
         }),
         this.prisma.order.update({
           where: { id: order.id },
-          data: { status: 'returned' },
+          data: { status: 'returned', paymentStatus: 'refunded' },
         }),
         this.prisma.shopBalance.update({
           where: { shopId: order.shopId },
@@ -596,6 +604,111 @@ export class OrderService {
     return { message: `Yêu cầu hoàn hàng đã được ${status === 'APPROVED' ? 'chấp nhận' : 'từ chối'}` };
   }
 
+  async getAdminOrders(page: number, limit: number, keyword?: string, status?: string) {
+    const skip = (page - 1) * limit;
+    const take = limit;
+
+    const whereClause: any = {};
+
+    if (status && status !== 'all') {
+      whereClause.status = status;
+    }
+
+    if (keyword) {
+      const searchConditions: any[] = [];
+      const parsedId = parseInt(keyword, 10);
+      if (!isNaN(parsedId)) {
+        searchConditions.push({ id: parsedId });
+      }
+
+      searchConditions.push(
+        {
+          user: {
+            name: {
+              contains: keyword,
+              mode: 'insensitive',
+            },
+          },
+        },
+        {
+          user: {
+            phone: {
+              contains: keyword,
+              mode: 'insensitive',
+            },
+          },
+        },
+        {
+          shop: {
+            name: {
+              contains: keyword,
+              mode: 'insensitive',
+            },
+          },
+        },
+        {
+          trackingCode: {
+            contains: keyword,
+            mode: 'insensitive',
+          },
+        }
+      );
+      whereClause.OR = searchConditions;
+    }
+
+    const [totalCount, orders] = await Promise.all([
+      this.prisma.order.count({
+        where: whereClause,
+      }),
+      this.prisma.order.findMany({
+        where: whereClause,
+        include: {
+          items: true,
+          returnRequest: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              phone: true,
+            },
+          },
+          shop: {
+            select: {
+              id: true,
+              name: true,
+              phone: true,
+            },
+          },
+        },
+        skip,
+        take,
+        orderBy: {
+          createdAt: 'desc',
+        },
+      }),
+    ]);
+
+    const formattedOrders = orders.map((item) => {
+      if (item.items && item.items.length > 0) {
+        item.items = item.items.map((orderItem) => {
+          orderItem.productImage = orderItem.productImage?.startsWith('http')
+            ? orderItem.productImage
+            : this.cloudinaryService.getUrl(orderItem.productImage);
+          return orderItem;
+        });
+      }
+      if (item.returnRequest && item.returnRequest.images && item.returnRequest.images.length > 0) {
+        item.returnRequest.images = item.returnRequest.images.map((img: string) =>
+          img.startsWith('http') ? img : this.cloudinaryService.getUrl(img) || img
+        );
+      }
+      return item;
+    });
+
+    return { data: formattedOrders, pagination: { totalCount, page, limit } };
+  }
+
   async userCancelOrder(userId: number, orderId: number) {
     const order = await this.prisma.order.findUnique({
       where: { id: orderId }
@@ -604,13 +717,18 @@ export class OrderService {
     if (order.userId !== userId) throw new ForbiddenException('Bạn không có quyền hủy đơn hàng này');
     if (order.status !== 'pending') throw new BadRequestException('Chỉ có thể hủy đơn hàng ở trạng thái chờ xử lý');
 
-    const paymentStatusUpdate = order.paymentStatus === 'processing' || order.paymentStatus === 'pending' ? 'failed' : undefined;
+    let paymentStatusUpdate: string | undefined = undefined;
+    if (order.paymentStatus === 'processing' || order.paymentStatus === 'pending') {
+      paymentStatusUpdate = 'failed';
+    } else if (order.paymentStatus === 'paid') {
+      paymentStatusUpdate = 'refunded';
+    }
 
     await this.prisma.order.update({
       where: { id: orderId },
       data: {
         status: 'cancelled',
-        ...(paymentStatusUpdate ? { paymentStatus: paymentStatusUpdate } : {})
+        ...(paymentStatusUpdate ? { paymentStatus: paymentStatusUpdate as any } : {})
       }
     });
 
@@ -618,7 +736,9 @@ export class OrderService {
       await this.notificationService.createNotification(
         order.userId,
         'Đơn hàng đã bị hủy',
-        `Đơn hàng #${orderId} của bạn đã được hủy thành công.`,
+        order.paymentStatus === 'paid'
+          ? `Đơn hàng #${orderId} của bạn đã được hủy thành công. Số tiền ${Number(order.total).toLocaleString('vi-VN')} đ đã được hoàn tự động về ví MoMo của bạn.`
+          : `Đơn hàng #${orderId} của bạn đã được hủy thành công.`,
         'order'
       );
     } catch (err) {

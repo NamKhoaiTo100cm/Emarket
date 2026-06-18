@@ -43,4 +43,9 @@ export const orderService = {
             method: "PATCH",
             body: JSON.stringify({ status, staffNote })
         }),
+
+    getAdminOrders: (page = 1, limit = 10, keyword = "", status = "") => {
+        const query = `page=${page}&limit=${limit}${keyword ? `&keyword=${encodeURIComponent(keyword)}` : ""}${status ? `&status=${status}` : ""}`;
+        return apiFetch(`/order/admin/all?${query}`);
+    },
 }

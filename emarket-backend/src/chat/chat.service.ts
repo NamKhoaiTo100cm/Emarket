@@ -7,39 +7,12 @@ export class ChatService {
 
     // ==================== SHOP CHAT ====================
 
-    // async getOrCreateShopConversation(userId: number, shopId: number) {
-    //     // Ngăn chủ shop tự chat với chính shop của họ
-    //     const shop = await this.prisma.shop.findUnique({
-    //         where: { id: shopId },
-    //         select: { userId: true },
-    //     });
-    //     if (!shop) throw new NotFoundException('Shop not found');
-    //     if (shop.userId === userId) {
-    //         throw new BadRequestException('Bạn không thể tự chat với shop của chính mình');
-    //     }
-
-    //     return this.prisma.chatConversation.upsert({
-    //         where: { userId_shopId: { userId, shopId } },
-    //         create: { userId, shopId, type: 'shop' },
-    //         update: {},
-    //         include: {
-    //             messages: { orderBy: { createdAt: 'asc' }, take: 50 },
-    //             shop: { select: { id: true, name: true, logo: true } },
-    //         },
-    //     });
-    // }
-
-
     async getOrCreateShopConversation(userId: number, shopId: number) {
-        // Ngăn chủ shop tự chat với chính shop của họ
         const shop = await this.prisma.shop.findUnique({
             where: { id: shopId },
             select: { userId: true },
         });
         if (!shop) throw new NotFoundException('Shop not found');
-        // if (shop.userId === userId) {
-        //     throw new BadRequestException('Bạn không thể tự chat với shop của chính mình');
-        // }
 
         return this.prisma.chatConversation.upsert({
             where: { userId_shopId: { userId, shopId } },
@@ -125,9 +98,24 @@ export class ChatService {
             },
         });
     }
-    async getSupportConversationsNotAssigned() {
+
+    /** Tất cả conversations support chưa được assign (bất kỳ staff nào) */
+    async getSupportConversationsUnassigned() {
         return this.prisma.chatConversation.findMany({
             where: { type: 'staff', assignedStaffId: null },
+            include: {
+                messages: { orderBy: { createdAt: 'desc' }, take: 1 },
+                shop: { select: { id: true, name: true, logo: true, description: true } },
+                user: { select: { id: true, name: true, avatar: true } },
+            },
+            orderBy: { lastMessageAt: 'desc' },
+        });
+    }
+
+    /** Conversations đã được assign cho một staff cụ thể */
+    async getMyAssignedConversations(staffId: number) {
+        return this.prisma.chatConversation.findMany({
+            where: { type: 'staff', assignedStaffId: staffId },
             include: {
                 messages: { orderBy: { createdAt: 'desc' }, take: 1 },
                 shop: { select: { id: true, name: true, logo: true, description: true } },
@@ -159,11 +147,76 @@ export class ChatService {
         });
     }
 
+    /** Assign conversation cho staff — set assignedStaffId + assignedAt */
     async assignStaff(conversationId: number, staffId: number) {
+        const conv = await this.prisma.chatConversation.findUnique({
+            where: { id: conversationId },
+            select: { assignedStaffId: true },
+        });
+        if (!conv) throw new NotFoundException('Conversation not found');
+        if (conv.assignedStaffId && conv.assignedStaffId !== staffId) {
+            throw new BadRequestException('Conversation đã được nhận bởi staff khác');
+        }
+
         return this.prisma.chatConversation.update({
             where: { id: conversationId },
-            data: { assignedStaffId: staffId },
+            data: {
+                assignedStaffId: staffId,
+                assignedAt: new Date(),
+            },
+            include: {
+                shop: { select: { id: true, name: true, logo: true } },
+                user: { select: { id: true, name: true, avatar: true } },
+            },
         });
+    }
+
+    /** Unassign — staff kết thúc hỗ trợ, conversation quay về hàng chờ */
+    async unassignStaff(conversationId: number, staffId: number) {
+        const conv = await this.prisma.chatConversation.findUnique({
+            where: { id: conversationId },
+            select: { assignedStaffId: true },
+        });
+        if (!conv) throw new NotFoundException('Conversation not found');
+        if (conv.assignedStaffId !== staffId) {
+            throw new BadRequestException('Bạn không phải người nhận conversation này');
+        }
+
+        return this.prisma.chatConversation.update({
+            where: { id: conversationId },
+            data: {
+                assignedStaffId: null,
+                assignedAt: null,
+                lastStaffActivity: new Date(),
+            },
+        });
+    }
+
+    /**
+     * Auto-unassign tất cả conversations của một staff khi họ disconnect quá lâu.
+     * Trả về danh sách các conversation đã được unassign để gateway emit events.
+     */
+    async unassignAllForStaff(staffId: number) {
+        const conversations = await this.prisma.chatConversation.findMany({
+            where: { assignedStaffId: staffId },
+            include: {
+                shop: { select: { id: true, name: true, logo: true } },
+                user: { select: { id: true, name: true, avatar: true } },
+            },
+        });
+
+        if (conversations.length === 0) return [];
+
+        await this.prisma.chatConversation.updateMany({
+            where: { assignedStaffId: staffId },
+            data: {
+                assignedStaffId: null,
+                assignedAt: null,
+                lastStaffActivity: new Date(),
+            },
+        });
+
+        return conversations;
     }
 
     // ==================== SHARED ====================
@@ -189,6 +242,8 @@ export class ChatService {
             data: {
                 lastMessage: data.content,
                 lastMessageAt: new Date(),
+                // Cập nhật lastStaffActivity khi staff gửi tin
+                ...(data.senderRole === 'staff' ? { lastStaffActivity: new Date() } : {}),
                 ...(data.senderRole === 'seller' || data.senderRole === 'staff'
                     ? { unreadUser: { increment: 1 } }
                     : { unreadSeller: { increment: 1 } }),

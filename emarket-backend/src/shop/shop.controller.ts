@@ -41,7 +41,7 @@ export class ShopController {
     }
 
     @Get('admin/statistics')
-    @Roles('admin')
+    @Roles('admin', 'staff')
     async getAdminStatistics(
         @Query('startDate') startDate?: string,
         @Query('endDate') endDate?: string,

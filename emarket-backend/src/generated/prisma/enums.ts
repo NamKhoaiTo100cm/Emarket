@@ -72,7 +72,8 @@ export const PaymentStatus = {
   pending: 'pending',
   paid: 'paid',
   processing: 'processing',
-  failed: 'failed'
+  failed: 'failed',
+  refunded: 'refunded'
 } as const
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]

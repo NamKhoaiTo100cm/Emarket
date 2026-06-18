@@ -170,8 +170,7 @@ export default function StaffVerificationsPage() {
                                             {v.status === "pending" && (
                                                 <div className="flex sm:flex-col gap-2 sm:min-w-28">
                                                     <Button
-                                                        size="sm"
-                                                        className="flex-1 bg-blue-600 hover:bg-blue-700 gap-1.5"
+
                                                         onClick={() => { setSelectedVerification(v); setStaffNote(""); }}
                                                     >
                                                         <BadgeCheck size={14} />

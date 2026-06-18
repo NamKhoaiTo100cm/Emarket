@@ -132,5 +132,52 @@ export class SettlementService {
 
         this.logger.log(`[AutoConfirm] Tự động xác nhận ${orders.length} đơn hàng sau ${minutes} phút không có phản hồi từ người mua`);
     }
+
+    /**
+     * [Backup] Tự động unassign staff khỏi support conversation khi không hoạt động.
+     * Chạy mỗi 10 phút — là lưới an toàn dự phòng cho WebSocket timer.
+     *
+     * Logic: nếu conversation đã được assign (assignedStaffId != null) nhưng:
+     *   - lastStaffActivity > 15 phút trước, HOẶC
+     *   - lastStaffActivity IS NULL nhưng assignedAt > 15 phút trước
+     * → unassign về hàng chờ.
+     */
+    @Cron('*/10 * * * *')
+    async autoUnassignInactiveStaff() {
+        const cutoff = new Date(Date.now() - 15 * 60 * 1000); // 15 phút trước
+
+        const staleConversations = await this.prisma.chatConversation.findMany({
+            where: {
+                type: 'staff',
+                assignedStaffId: { not: null },
+                OR: [
+                    // Staff có hoạt động nhưng đã quá 15 phút không làm gì
+                    { lastStaffActivity: { lte: cutoff } },
+                    // Staff chưa gửi tin nào (lastStaffActivity null) nhưng assign quá 15 phút
+                    {
+                        lastStaffActivity: null,
+                        assignedAt: { lte: cutoff },
+                    },
+                ],
+            },
+            select: { id: true, assignedStaffId: true },
+        });
+
+        if (staleConversations.length === 0) return;
+
+        await this.prisma.chatConversation.updateMany({
+            where: { id: { in: staleConversations.map((c) => c.id) } },
+            data: {
+                assignedStaffId: null,
+                assignedAt: null,
+                lastStaffActivity: new Date(),
+            },
+        });
+
+        this.logger.log(
+            `[AutoUnassign] Unassigned ${staleConversations.length} stale support conversation(s) ` +
+            `(staffIds: ${[...new Set(staleConversations.map((c) => c.assignedStaffId))].join(', ')})`,
+        );
+    }
 }
 

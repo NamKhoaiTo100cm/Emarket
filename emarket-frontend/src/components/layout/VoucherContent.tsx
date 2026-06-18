@@ -155,7 +155,9 @@ export default function VoucherContent({ role }: { role: 'admin' | 'seller' }) {
             <div className="">
                 <div className="flex justify-between items-center">
                     <h1 className="text-2xl font-bold">Quản lý voucher</h1>
-                    <Button onClick={() => { setOpen(true) }}><PlusIcon /> Tạo voucher</Button>
+                    {role === 'seller' && (
+                        <Button onClick={() => { setOpen(true) }}><PlusIcon /> Tạo voucher</Button>
+                    )}
                     <Dialog
                         open={open}
                         onOpenChange={setOpen}
@@ -300,29 +302,29 @@ export default function VoucherContent({ role }: { role: 'admin' | 'seller' }) {
                                     </Field>
                                     <Field className="flex-1">
                                         <Label htmlFor="editDiscountValue">Giá trị giảm</Label>
-                                        <Input 
-                                            id="editDiscountValue" 
-                                            value={editFormData.discountValue} 
-                                            type="number" 
-                                            onChange={(e) => setEditFormData({ ...editFormData, discountValue: e.target.value })} 
+                                        <Input
+                                            id="editDiscountValue"
+                                            value={editFormData.discountValue}
+                                            type="number"
+                                            onChange={(e) => setEditFormData({ ...editFormData, discountValue: e.target.value })}
                                         />
                                     </Field>
                                     <Field className="flex-1">
                                         <Label htmlFor="editMinOrder">Đơn hàng tối thiểu</Label>
-                                        <Input 
-                                            id="editMinOrder" 
-                                            value={editFormData.minOrder} 
-                                            type="number" 
-                                            onChange={(e) => setEditFormData({ ...editFormData, minOrder: e.target.value })} 
+                                        <Input
+                                            id="editMinOrder"
+                                            value={editFormData.minOrder}
+                                            type="number"
+                                            onChange={(e) => setEditFormData({ ...editFormData, minOrder: e.target.value })}
                                         />
                                     </Field>
                                     <Field className="flex-1">
                                         <Label htmlFor="editMaxDiscount">Giảm tối đa</Label>
-                                        <Input 
-                                            id="editMaxDiscount" 
-                                            value={editFormData.maxDiscount} 
-                                            type="number" 
-                                            onChange={(e) => setEditFormData({ ...editFormData, maxDiscount: e.target.value })} 
+                                        <Input
+                                            id="editMaxDiscount"
+                                            value={editFormData.maxDiscount}
+                                            type="number"
+                                            onChange={(e) => setEditFormData({ ...editFormData, maxDiscount: e.target.value })}
                                         />
                                     </Field>
                                     <Field className="flex-1">

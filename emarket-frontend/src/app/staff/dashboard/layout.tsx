@@ -67,6 +67,13 @@ let data = {
             ),
         },
         {
+            title: "Báo cáo & Thống kê",
+            url: "/staff/dashboard/statistics",
+            icon: (
+                <PieChartIcon />
+            ),
+        },
+        {
             title: "Quản lý sản phẩm",
             url: "/staff/dashboard/products-manager",
             icon: (
@@ -92,6 +99,13 @@ let data = {
             url: "/staff/dashboard/returns-manager",
             icon: (
                 <Undo2 />
+            ),
+        },
+        {
+            title: "Quản lý đơn hàng",
+            url: "/staff/dashboard/orders-manager",
+            icon: (
+                <ShoppingCart />
             ),
         },
         {
