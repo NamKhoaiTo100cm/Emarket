@@ -27,6 +27,7 @@ import { useCheckoutStore } from '@/stores/useCheckoutStore';
 import { Skeleton } from '@/components/ui/skeleton';
 import SkeletonProductDetail from './loading';
 import { reviewService } from '@/services/review.service';
+import { PaginationLayout } from "@/components/layout/PaginationLayout";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Field } from '@/components/ui/field';
 import { Label } from '@/components/ui/label';
@@ -162,12 +163,34 @@ const ProductDetailPage = () => {
   const [reviewImages, setReviewImages] = useState<File[]>([]);
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
 
-  const getProductReview = async (productId: number) => {
-    await reviewService.getByProductId(productId).then((res) => {
-      setReviews(res.data.reviews);
-      setOrderIdCanReview(res.data.reviewableOrder?.id);
+  const [reviewsPagination, setReviewsPagination] = useState({
+    page: 1,
+    pageSize: 5,
+    totalItems: 0,
+    totalPages: 0,
+  });
+
+  const getProductReview = async (productId: number, page: number = 1, rating = starFilter) => {
+    await reviewService.getByProductId(productId, page, 5, rating).then((res) => {
+      const data = res.data ?? res;
+      setReviews(data.reviews ?? []);
+      setOrderIdCanReview(data.reviewableOrder?.id);
+      if (data.pagination) {
+        setReviewsPagination({
+          page: data.pagination.page,
+          pageSize: data.pagination.limit,
+          totalItems: data.pagination.totalCount,
+          totalPages: Math.ceil(data.pagination.totalCount / data.pagination.limit),
+        });
+      }
     });
   }
+
+  const handleStarFilterChange = (val: string) => {
+    setStarFilter(val);
+    setReviewsPagination(prev => ({ ...prev, page: 1 }));
+  };
+
   useEffect(() => {
     if (productData) {
       const newItem = {
@@ -182,12 +205,18 @@ const ProductDetailPage = () => {
         stock: Number(productData.stock),
         shopId: Number(productData.shopId),
         variants: productData.variants ?? [],
+        status: productData.status,
       };
       setProductItem(newItem);
       setSelectedVariant(null); // reset khi đổi sản phẩm
     }
-    getProductReview(Number(productId));
   }, [productData]);
+
+  useEffect(() => {
+    if (productId) {
+      getProductReview(Number(productId), reviewsPagination.page, starFilter);
+    }
+  }, [productId, reviewsPagination.page, starFilter]);
 
 
 
@@ -299,88 +328,109 @@ const ProductDetailPage = () => {
           </div>
 
 
-          <div className='mt-5 '>
-            {/* choose quantities */}
-            <div className='flex flex-wrap gap-2 items-center'>
-              <h1>Số lượng</h1>
-              {/* Nếu có variants mà chưa chọn thì disable quantity */}
-              {(productItem.variants && productItem.variants.length > 0 && !selectedVariant) ? (
-                <p className='text-sm text-muted-foreground italic'>Vui lòng chọn loại sản phẩm trước</p>
-              ) : (
-                <>
-                  <div className='flex gap-1'>
-                    <Button onClick={() =>
-                      setQuantiy((prev) => {
-                        const maxStock = selectedVariant ? selectedVariant.stock : productItem.stock;
-                        return prev < maxStock ? prev + 1 : prev;
-                      })
-                    }>+</Button>
-                    <Input min={1} value={quantity} type="number" className='w-15'
-                      onChange={(e) => {
-                        const value = Number(e.target.value);
-                        const maxStock = selectedVariant ? selectedVariant.stock : productItem.stock;
-                        if (value < 1) { setQuantiy(1); return; }
-                        if (value > maxStock) { setQuantiy(maxStock); return; }
-                        setQuantiy(value);
-                      }} />
-                    <Button onClick={() => setQuantiy((prev) => (prev > 1 ? prev - 1 : 1))}>-</Button>
-                  </div>
-                  <h1>{(selectedVariant ? selectedVariant.stock : productItem.stock)} sản phẩm có sẵn</h1>
-                </>
-              )}
+          {productItem.status !== 'active' ? (
+            <div className="mt-5">
+              <Alert variant="destructive">
+                <AlertCircleIcon className="h-4 w-4" />
+                <AlertTitle>Sản phẩm đã ngừng bán</AlertTitle>
+                <AlertDescription>
+                  Sản phẩm này hiện tại đã ngừng kinh doanh hoặc tạm khóa. Bạn không thể mua hàng hay thêm sản phẩm này vào giỏ hàng.
+                </AlertDescription>
+              </Alert>
             </div>
+          ) : (
+            <>
+              <div className='mt-5 '>
+                {/* choose quantities */}
+                <div className='flex flex-wrap gap-2 items-center'>
+                  <h1>Số lượng</h1>
+                  {/* Nếu có variants mà chưa chọn thì disable quantity */}
+                  {(productItem.variants && productItem.variants.length > 0 && !selectedVariant) ? (
+                    <p className='text-sm text-muted-foreground italic'>Vui lòng chọn loại sản phẩm trước</p>
+                  ) : (
+                    <>
+                      <div className='flex gap-1'>
+                        <Button onClick={() =>
+                          setQuantiy((prev) => {
+                            const maxStock = selectedVariant ? selectedVariant.stock : productItem.stock;
+                            return prev < maxStock ? prev + 1 : prev;
+                          })
+                        }>+</Button>
+                        <Input min={1} value={quantity} type="number" className='w-15'
+                          onChange={(e) => {
+                            const value = Number(e.target.value);
+                            const maxStock = selectedVariant ? selectedVariant.stock : productItem.stock;
+                            if (value < 1) { setQuantiy(1); return; }
+                            if (value > maxStock) { setQuantiy(maxStock); return; }
+                            setQuantiy(value);
+                          }} />
+                        <Button onClick={() => setQuantiy((prev) => (prev > 1 ? prev - 1 : 1))}>-</Button>
+                      </div>
+                      <h1>{(selectedVariant ? selectedVariant.stock : productItem.stock)} sản phẩm có sẵn</h1>
+                    </>
+                  )}
+                </div>
 
-          </div>
-          {/* buy or add to cart buttons */}
-          <div className='mt-5 flex flex-col sm:flex-row gap-2 '>
-            {
-              userRole === "staff" ? (<div>
-                <Alert>
-                  <AlertCircleIcon />
-                  <AlertTitle>Warning</AlertTitle>
-                  <AlertDescription>
-                    Bạn không có quyền mua sản phẩm vì bạn là staff
-                  </AlertDescription>
-                </Alert>
-              </div>) :
-                <>
+              </div>
+              {/* buy or add to cart buttons */}
+              <div className='mt-5 flex flex-col sm:flex-row gap-2 '>
+                {
+                  userRole === "staff" ? (<div>
+                    <Alert>
+                      <AlertCircleIcon />
+                      <AlertTitle>Warning</AlertTitle>
+                      <AlertDescription>
+                        Bạn không có quyền mua sản phẩm vì bạn là staff
+                      </AlertDescription>
+                    </Alert>
+                  </div>) :
+                    <>
 
-                  <Button className='p-5' onClick={() => {
-                    if (productItem.variants && productItem.variants.length > 0 && !selectedVariant) {
-                      toast.warning('Vui lòng chọn loại sản phẩm trước khi thêm vào giỏ hàng');
-                      return;
-                    }
-                    const variantPrice = selectedVariant
-                      ? (selectedVariant.salePrice && selectedVariant.salePrice > 0 ? Number(selectedVariant.salePrice) : Number(selectedVariant.price))
-                      : undefined;
-                    addToCart(
-                      productItem.id,
-                      selectedVariant ? { id: selectedVariant.id, name: selectedVariant.name, price: variantPrice! } : undefined
-                    );
-                  }}> <ShoppingCart />Thêm vào giỏ hàng</Button>
-                  <Button className='p-5' variant={"destructive"} onClick={() => {
-                    if (productItem.variants && productItem.variants.length > 0 && !selectedVariant) {
-                      toast.warning('Vui lòng chọn loại sản phẩm');
-                      return;
-                    }
-                    const activePrice = selectedVariant
-                      ? (selectedVariant.salePrice && selectedVariant.salePrice > 0 ? selectedVariant.salePrice : selectedVariant.price)
-                      : (productItem.salePrice && productItem.salePrice > 0 ? productItem.salePrice : productItem.price);
-                    setCheckoutData([{
-                      productId: productItem.id,
-                      productName: productItem.name + (selectedVariant ? ` (${selectedVariant.name})` : ''),
-                      quantity: quantity,
-                      shopName: shopData?.name,
-                      productImage: "",
-                      shopId: productItem.shopId,
-                      price: activePrice.toString(),
-                      variantId: selectedVariant?.id,
-                    }])
-                    router.push("/checkout")
-                  }} > <Zap />Mua ngay</Button>
-                </>
-            }
-          </div>
+                      <Button className='p-5' onClick={() => {
+                        if (productItem.variants && productItem.variants.length > 0 && !selectedVariant) {
+                          toast.warning('Vui lòng chọn loại sản phẩm trước khi thêm vào giỏ hàng');
+                          return;
+                        }
+                        const variantPrice = selectedVariant
+                          ? (selectedVariant.salePrice && selectedVariant.salePrice > 0 ? Number(selectedVariant.salePrice) : Number(selectedVariant.price))
+                          : undefined;
+                        addToCart(
+                          productItem.id,
+                          selectedVariant ? { id: selectedVariant.id, name: selectedVariant.name, price: variantPrice! } : undefined,
+                          !!userData,
+                          () => router.push('/login'),
+                        );
+                      }}> <ShoppingCart />Thêm vào giỏ hàng</Button>
+                      <Button className='p-5' variant={"destructive"} onClick={() => {
+                        if (!userData) {
+                          toast.warning('Vui lòng đăng nhập để mua hàng');
+                          router.push('/login');
+                          return;
+                        }
+                        if (productItem.variants && productItem.variants.length > 0 && !selectedVariant) {
+                          toast.warning('Vui lòng chọn loại sản phẩm');
+                          return;
+                        }
+                        const activePrice = selectedVariant
+                          ? (selectedVariant.salePrice && selectedVariant.salePrice > 0 ? selectedVariant.salePrice : selectedVariant.price)
+                          : (productItem.salePrice && productItem.salePrice > 0 ? productItem.salePrice : productItem.price);
+                        setCheckoutData([{
+                          productId: productItem.id,
+                          productName: productItem.name + (selectedVariant ? ` (${selectedVariant.name})` : ''),
+                          quantity: quantity,
+                          shopName: shopData?.name,
+                          productImage: "",
+                          shopId: productItem.shopId,
+                          price: activePrice.toString(),
+                          variantId: selectedVariant?.id,
+                        }])
+                        router.push("/checkout")
+                      }} > <Zap />Mua ngay</Button>
+                    </>
+                }
+              </div>
+            </>
+          )}
 
         </div>
 
@@ -542,7 +592,8 @@ const ProductDetailPage = () => {
 
               reviewService.create(formData).then((res) => {
                 console.log(res);
-                getProductReview(Number(productId));
+                setReviewsPagination(prev => ({ ...prev, page: 1 }));
+                getProductReview(Number(productId), 1);
                 setReviewText("");
                 setSelectedStar(0);
                 setHoverStarPosition(0);
@@ -555,7 +606,7 @@ const ProductDetailPage = () => {
       </div>
 
       <div className='mt-3 flex flex-wrap gap-2 max-w-[150px]'>
-        <Select value={starFilter} onValueChange={setStarFilter}>
+        <Select value={starFilter} onValueChange={handleStarFilterChange}>
           <SelectTrigger>
             <SelectValue placeholder="Lọc đánh giá" />
           </SelectTrigger>
@@ -570,12 +621,7 @@ const ProductDetailPage = () => {
         </Select>
       </div>
       {(() => {
-        const filteredReviews = reviews.filter((review: any) => {
-          if (starFilter === "all") return true;
-          return Number(review.rating) === Number(starFilter);
-        });
-
-        return filteredReviews && filteredReviews.length > 0 ? filteredReviews.map((review: any) => (
+        return reviews && reviews.length > 0 ? reviews.map((review: any) => (
           <Card className='flex flex-row mb-3 px-3 py-3 justify-between items-start' key={review.id}>
             <div className="flex flex-row gap-3">
               <RxAvatar className='w-8 h-8 shrink-0' />
@@ -632,7 +678,18 @@ const ProductDetailPage = () => {
           </Card>
         )) : <p>Chưa có đánh giá</p>;
       })()}
-      <Button className='block mx-auto my-3'>Tải thêm đánh giá</Button>
+
+      {reviewsPagination.totalPages > 1 && (
+        <div className="flex justify-center mt-6 mb-4">
+          <PaginationLayout
+            currentPage={reviewsPagination.page}
+            totalPages={reviewsPagination.totalPages}
+            onPageChange={(page) => {
+              setReviewsPagination((prev) => ({ ...prev, page }));
+            }}
+          />
+        </div>
+      )}
 
       {previewImageUrl && (
         <div 

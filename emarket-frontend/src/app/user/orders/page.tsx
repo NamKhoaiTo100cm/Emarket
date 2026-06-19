@@ -171,7 +171,7 @@ export default function UserOrdersPage() {
                             {order.items.slice(0, 2).map((item: any) => (
                                 <div key={item.id} className="flex items-center gap-3">
                                     <Image
-                                        src={item.productImage || item.image || "/iphone-17-pro-max.webp"}
+                                        src={item.productImage || item.image || "/image-not-found.jpg"}
                                         alt={item.productName}
                                         width={56}
                                         height={56}

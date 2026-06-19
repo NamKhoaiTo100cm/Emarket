@@ -236,7 +236,7 @@ export default function StaffOrdersManagerPage() {
                                                 {order.items?.slice(0, 2).map((item: any) => (
                                                     <div key={item.id} className="flex items-center gap-2">
                                                         <Image
-                                                            src={item.productImage || "/iphone-17-pro-max.webp"}
+                                                            src={item.productImage || "/image-not-found.jpg"}
                                                             alt={item.productName || "Product image"}
                                                             width={30}
                                                             height={30}
@@ -479,7 +479,7 @@ export default function StaffOrdersManagerPage() {
                                                 <TableRow key={item.id}>
                                                     <TableCell className="flex items-center gap-3">
                                                         <Image
-                                                            src={item.productImage || "/iphone-17-pro-max.webp"}
+                                                            src={item.productImage || "/image-not-found.jpg"}
                                                             alt={item.productName || "Product image"}
                                                             width={45}
                                                             height={45}

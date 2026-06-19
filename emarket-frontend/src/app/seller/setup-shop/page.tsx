@@ -18,8 +18,10 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { cn } from "@/lib/utils"
 import { authService } from "@/services/auth.service"
 import { shopService } from "@/services/shop.service"
+import { Loader2 } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useActionState, useEffect, useState } from "react"
@@ -34,6 +36,7 @@ const SetupShopPage = () => {
     const [previewAvatar, setPreviewAvatar] = useState<string | null>(null);
     const [shopBannerFile, setShopBannerFile] = useState<File | null>(null);
     const [previewBanner, setPreviewBanner] = useState<string | null>(null);
+    const [isCreatingShop, setIsCreatingShop] = useState(false);
     const router = useRouter();
 
     const shop = {
@@ -64,12 +67,14 @@ const SetupShopPage = () => {
         formData.append("phone", shopPhone);
         if (shopAvatarFile) formData.append("avatarImage", shopAvatarFile);
         if (shopBannerFile) formData.append("bannerImage", shopBannerFile);
+        setIsCreatingShop(true);
         const res = await shopService.create(formData);
         if (res) {
-            authService.refresh();
+            await authService.refresh();
             router.push('/seller/dashboard/products-manager');
             router.refresh();
         }
+        setIsCreatingShop(false);
     };
 
 
@@ -165,7 +170,9 @@ const SetupShopPage = () => {
                             </div>
 
                             <Field>
-                                <Button type="button" onClick={handleCreateShop}>Tạo Shop</Button>
+                                <Button type="button" className={cn("cursor-pointer", isCreatingShop && "cursor-not-allowed")} disabled={isCreatingShop} onClick={handleCreateShop}>
+                                    {isCreatingShop ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Tạo Shop"}
+                                </Button>
                                 <FieldDescription className="text-center">
 
                                 </FieldDescription>

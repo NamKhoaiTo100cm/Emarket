@@ -29,7 +29,7 @@ const ProductList = ({ products }: { products: any[] }) => {
                         {/* Image Container */}
                         <div className="relative aspect-square w-full overflow-hidden bg-gray-50 dark:bg-zinc-900/40">
                             <Image
-                                src={item.images && item.images.length > 0 ? item.images[0].imageUrl : "/iphone-17-pro-max.webp"}
+                                src={item.images && item.images.length > 0 ? item.images[0].imageUrl : "/image-not-found.jpg"}
                                 alt={item.name}
                                 fill
                                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 16vw"
@@ -61,7 +61,7 @@ const ProductList = ({ products }: { products: any[] }) => {
 
                             <div className="flex justify-between items-center text-[10px] text-gray-500 dark:text-zinc-400 border-t border-gray-100 dark:border-zinc-800 pt-2 mt-1">
                                 <span>Đã bán {item.soldCount || 0}</span>
-                                <span className="bg-gray-100 dark:bg-zinc-800 text-gray-500 dark:text-zinc-400 px-1 py-0.5 rounded">HN</span>
+                                {/* <span className="bg-gray-100 dark:bg-zinc-800 text-gray-500 dark:text-zinc-400 px-1 py-0.5 rounded">HN</span> */}
                             </div>
                         </div>
                     </div>

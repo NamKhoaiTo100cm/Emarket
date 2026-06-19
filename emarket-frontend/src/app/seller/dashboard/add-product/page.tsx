@@ -12,10 +12,12 @@ import { toast } from "sonner";
 import categoryService from "@/services/category.service";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ProductEditorLayout from "@/components/layout/ProductEditorLayout";
+import { useRouter } from "next/navigation";
 
 const AddProductPage = () => {
     const { data: resUser } = useMe();
     const { data: resShop } = useMyShop(resUser?.data?.id, !!resUser?.data?.id);
+    const router = useRouter();
     console.log("res", resUser);
     const [files, setFiles] = useState<File[]>([]);
     const myShop = resShop?.data;
@@ -50,46 +52,53 @@ const AddProductPage = () => {
 
         // console.log("[AddProduct] pendingVariantsJson:", pendingVariantsJson);
 
-        const response = await productService.createProduct(form);
-        if (response.statusCode === 201) {
-            toast.success("Thêm sản phẩm thành công");
+        try {
+            const response = await productService.createProduct(form);
+            if (response.statusCode === 201 || response.data) {
+                toast.success("Thêm sản phẩm thành công");
 
-            // Tạo variants nếu có
-            const newProductId = response.data?.id;
-            console.log("[AddProduct] newProductId:", newProductId);
+                // Tạo variants nếu có
+                const newProductId = response.data?.id;
+                console.log("[AddProduct] newProductId:", newProductId);
 
-            if (pendingVariantsJson && newProductId) {
-                try {
-                    const pendingVariants = JSON.parse(pendingVariantsJson);
-                    console.log("[AddProduct] Creating variants:", pendingVariants);
+                if (pendingVariantsJson && newProductId) {
+                    try {
+                        const pendingVariants = JSON.parse(pendingVariantsJson);
+                        console.log("[AddProduct] Creating variants:", pendingVariants);
 
-                    const results = await Promise.allSettled(
-                        pendingVariants.map((v: any) => productService.createVariant(newProductId, v))
-                    );
+                        const results = await Promise.allSettled(
+                            pendingVariants.map((v: any) => productService.createVariant(newProductId, v))
+                        );
 
-                    const failed = results.filter(r => r.status === 'rejected');
-                    const succeeded = results.filter(r => r.status === 'fulfilled');
+                        const failed = results.filter(r => r.status === 'rejected');
+                        const succeeded = results.filter(r => r.status === 'fulfilled');
 
-                    if (succeeded.length > 0) {
-                        toast.success(`Đã tạo ${succeeded.length} loại sản phẩm`);
-                    }
-                    if (failed.length > 0) {
-                        console.error("[AddProduct] Failed variants:", failed.map(f => (f as PromiseRejectedResult).reason));
-                        toast.error(`Có ${failed.length} loại sản phẩm tạo thất bại`, {
-                            description: (failed[0] as PromiseRejectedResult).reason?.message || 'Lỗi không xác định'
+                        if (succeeded.length > 0) {
+                            toast.success(`Đã tạo ${succeeded.length} loại sản phẩm`);
+                        }
+                        if (failed.length > 0) {
+                            console.error("[AddProduct] Failed variants:", failed.map(f => (f as PromiseRejectedResult).reason));
+                            toast.error(`Có ${failed.length} loại sản phẩm tạo thất bại`, {
+                                description: (failed[0] as PromiseRejectedResult).reason?.message || 'Lỗi không xác định'
+                            });
+                        }
+                    } catch (err: any) {
+                        console.error("[AddProduct] Variant creation error:", err);
+                        toast.warning("Sản phẩm đã tạo nhưng có lỗi khi tạo loại sản phẩm", {
+                            description: err?.message || String(err)
                         });
                     }
-                } catch (err: any) {
-                    console.error("[AddProduct] Variant creation error:", err);
-                    toast.warning("Sản phẩm đã tạo nhưng có lỗi khi tạo loại sản phẩm", {
-                        description: err?.message || String(err)
-                    });
+                } else {
+                    console.log("[AddProduct] No variants to create. pendingVariantsJson:", pendingVariantsJson, "newProductId:", newProductId);
                 }
+                
+                router.push('/seller/dashboard/products-manager');
             } else {
-                console.log("[AddProduct] No variants to create. pendingVariantsJson:", pendingVariantsJson, "newProductId:", newProductId);
+                toast.error("Thêm sản phẩm thất bại ", { description: response.message })
             }
-        } else {
-            toast.error("Thêm sản phẩm thất bại ", { description: response.message })
+        } catch (error: any) {
+            console.error("[AddProduct] Error:", error);
+            toast.error("Thêm sản phẩm thất bại", { description: error?.message || 'Lỗi không xác định' });
         }
     }
     return (

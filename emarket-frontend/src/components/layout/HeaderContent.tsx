@@ -98,20 +98,20 @@ export default function HeaderContent({ user: initialUser }: { user: any }) {
                 <NavigationMenu className=' px-4 py-2 lg:px-20 w-full! max-w-none! justify-between gap-5 dark/30 border-b z-30 backdrop-blur'>
                     <Link href={'/'}><h1 className='font-bold text-2xl'>Emarket</h1></Link>
                     <div className='relative flex items-center w-full md:max-w-100 lg:max-w-150'>
-                        <Input 
-                            className='w-full bg-white pr-10' 
-                            placeholder='Tìm kiếm sản phẩm' 
-                            value={searchText} 
-                            onChange={(e) => setSearchText(e.target.value)} 
+                        <Input
+                            className='w-full bg-white pr-10'
+                            placeholder='Tìm kiếm sản phẩm'
+                            value={searchText}
+                            onChange={(e) => setSearchText(e.target.value)}
                             onKeyDown={(e) => {
                                 if (e.key === "Enter") {
                                     handleSearch();
                                 }
                             }}
                         />
-                        <Button 
+                        <Button
                             type="button"
-                            variant="ghost" 
+                            variant="ghost"
                             size="icon"
                             onClick={handleSearch}
                             className='absolute right-1 h-8 w-8 text-gray-500 hover:text-primary dark:text-gray-400'
@@ -179,9 +179,8 @@ export default function HeaderContent({ user: initialUser }: { user: any }) {
                                                             <div
                                                                 key={notif.id}
                                                                 onClick={() => handleNotificationItemClick(notif)}
-                                                                className={`p-3 text-left border-b last:border-0 hover:bg-muted/50 cursor-pointer transition-colors flex flex-col gap-1 ${
-                                                                    !notif.isRead ? 'bg-primary/5 border-l-2 border-l-primary' : 'pl-3.5'
-                                                                }`}
+                                                                className={`p-3 text-left border-b last:border-0 hover:bg-muted/50 cursor-pointer transition-colors flex flex-col gap-1 ${!notif.isRead ? 'bg-primary/5 border-l-2 border-l-primary' : 'pl-3.5'
+                                                                    }`}
                                                             >
                                                                 <span className="font-semibold text-xs text-foreground">{notif.title}</span>
                                                                 {notif.message && (
@@ -207,8 +206,13 @@ export default function HeaderContent({ user: initialUser }: { user: any }) {
                                         <DropdownMenuTrigger asChild>
                                             <Button variant="ghost" size="icon" className="rounded-full">
                                                 <Avatar>
-                                                    <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
-                                                    <AvatarFallback>CN</AvatarFallback>
+                                                    {user.avatar ? (
+                                                        <AvatarImage src={user.avatar} alt="avatar" />
+                                                    ) : (
+                                                        <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
+                                                    )}
+                                                    {/* <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" /> */}
+                                                    {/* <AvatarFallback>CN</AvatarFallback> */}
                                                 </Avatar>
                                             </Button>
                                         </DropdownMenuTrigger>

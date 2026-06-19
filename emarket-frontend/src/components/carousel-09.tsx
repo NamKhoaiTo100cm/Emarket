@@ -28,7 +28,7 @@ export default function CarouselWithThumbs({ images }: { images: string[] }) {
 
   React.useEffect(() => {
     if (images.length == 0) {
-      images.push("/iphone-17-pro-max.webp");
+      images.push("/image-not-found.jpg");
     }
     console.log("images", images);
   }, [images]);

@@ -91,7 +91,7 @@ export default function FlashSaleSection({ products }: FlashSaleSectionProps) {
                         >
                             <div className="relative aspect-square w-full bg-gray-50 dark:bg-zinc-900/40 overflow-hidden">
                                 <Image
-                                    src={item.images && item.images.length > 0 ? item.images[0].imageUrl : "/iphone-17-pro-max.webp"}
+                                    src={item.images && item.images.length > 0 ? item.images[0].imageUrl : "/image-not-found.jpg"}
                                     alt={item.name}
                                     fill
                                     className="object-cover"

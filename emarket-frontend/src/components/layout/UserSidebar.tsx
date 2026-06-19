@@ -45,8 +45,8 @@ export default function UserSidebar() {
                     className={cn(
                         "flex items-center gap-3 rounded-xl px-4 py-3 text-sm transition",
                         "hover:bg-muted",
-                        (tab.value === path) &&
-                        "bg-muted font-medium"
+                        tab.path === path &&
+                        "bg-muted font-medium",
                     )}
                     asChild key={tab.value}>
                     <Link href={tab.path} >

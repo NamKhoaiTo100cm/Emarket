@@ -94,20 +94,38 @@ export class ReviewService {
     return `This action returns a #${id} review`;
   }
 
-  async findByProductId(productId: number, userId?: number) {
-    const reviews = await this.prisma.review.findMany({
-      where: { productId, isHidden: false },
-      include: {
-        user: {
-          select: {
-            name: true,
-            email: true,
-            avatar: true,
-          }
-        },
-      },
+  async findByProductId(productId: number, page: number = 1, limit: number = 10, userId?: number, rating?: number) {
+    const skip = (page - 1) * limit;
+    const take = limit;
 
-    });
+    const whereClause: any = { productId, isHidden: false };
+    if (rating) {
+      whereClause.rating = rating;
+    }
+
+    const [totalCount, reviews] = await Promise.all([
+      this.prisma.review.count({
+        where: whereClause,
+      }),
+      this.prisma.review.findMany({
+        where: whereClause,
+        include: {
+          user: {
+            select: {
+              name: true,
+              email: true,
+              avatar: true,
+            }
+          },
+        },
+        skip,
+        take,
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+    ]);
+
     const reviewableOrder = await this.prisma.order.findFirst({
       where: {
         userId,
@@ -130,7 +148,7 @@ export class ReviewService {
     const formattedReviews = reviews.map(review => {
       const userAvatarUrl = review.user.avatar ? !review.user.avatar.startsWith("https") ? this.cloudinary.getUrl(review.user.avatar, { width: 100, height: 100, crop: 'fill' }) : review.user.avatar : null;
       const reviewImagesUrls = review.reviewImages?.map(img => 
-        img && !img.startsWith("https") ? this.cloudinary.getUrl(img) : img
+         img && !img.startsWith("https") ? this.cloudinary.getUrl(img) : img
       ).filter(Boolean) ?? [];
 
       return {
@@ -144,7 +162,7 @@ export class ReviewService {
     });
 
     console.log("reviewableOrder: ", reviewableOrder);
-    return { reviews: formattedReviews, reviewableOrder };
+    return { reviews: formattedReviews, reviewableOrder, pagination: { totalCount, page, limit } };
 
     // const userHasOrdered = await this.prisma.order.findFirst({
     //   where: {

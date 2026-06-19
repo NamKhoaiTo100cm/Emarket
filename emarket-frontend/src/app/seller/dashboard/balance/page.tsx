@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Wallet, Clock, ArrowDownCircle } from "lucide-react";
 import { withdrawalService } from "@/services/withdrawal.service";
+import { formatNumberString, parseFormattedString } from "@/lib/utils";
 
 const BANKS = [
     "Vietcombank", "Techcombank", "BIDV", "Agribank",
@@ -43,7 +44,7 @@ export default function SellerBalancePage() {
 
     const { mutate: createRequest, isPending } = useMutation({
         mutationFn: () => withdrawalService.createRequest({
-            amount: Number(form.amount),
+            amount: Number(parseFormattedString(form.amount)),
             bankName: form.bankName,
             bankAccount: form.bankAccount,
             accountHolder: form.accountHolder,
@@ -62,7 +63,8 @@ export default function SellerBalancePage() {
     const balance = balanceData?.data;
 
     const onSubmit = () => {
-        if (!form.amount || Number(form.amount) < 10000) {
+        const rawAmount = Number(parseFormattedString(form.amount));
+        if (!form.amount || rawAmount < 10000) {
             toast.error("Số tiền tối thiểu 10.000đ");
             return;
         }
@@ -118,10 +120,9 @@ export default function SellerBalancePage() {
                         <div className="space-y-2">
                             <Label>Số tiền rút</Label>
                             <Input
-                                type="number"
                                 placeholder="Tối thiểu 10.000đ"
                                 value={form.amount}
-                                onChange={e => setForm(p => ({ ...p, amount: e.target.value }))}
+                                onChange={e => setForm(p => ({ ...p, amount: formatNumberString(e.target.value) }))}
                             />
                         </div>
 

@@ -193,6 +193,13 @@ export class ProductService {
 
     if (!isStaffOrAdmin) {
       where.shop = { status: ShopStatus.active };
+      where.status = ProductStatus.active;
+    } else {
+      if (status) {
+        where.status = status as any;
+      } else {
+        where.status = { not: ProductStatus.deleted };
+      }
     }
 
     if (keyword) {
@@ -201,12 +208,6 @@ export class ProductService {
 
     if (categorySlug) {
       where.category = { slug: categorySlug };
-    }
-
-    if (status) {
-      where.status = status;
-    } else {
-      where.status = { not: 'deleted' };
     }
 
     if (minPrice !== undefined && maxPrice !== undefined) {
@@ -265,6 +266,7 @@ export class ProductService {
 
     if (!isStaffOrAdmin) {
       where.shop = { status: ShopStatus.active };
+      where.status = ProductStatus.active;
     }
 
     const products = await this.prisma.product.findMany(
@@ -368,7 +370,8 @@ export class ProductService {
         },
         shop: {
           select: {
-            status: true
+            status: true,
+            userId: true
           }
         }
       },
@@ -385,6 +388,8 @@ export class ProductService {
     if (product.shop.status === ShopStatus.banned && !isStaffOrAdmin) {
       throw new ForbiddenException('Sản phẩm này thuộc cửa hàng đã bị khóa');
     }
+
+
 
     let result: any = [];
     console.log("images", product.images)

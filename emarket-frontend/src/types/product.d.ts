@@ -20,4 +20,5 @@ export type ProductItems = {
     ranking: number,
     shopId: number,
     variants?: ProductVariant[],
+    status?: string,
 }

@@ -13,7 +13,7 @@ const LayoutUser = ({ children }: { children: React.ReactNode }) => {
             <div className='min-w-screen min-h-150 pt-14 px-4 lg:px-20'>
                 <Tabs defaultValue={path.split('/').pop() || 'profile'} orientation='vertical'>
                     <UserSidebar />
-                    <div className='bg-card  rounded-lg w-full h-full'>
+                    <div className='bg-card rounded-lg w-full h-full'>
                         {children}
                     </div>
 

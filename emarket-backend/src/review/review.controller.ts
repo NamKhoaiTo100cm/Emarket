@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Request, UseInterceptors, UploadedFiles } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Request, Query, UseInterceptors, UploadedFiles } from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
@@ -45,8 +45,17 @@ export class ReviewController {
 
   @Public()
   @Get('product/:id')
-  findByProductId(@Param('id', ParseIntPipe) id: number, @Request() req) {
-    return this.reviewService.findByProductId(id, req.user?.id);
+  findByProductId(
+    @Param('id', ParseIntPipe) id: number,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+    @Query('rating') rating?: string,
+    @Request() req?: any
+  ) {
+    const p = page ? parseInt(page, 10) : 1;
+    const l = limit ? parseInt(limit, 10) : 10;
+    const r = rating && rating !== 'all' ? parseInt(rating, 10) : undefined;
+    return this.reviewService.findByProductId(id, p, l, req?.user?.id, r);
   }
 
   @Roles('staff')

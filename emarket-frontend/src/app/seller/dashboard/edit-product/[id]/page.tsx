@@ -12,11 +12,12 @@ import { toast } from "sonner";
 import categoryService from "@/services/category.service";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ProductEditorLayout from "@/components/layout/ProductEditorLayout";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export default function EditProductPage() {
     const { data: resUser } = useMe();
     const { data: resShop } = useMyShop(resUser?.data?.id, !!resUser?.data?.id);
+    const router = useRouter();
     console.log("res", resUser);
     const [files, setFiles] = useState<File[]>([]);
     const myShop = resShop?.data;
@@ -67,11 +68,17 @@ export default function EditProductPage() {
         // }
         console.log("categoryId", form.get("categoryId"))
 
-        const response = await productService.updateProduct(Number(productId), form);
-        if (response.statusCode === 200) {
-            toast.success("Cập nhật sản phẩm thành công")
-        } else {
-            toast.error("Cập nhật sản phẩm thất bại ", { description: response.message })
+        try {
+            const response = await productService.updateProduct(Number(productId), form);
+            if (response.statusCode === 200 || response.data) {
+                toast.success("Cập nhật sản phẩm thành công")
+                router.push('/seller/dashboard/products-manager');
+            } else {
+                toast.error("Cập nhật sản phẩm thất bại ", { description: response.message })
+            }
+        } catch (error: any) {
+            console.error("[EditProduct] Error:", error);
+            toast.error("Cập nhật sản phẩm thất bại", { description: error?.message || 'Lỗi không xác định' });
         }
     }
     return (

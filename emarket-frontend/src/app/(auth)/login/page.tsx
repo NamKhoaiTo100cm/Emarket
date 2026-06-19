@@ -119,6 +119,9 @@ const LoginContent = () => {
                 <FieldDescription className="text-center">
                   Chưa có tài khoản? <Link href="/register">Đăng ký</Link>
                 </FieldDescription>
+                <FieldDescription className="text-center">
+                  <Link href="/">Quay lại trang chủ</Link>
+                </FieldDescription>
               </Field>
             </FieldGroup>
           </form>

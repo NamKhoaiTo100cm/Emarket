@@ -587,7 +587,7 @@ const CheckOutPage = () => {
                                                     <div className="flex gap-3">
 
                                                         <Image
-                                                            src={item.productImage || "/iphone-17-pro-max.webp"}
+                                                            src={item.productImage || "/image-not-found.jpg"}
                                                             className="size-18 object-cover rounded-md"
                                                             alt="product image"
                                                             width={100}

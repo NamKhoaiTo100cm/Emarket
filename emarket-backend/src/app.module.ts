@@ -26,6 +26,7 @@ import { BannerModule } from './banner/banner.module';
 import { SystemConfigModule } from './system-config/system-config.module';
 import { ReportModule } from './report/report.module';
 import { NotificationModule } from './notification/notification.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { NotificationModule } from './notification/notification.module';
     BannerModule,
     SystemConfigModule,
     NotificationModule,
+    CartModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },

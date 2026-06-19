@@ -130,7 +130,7 @@ const ProductManager = () => {
                                         {/* Image */}
                                         <TableCell>
                                             <Image
-                                                src={item.images?.[0]?.imageUrl || "/iphone-17-pro-max.webp"}
+                                                src={item.images?.[0]?.imageUrl || "/image-not-found.jpg"}
                                                 width={56}
                                                 height={56}
                                                 alt={item.name}

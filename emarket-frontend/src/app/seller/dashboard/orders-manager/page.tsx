@@ -7,8 +7,10 @@ import BadgeOrderStatus from "@/components/ui/bagge-order-status";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { orderService } from "@/services/order.service";
-import { Check, Delete, Eye, Printer, Truck } from "lucide-react";
+import { Check, Delete, Eye, Printer, RotateCcw, Search, Truck } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
@@ -19,6 +21,10 @@ const OrdersManagerPage = () => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [selectedDetailOrder, setSelectedDetailOrder] = useState<any>(null);
     const [detailOpen, setDetailOpen] = useState(false);
+
+    const [statusFilter, setStatusFilter] = useState<string>("all");
+    const [searchKeyword, setSearchKeyword] = useState<string>("");
+    const [keywordInput, setKeywordInput] = useState<string>("");
 
     const { data: resUser } = useMe();
     const { data: resShop } = useMyShop(resUser?.data?.id, !!resUser?.data?.id);
@@ -53,25 +59,92 @@ const OrdersManagerPage = () => {
     }
 
     const fetchOrders = async () => {
-        const res = await orderService.findByShopId(myShop.id, pagination.page, pagination.pageSize);
+        const res = await orderService.findByShopId(myShop.id, pagination.page, pagination.pageSize, statusFilter, searchKeyword);
         if (res.statusCode == 200) {
             setOrderList(res.data);
-            setPagination({
-                ...pagination,
+            setPagination(prev => ({
+                ...prev,
                 totalItems: res.pagination.totalCount,
-                totalPages: Number(Math.ceil(res.pagination.totalCount / pagination.pageSize))
-            })
+                totalPages: Number(Math.ceil(res.pagination.totalCount / prev.pageSize))
+            }))
         }
     }
+
+    const handleStatusChange = (status: string) => {
+        setStatusFilter(status);
+        setPagination(prev => ({ ...prev, page: 1 }));
+    };
+
+    const handleSearch = () => {
+        setSearchKeyword(keywordInput);
+        setPagination(prev => ({ ...prev, page: 1 }));
+    };
+
+    const handleReset = () => {
+        setKeywordInput("");
+        setSearchKeyword("");
+        setStatusFilter("all");
+        setPagination(prev => ({ ...prev, page: 1 }));
+    };
+
     useEffect(() => {
         if (myShop?.id) {
             fetchOrders();
         }
-    }, [myShop?.id, pagination.page])
+    }, [myShop?.id, pagination.page, statusFilter, searchKeyword])
 
     return (
         <div className="p-4">
             <h1 className="text-xl font-semibold mb-4">Orders Manager</h1>
+
+            <div className="flex flex-col md:flex-row gap-3 mb-4 items-center justify-between">
+                <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                    {/* Ô nhập tìm kiếm */}
+                    <div className="flex items-center gap-2 w-full sm:w-80">
+                        <Input
+                            placeholder="Tìm mã đơn, tên, sđt khách hàng..."
+                            value={keywordInput}
+                            onChange={(e) => setKeywordInput(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    handleSearch();
+                                }
+                            }}
+                            className="bg-background"
+                        />
+                        <Button onClick={handleSearch} variant="secondary" className="shrink-0">
+                            <Search className="w-4 h-4 mr-2" />
+                            Tìm kiếm
+                        </Button>
+                    </div>
+
+                    {/* Bộ lọc trạng thái */}
+                    <div className="w-full sm:w-48">
+                        <Select value={statusFilter} onValueChange={handleStatusChange}>
+                            <SelectTrigger className="bg-background">
+                                <SelectValue placeholder="Lọc theo trạng thái" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">Tất cả trạng thái</SelectItem>
+                                <SelectItem value="pending">Chờ xử lý (Pending)</SelectItem>
+                                <SelectItem value="confirmed">Đã xác nhận (Confirmed)</SelectItem>
+                                <SelectItem value="shipping">Đang giao (Shipping)</SelectItem>
+                                <SelectItem value="delivered">Đã giao (Delivered)</SelectItem>
+                                <SelectItem value="cancelled">Đã hủy (Cancelled)</SelectItem>
+                                <SelectItem value="returned">Đã trả hàng (Returned)</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </div>
+
+                {/* Nút Reset */}
+                {(statusFilter !== "all" || searchKeyword !== "") && (
+                    <Button onClick={handleReset} variant="outline" className="w-full md:w-auto shrink-0">
+                        <RotateCcw className="w-4 h-4 mr-2" />
+                        Đặt lại
+                    </Button>
+                )}
+            </div>
 
             <Table className="bg-primary-foreground rounded-lg overflow-hidden">
                 <TableHeader>
@@ -98,7 +171,7 @@ const OrdersManagerPage = () => {
                                 {order.items.slice(0, 2).map((product: any) => (
                                     <div key={product.id} className="flex items-center gap-2 mb-2">
                                         <Image
-                                            src={product.productImage || "/iphone-17-pro-max.webp"}
+                                            src={product.productImage || "/image-not-found.jpg"}
                                             alt=""
                                             className="rounded"
                                             width={40}
@@ -332,7 +405,7 @@ const OrdersManagerPage = () => {
                                                 <TableRow key={item.id}>
                                                     <TableCell className="flex items-center gap-3">
                                                         <Image
-                                                            src={item.productImage || "/iphone-17-pro-max.webp"}
+                                                            src={item.productImage || "/image-not-found.jpg"}
                                                             alt=""
                                                             width={45}
                                                             height={45}

@@ -1,8 +1,10 @@
 import { apiFetch } from "@/lib/api";
 
 export const orderService = {
-    findByShopId: (shopId: number, page = 1, limit = 10) =>
-        apiFetch(`/order/shop/${shopId}?page=${page}&limit=${limit}`),
+    findByShopId: (shopId: number, page = 1, limit = 10, status = "", keyword = "") => {
+        const query = `page=${page}&limit=${limit}${status ? `&status=${status}` : ""}${keyword ? `&keyword=${encodeURIComponent(keyword)}` : ""}`;
+        return apiFetch(`/order/shop/${shopId}?${query}`);
+    },
     createOrder: (data: any) =>
         apiFetch("/order", { method: "POST", body: JSON.stringify(data) }),
     getPaymentStatus: (orderId: number) =>

@@ -30,8 +30,11 @@ export class OrderController {
   async findByShopId(
     @Param('shopId', ParseIntPipe) shopId: number,
     @Query("page", ParseIntPipe) page: number,
-    @Query("limit", ParseIntPipe) limit: number) {
-    let res = await this.orderService.findByShopId(+shopId, page, limit)
+    @Query("limit", ParseIntPipe) limit: number,
+    @Query("status") status?: string,
+    @Query("keyword") keyword?: string,
+  ) {
+    let res = await this.orderService.findByShopId(+shopId, page, limit, status, keyword)
     console.log("res", res)
     return res;
   }

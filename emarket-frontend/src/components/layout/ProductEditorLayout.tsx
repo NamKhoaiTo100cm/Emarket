@@ -13,6 +13,8 @@ import { useMe } from "../hooks/useAuth";
 import { useMyShop } from "../hooks/useShop";
 import MDEditor from '@uiw/react-md-editor';
 import { useTheme } from "next-themes";
+import { formatNumberString, parseFormattedString } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 
 interface Props {
@@ -24,6 +26,7 @@ interface Props {
 }
 export default function ProductEditorLayout(props: Props) {
     const { mode, handleAddProduct, handleUpdateProduct, categories, product } = props;
+    const router = useRouter();
     const [selectedCategoryId, setSelectedCategoryId] = useState<string>();
     const [files, setFiles] = useState<File[]>([]);
     const { data: resUser } = useMe();
@@ -34,7 +37,8 @@ export default function ProductEditorLayout(props: Props) {
     );
     const { resolvedTheme } = useTheme();
 
-
+    const [price, setPrice] = useState<string>('');
+    const [salePrice, setSalePrice] = useState<string>('');
 
     // Variant state
     const [variants, setVariants] = useState<ProductVariant[]>([]);
@@ -51,7 +55,16 @@ export default function ProductEditorLayout(props: Props) {
             setVariants(product.variants);
         }
         if (product?.description) setDescription(product.description); // ← thêm dòng này
-
+        if (product?.price) {
+            setPrice(formatNumberString(String(product.price)));
+        } else {
+            setPrice('');
+        }
+        if (product?.salePrice) {
+            setSalePrice(formatNumberString(String(product.salePrice)));
+        } else {
+            setSalePrice('');
+        }
     }, [product]);
 
     const handleAddVariant = async () => {
@@ -61,10 +74,17 @@ export default function ProductEditorLayout(props: Props) {
         }
         const newVariantData = {
             name: variantForm.name,
-            price: Number(variantForm.price),
-            salePrice: variantForm.salePrice ? Number(variantForm.salePrice) : undefined,
+            price: Number(parseFormattedString(variantForm.price)),
+            salePrice: variantForm.salePrice && parseFormattedString(variantForm.salePrice) !== ''
+                ? Number(parseFormattedString(variantForm.salePrice))
+                : undefined,
             stock: Number(variantForm.stock),
         };
+
+        if (newVariantData.salePrice !== undefined && newVariantData.salePrice >= newVariantData.price) {
+            toast.error('Giá khuyến mại phải nhỏ hơn giá gốc');
+            return;
+        }
 
         if (mode === 'add') {
             // Buffer locally — chưa có productId để gọi API
@@ -108,8 +128,8 @@ export default function ProductEditorLayout(props: Props) {
         setEditingVariantId(v.id);
         setEditForm({
             name: v.name,
-            price: String(v.price),
-            salePrice: v.salePrice ? String(v.salePrice) : '',
+            price: formatNumberString(String(v.price)),
+            salePrice: v.salePrice ? formatNumberString(String(v.salePrice)) : '',
             stock: String(v.stock),
         });
     };
@@ -121,11 +141,17 @@ export default function ProductEditorLayout(props: Props) {
         }
         const updated = {
             name: editForm.name,
-            price: Number(editForm.price),
-            salePrice: editForm.salePrice ? Number(editForm.salePrice) : undefined,
+            price: Number(parseFormattedString(editForm.price)),
+            salePrice: editForm.salePrice && parseFormattedString(editForm.salePrice) !== ''
+                ? Number(parseFormattedString(editForm.salePrice))
+                : undefined,
             stock: Number(editForm.stock),
-
         };
+
+        if (updated.salePrice !== undefined && updated.salePrice >= updated.price) {
+            toast.error('Giá khuyến mại phải nhỏ hơn giá gốc');
+            return;
+        }
 
         if (mode === 'add') {
             // Cập nhật local buffer
@@ -158,6 +184,37 @@ export default function ProductEditorLayout(props: Props) {
                 formData.append("categoryId", selectedCategoryId?.toString() || "");
                 formData.set('description', description);
 
+                // Strip formatting for product main price and sale price in formData
+                const rawPrice = parseFormattedString(formData.get('price') as string || '');
+                const rawSalePrice = parseFormattedString(formData.get('salePrice') as string || '');
+                formData.set('price', rawPrice);
+                if (rawSalePrice) {
+                    formData.set('salePrice', rawSalePrice);
+                } else {
+                    formData.delete('salePrice');
+                }
+
+                // Nếu sản phẩm không có loại, kiểm tra giá khuyến mại của chính sản phẩm đó
+                if (variants.length === 0) {
+                    const priceNum = Number(rawPrice);
+                    const salePriceNum = rawSalePrice ? Number(rawSalePrice) : undefined;
+                    if (salePriceNum !== undefined && !isNaN(salePriceNum) && salePriceNum >= priceNum) {
+                        toast.error('Giá khuyến mại của sản phẩm phải nhỏ hơn giá gốc');
+                        return;
+                    }
+                }
+
+                // Khi có variants, check xem giá khuyến mại của từng loại có nhỏ hơn giá gốc không
+                if (variants.length > 0) {
+                    for (const v of variants) {
+                        const price = Number(v.price);
+                        const salePrice = v.salePrice !== undefined && v.salePrice !== null ? Number(v.salePrice) : undefined;
+                        if (salePrice !== undefined && !isNaN(salePrice) && salePrice >= price) {
+                            toast.error(`Giá khuyến mại của loại "${v.name}" phải nhỏ hơn giá gốc`);
+                            return;
+                        }
+                    }
+                }
 
                 // Khi có variants, stock của product không dùng — set = 0 để pass validation
                 if (variants.length > 0) {
@@ -200,11 +257,24 @@ export default function ProductEditorLayout(props: Props) {
                     </div>
                     <div className="flex flex-col gap-2">
                         <Label htmlFor="price" className="text-sm">Giá sản phẩm</Label>
-                        <Input id="price" name="price" defaultValue={product?.price} placeholder="Giá sản phẩm" required />
+                        <Input 
+                            id="price" 
+                            name="price" 
+                            value={price} 
+                            onChange={(e) => setPrice(formatNumberString(e.target.value))} 
+                            placeholder="Giá sản phẩm" 
+                            required 
+                        />
                     </div>
                     <div className="flex flex-col gap-2">
                         <Label htmlFor="salePrice" className="text-sm">Giá khuyến mại</Label>
-                        <Input id="salePrice" name="salePrice" defaultValue={product?.salePrice} placeholder="Giá khuyến mại" />
+                        <Input 
+                            id="salePrice" 
+                            name="salePrice" 
+                            value={salePrice} 
+                            onChange={(e) => setSalePrice(formatNumberString(e.target.value))} 
+                            placeholder="Giá khuyến mại" 
+                        />
                     </div>
                     <div className="flex flex-col gap-2">
                         <Label htmlFor="stock" className="text-sm">
@@ -266,19 +336,17 @@ export default function ProductEditorLayout(props: Props) {
                                 <div className="flex flex-col gap-1">
                                     <Label className="text-xs">Giá *</Label>
                                     <Input
-                                        type="number"
                                         placeholder="Giá"
                                         value={variantForm.price}
-                                        onChange={(e) => setVariantForm((f) => ({ ...f, price: e.target.value }))}
+                                        onChange={(e) => setVariantForm((f) => ({ ...f, price: formatNumberString(e.target.value) }))}
                                     />
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <Label className="text-xs">Giá KM</Label>
                                     <Input
-                                        type="number"
                                         placeholder="Giá khuyến mại"
                                         value={variantForm.salePrice}
-                                        onChange={(e) => setVariantForm((f) => ({ ...f, salePrice: e.target.value }))}
+                                        onChange={(e) => setVariantForm((f) => ({ ...f, salePrice: formatNumberString(e.target.value) }))}
                                     />
                                 </div>
                                 <div className="flex flex-col gap-1">
@@ -322,18 +390,16 @@ export default function ProductEditorLayout(props: Props) {
                                                     <div className="flex flex-col gap-1">
                                                         <Label className="text-xs">Giá *</Label>
                                                         <Input
-                                                            type="number"
                                                             value={editForm.price}
-                                                            onChange={(e) => setEditForm((f) => ({ ...f, price: e.target.value }))}
+                                                            onChange={(e) => setEditForm((f) => ({ ...f, price: formatNumberString(e.target.value) }))}
                                                         />
                                                     </div>
                                                     <div className="flex flex-col gap-1">
                                                         <Label className="text-xs">Giá KM</Label>
                                                         <Input
-                                                            type="number"
                                                             placeholder="(không bắt buộc)"
                                                             value={editForm.salePrice}
-                                                            onChange={(e) => setEditForm((f) => ({ ...f, salePrice: e.target.value }))}
+                                                            onChange={(e) => setEditForm((f) => ({ ...f, salePrice: formatNumberString(e.target.value) }))}
                                                         />
                                                     </div>
                                                     <div className="flex flex-col gap-1">
@@ -394,7 +460,14 @@ export default function ProductEditorLayout(props: Props) {
                     )}
                 </div>
                 <div className="flex gap-4">
-                    <Button variant="destructive" className="flex-1">Hủy</Button>
+                    <Button 
+                        type="button" 
+                        variant="destructive" 
+                        className="flex-1"
+                        onClick={() => router.push('/seller/dashboard/products-manager')}
+                    >
+                        Hủy
+                    </Button>
                     <Button className="flex-1" type="submit">{mode === 'add' ? 'Thêm sản phẩm' : 'Cập nhật sản phẩm'}</Button>
                 </div>
             </form>

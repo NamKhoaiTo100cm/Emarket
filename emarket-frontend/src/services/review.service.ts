@@ -5,8 +5,8 @@ export const reviewService = {
         method: 'POST',
         body: review instanceof FormData ? review : JSON.stringify(review),
     }),
-    getByProductId: (productId: number, page: number = 1, limit: number = 10) =>
-        apiFetch(`/review/product/${productId}?page=${page}&limit=${limit}`, {}, true),
+    getByProductId: (productId: number, page: number = 1, limit: number = 10, rating?: string) =>
+        apiFetch(`/review/product/${productId}?page=${page}&limit=${limit}${rating ? `&rating=${rating}` : ''}`, {}, true),
     getAll: () =>
         apiFetch('/review', {}, true),
     updateIsHiddenStatus: (id: number, isHidden: boolean) =>

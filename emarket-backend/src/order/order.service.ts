@@ -51,6 +51,13 @@ export class OrderService {
       );
     }
 
+    const inactiveProduct = products.find(p => p.status !== 'active');
+    if (inactiveProduct) {
+      throw new BadRequestException(
+        `Sản phẩm "${inactiveProduct.name}" đã ngừng bán`
+      );
+    }
+
     const shopCount =
       new Set(
         products.map(
@@ -199,7 +206,7 @@ export class OrderService {
     });
   }
 
-  async findByShopId(shopId: number, page: number, limit: number) {
+  async findByShopId(shopId: number, page: number, limit: number, status?: string, keyword?: string) {
     const skip = (page - 1) * limit;
     const take = limit;
     const checkExistsShop = await this.prisma.shop.findUnique({
@@ -211,15 +218,65 @@ export class OrderService {
       throw new NotFoundException("Shop not found")
     }
 
-
-
-    const whereCondition = {
+    const whereCondition: any = {
       shopId: shopId,
       OR: [
         { paymentMethod: 'cod' as const },
         { paymentStatus: 'paid' as const }
       ]
     };
+
+    if (status && status !== 'all') {
+      whereCondition.status = status as any;
+    }
+
+    if (keyword) {
+      const searchConditions: any[] = [];
+      const parsedId = parseInt(keyword, 10);
+      if (!isNaN(parsedId)) {
+        searchConditions.push({ id: parsedId });
+      }
+
+      searchConditions.push(
+        {
+          receiverName: {
+            contains: keyword,
+            mode: 'insensitive',
+          },
+        },
+        {
+          receiverPhone: {
+            contains: keyword,
+            mode: 'insensitive',
+          },
+        },
+        {
+          user: {
+            name: {
+              contains: keyword,
+              mode: 'insensitive',
+            },
+          },
+        },
+        {
+          user: {
+            phone: {
+              contains: keyword,
+              mode: 'insensitive',
+            },
+          },
+        },
+        {
+          trackingCode: {
+            contains: keyword,
+            mode: 'insensitive',
+          },
+        }
+      );
+      whereCondition.AND = [
+        { OR: searchConditions }
+      ];
+    }
 
     const [totalCount, orders] = await Promise.all([
       await this.prisma.order.count({
