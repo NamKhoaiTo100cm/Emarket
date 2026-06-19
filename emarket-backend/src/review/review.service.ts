@@ -29,7 +29,10 @@ export class ReviewService {
       const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
       await this.prisma.product.update({
         where: { id: createReviewDto.productId },
-        data: { rating: averageRating },
+        data: { 
+          rating: averageRating,
+          reviewCount: reviews.length,
+        },
       });
     }
     return review;

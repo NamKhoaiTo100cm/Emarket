@@ -10,6 +10,7 @@ import { reviewService } from "@/services/review.service";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { formatDate } from "@/lib/date";
 
 export default function ReviewsManagerPage() {
     const [reviews, setReviews] = useState<any[]>([]);
@@ -62,7 +63,7 @@ export default function ReviewsManagerPage() {
                                             <span className="font-medium">{review.product.name}</span>
                                         </div>
                                     </TableCell>
-                                    <TableCell>{new Date(review.createdAt).toLocaleDateString()}</TableCell>
+                                    <TableCell>{formatDate(review.createdAt)}</TableCell>
                                     {/* <TableCell>
                                         <Badge variant={review.isHidden ? 'destructive' : 'default'}>
                                             {review.isHidden ? 'Bị ẩn' : 'Hiển thị'}

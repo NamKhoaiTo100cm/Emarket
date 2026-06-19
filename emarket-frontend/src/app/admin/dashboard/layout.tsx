@@ -32,7 +32,7 @@ const data = {
     },
     teams: [
         {
-            name: "Acme Inc",
+            name: "Emarket Inc",
             logo: (
                 // <Image src="https://res.cloudinary.com/dxsf6iomu/image/upload/v1777483395/shops/avatars/oikskkhdb2izkbgiellh.png" alt="" width={30} height={30} className="w-8 h-8 rounded-full" />
                 <Store

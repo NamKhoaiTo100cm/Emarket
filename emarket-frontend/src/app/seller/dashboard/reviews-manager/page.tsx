@@ -9,6 +9,7 @@ import { reviewService } from "@/services/review.service";
 import Image from "next/image";
 import { Star, MessageSquareDot } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { formatDate, formatDateTime } from "@/lib/date";
 
 export default function SellerReviewsManagerPage() {
     const [reviews, setReviews] = useState<any[]>([]);
@@ -185,7 +186,7 @@ export default function SellerReviewsManagerPage() {
                                                 <p className="text-muted-foreground italic">"{review.sellerReply}"</p>
                                                 {review.sellerReplyAt && (
                                                     <p className="text-[9px] text-muted-foreground mt-1">
-                                                        {new Date(review.sellerReplyAt).toLocaleString("vi-VN")}
+                                                        {formatDateTime(review.sellerReplyAt)}
                                                     </p>
                                                 )}
                                             </div>
@@ -247,7 +248,7 @@ export default function SellerReviewsManagerPage() {
 
                                     {/* Created Date */}
                                     <TableCell className="py-4 text-sm text-muted-foreground">
-                                        {new Date(review.createdAt).toLocaleDateString("vi-VN")}
+                                        {formatDate(review.createdAt)}
                                     </TableCell>
                                 </TableRow>
                             ))

@@ -68,7 +68,7 @@ let data = {
         },
         {
             title: "Báo cáo & Thống kê",
-            url: "/staff/dashboard/statistics",
+            url: "/staff/dashboard",
             icon: (
                 <PieChartIcon />
             ),

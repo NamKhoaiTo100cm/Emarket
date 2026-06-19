@@ -13,6 +13,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { formatDate, formatDateTime } from "@/lib/date";
 
 export default function UserOrdersPage() {
     const [orderList, setOrderList] = useState<any[]>([]);
@@ -237,7 +238,7 @@ export default function UserOrdersPage() {
                         <div className="flex items-center justify-between px-4 py-2.5 flex-wrap gap-2">
                             <div className="flex flex-col gap-1">
                                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                    <span>{new Date(order.createdAt).toLocaleDateString("vi-VN")}</span>
+                                    <span>{formatDate(order.createdAt)}</span>
                                     <span className="w-px h-3 bg-border" />
                                     <span>Mã đơn: #{order.id}</span>
                                     <span className="w-px h-3 bg-border" />
@@ -488,7 +489,7 @@ export default function UserOrdersPage() {
                                 </div>
                                 <div className="text-right">
                                     <p className="text-xs text-muted-foreground uppercase font-semibold">Ngày đặt hàng</p>
-                                    <p className="font-medium mt-1">{new Date(selectedDetailOrder.createdAt).toLocaleString("vi-VN")}</p>
+                                    <p className="font-medium mt-1">{formatDateTime(selectedDetailOrder.createdAt)}</p>
                                 </div>
                             </div>
 

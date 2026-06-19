@@ -30,6 +30,7 @@ import {
     History,
 } from "lucide-react";
 import Image from "next/image";
+import { formatDate, formatTime, formatDateTime } from "@/lib/date";
 
 export default function ReportsManagerPage() {
     const [stats, setStats] = useState<any>(null);
@@ -504,9 +505,9 @@ export default function ReportsManagerPage() {
                                                                 <div className="space-y-0.5">
                                                                     <div className="flex items-center justify-end gap-1 font-semibold text-foreground">
                                                                         <Calendar className="w-3 h-3 text-muted-foreground" />
-                                                                        <span>{new Date(item.resolvedAt).toLocaleDateString("vi-VN")}</span>
+                                                                        <span>{formatDate(item.resolvedAt)}</span>
                                                                     </div>
-                                                                    <div>{new Date(item.resolvedAt).toLocaleTimeString("vi-VN", { hour: '2-digit', minute: '2-digit' })}</div>
+                                                                    <div>{formatTime(item.resolvedAt)}</div>
                                                                 </div>
                                                             ) : (
                                                                 "N/A"
@@ -563,7 +564,7 @@ export default function ReportsManagerPage() {
                                     </p>
                                     <div className="flex justify-end items-center text-[10px] text-muted-foreground gap-1 pt-1">
                                         <Calendar className="w-3 h-3" />
-                                        {new Date(d.createdAt).toLocaleString("vi-VN")}
+                                        {formatDateTime(d.createdAt)}
                                     </div>
                                 </div>
                             ))

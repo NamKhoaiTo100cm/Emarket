@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { BadgeCheck, Clock, FileText, ImageIcon, ShieldAlert, ShieldCheck, Upload, X } from "lucide-react";
 import Image from "next/image";
+import { formatDateTime } from "@/lib/date";
 
 const statusConfig = {
     none: { label: "Chưa xác thực", color: "secondary" as const, icon: ShieldAlert, desc: "Shop của bạn chưa được xác thực." },
@@ -230,7 +231,7 @@ export default function SellerVerificationPage() {
                                     <div className="flex items-center justify-between">
                                         <Badge variant={st.color}>{st.label}</Badge>
                                         <span className="text-xs text-muted-foreground">
-                                            {new Date(v.createdAt).toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                                            {formatDateTime(v.createdAt)}
                                         </span>
                                     </div>
                                     {v.note && <p className="text-sm text-muted-foreground">Ghi chú: {v.note}</p>}

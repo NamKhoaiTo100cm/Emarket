@@ -27,6 +27,8 @@ import {
 
 
 
+import { formatDateTime } from '@/lib/date'
+
 export default function HeaderContent({ user: initialUser }: { user: any }) {
     const router = useRouter();
     const { data: res, isLoading } = useMe();
@@ -189,7 +191,7 @@ export default function HeaderContent({ user: initialUser }: { user: any }) {
                                                                     </p>
                                                                 )}
                                                                 <span className="text-[9px] text-muted-foreground/80 mt-1">
-                                                                    {new Date(notif.createdAt).toLocaleString('vi-VN')}
+                                                                    {formatDateTime(notif.createdAt)}
                                                                 </span>
                                                             </div>
                                                         ))}

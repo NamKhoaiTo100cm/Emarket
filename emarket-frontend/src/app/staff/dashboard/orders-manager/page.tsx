@@ -34,6 +34,7 @@ import {
 import BadgeOrderStatus from "@/components/ui/bagge-order-status";
 import Image from "next/image";
 import { PaginationLayout } from "@/components/layout/PaginationLayout";
+import { formatDate, formatTime, formatDateTime } from "@/lib/date";
 
 export default function StaffOrdersManagerPage() {
     const [orders, setOrders] = useState<any[]>([]);
@@ -287,8 +288,8 @@ export default function StaffOrdersManagerPage() {
                                         </TableCell>
                                         <TableCell className="text-xs text-muted-foreground">
                                             <div className="flex flex-col">
-                                                <span>{new Date(order.createdAt).toLocaleDateString("vi-VN")}</span>
-                                                <span>{new Date(order.createdAt).toLocaleTimeString("vi-VN", { hour: '2-digit', minute: '2-digit' })}</span>
+                                                <span>{formatDate(order.createdAt)}</span>
+                                                <span>{formatTime(order.createdAt)}</span>
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-right">
@@ -332,7 +333,7 @@ export default function StaffOrdersManagerPage() {
                         <DialogTitle className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-lg font-bold border-b pb-2 gap-2 text-left">
                             <span>Chi tiết đơn hàng #{selectedOrder?.id}</span>
                             <span className="text-xs sm:text-sm font-normal text-muted-foreground">
-                                Ngày đặt: {selectedOrder?.createdAt ? new Date(selectedOrder.createdAt).toLocaleString("vi-VN") : ""}
+                                Ngày đặt: {selectedOrder?.createdAt ? formatDateTime(selectedOrder.createdAt) : ""}
                             </span>
                         </DialogTitle>
                     </DialogHeader>

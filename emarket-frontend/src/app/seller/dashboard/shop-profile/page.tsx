@@ -12,6 +12,7 @@ import { Camera, Save, Phone, MapPin, AlignLeft, Info, HelpCircle } from "lucide
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { formatDateLong } from "@/lib/date";
 
 export default function ShopProfilePage() {
     const { data: resUser } = useMe();
@@ -298,7 +299,7 @@ export default function ShopProfilePage() {
                                     Ngày tạo
                                 </Label>
                                 <Input
-                                    value={new Date(shop.createdAt).toLocaleDateString("vi-VN", { day: 'numeric', month: 'long', year: 'numeric' })}
+                                    value={formatDateLong(shop.createdAt)}
                                     disabled
                                     className="w-full bg-slate-50 dark:bg-slate-800 text-slate-500 cursor-not-allowed"
                                 />

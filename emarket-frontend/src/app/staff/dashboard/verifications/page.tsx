@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { BadgeCheck, CheckCircle2, Clock, ImageIcon, ShieldAlert, ShieldCheck, XCircle } from "lucide-react";
 import Image from "next/image";
+import { formatDateTime } from "@/lib/date";
 
 const statusConfig: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
     pending: { label: "Chờ duyệt", variant: "default" },
@@ -127,7 +128,7 @@ export default function StaffVerificationsPage() {
                                                         {statusConfig[v.status]?.label}
                                                     </Badge>
                                                     <span className="text-xs text-muted-foreground">
-                                                        Nộp lúc: {new Date(v.createdAt).toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                                                        Nộp lúc: {formatDateTime(v.createdAt)}
                                                     </span>
                                                 </div>
 

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { userService } from "@/services/user.sevice";
+import { formatDate } from "@/lib/date";
 
 export default function UserManagerPage() {
     const [users, setUsers] = useState<any[]>([]);
@@ -25,7 +26,6 @@ export default function UserManagerPage() {
                                 <TableCell>Email</TableCell>
                                 <TableCell>Số điện thoại</TableCell>
                                 <TableCell>Ngày tạo</TableCell>
-                                <TableCell>Tổng số sản phẩm</TableCell>
                                 <TableCell>Trạng thái</TableCell>
                             </TableRow>
                         </TableHeader>
@@ -45,8 +45,7 @@ export default function UserManagerPage() {
                                     </TableCell>
                                     <TableCell>{user.email}</TableCell>
                                     <TableCell>{user.phone}</TableCell>
-                                    <TableCell>{new Date(user.createdAt).toLocaleDateString()}</TableCell>
-                                    <TableCell>{user.productCount}</TableCell>
+                                    <TableCell>{formatDate(user.createdAt)}</TableCell>
                                     <TableCell>
                                         <Select
                                             name="status"

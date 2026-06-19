@@ -40,6 +40,7 @@ import VerifiedBadge from '@/components/ui/verified-badge';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ReportButton from '@/components/ui/report-button';
+import { formatDate } from '@/lib/date';
 
 
 const ProductDetailPage = () => {
@@ -248,7 +249,7 @@ const ProductDetailPage = () => {
               {Number(productItem.ranking) % 1 != 0 && (<StarHalf className="mt-2 text-yellow-400 fill-yellow-400" />)}
 
             </div>
-            <h1 className="mt-2">{Number(productItem.ranking)} ({productItem.reviewCount}) <a>reviews</a> | Đã bán {productItem.soldCount}</h1>
+            <h1 className="mt-2">{Number(productItem.ranking)} ({reviewsPagination.totalItems}) <a>đánh giá</a> | Đã bán {productItem.soldCount}</h1>
             <ReportButton type="product" targetId={productItem.id} className="ml-2 mt-1" />
           </div>
           {/* product name */}
@@ -455,7 +456,7 @@ const ProductDetailPage = () => {
           </div>
         </div>
         <div className='flex flex-row gap-2'>
-          <Button onClick={() => router.push(`/shop-detail/${productItem.shopId}`)}><Store />View shop</Button>
+          <Button onClick={() => router.push(`/shop-detail/${productItem.shopId}`)}><Store />Xem shop</Button>
           {/* <Button><MessagesSquare />Chat với shop</Button> */}
           <ChatButton shopId={productData?.shopId} />
         </div>
@@ -635,7 +636,7 @@ const ProductDetailPage = () => {
                     {review.rating % 1 != 0 && (<StarHalf className="mt-1 text-yellow-400 fill-yellow-400" />)}
                   </div>
 
-                  <div>{new Date(review.createdAt).toLocaleDateString()}</div>
+                  <div>{formatDate(review.createdAt)}</div>
                 </CardTitle>
                 <CardDescription className="mt-1">
                   <p>{review.comment}</p>
@@ -665,7 +666,7 @@ const ProductDetailPage = () => {
                       <span className="flex items-center gap-1">🏪 Phản hồi của Người bán</span>
                       {review.sellerReplyAt && (
                         <span className="text-[10px] text-muted-foreground font-normal">
-                          {new Date(review.sellerReplyAt).toLocaleDateString("vi-VN")}
+                          {formatDate(review.sellerReplyAt)}
                         </span>
                       )}
                     </div>

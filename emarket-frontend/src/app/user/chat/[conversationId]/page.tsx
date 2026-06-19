@@ -29,6 +29,7 @@ import {
     MoreVertical,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { formatDate as libFormatDate, formatTime as libFormatTime } from '@/lib/date';
 import { chatService } from '@/services/chat.service';
 import Image from 'next/image';
 import { Card } from '@/components/ui/card';
@@ -47,10 +48,7 @@ interface Message {
 }
 
 function formatTime(dateStr: string) {
-    return new Date(dateStr).toLocaleTimeString('vi-VN', {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
+    return libFormatTime(dateStr);
 }
 
 function formatDate(dateStr: string) {
@@ -68,7 +66,7 @@ function formatDate(dateStr: string) {
         return 'Hôm qua';
     }
 
-    return date.toLocaleDateString('vi-VN');
+    return libFormatDate(dateStr);
 }
 
 function groupByDate(messages: Message[]) {

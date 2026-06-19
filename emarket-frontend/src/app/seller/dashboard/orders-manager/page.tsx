@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { toast } from "sonner";
+import { formatDate, formatDateTime } from "@/lib/date";
 
 const OrdersManagerPage = () => {
     const [printOrder, setPrintOrder] = useState<any>(null);
@@ -211,7 +212,7 @@ const OrdersManagerPage = () => {
                                     )}
                                 </div>
                             </TableCell>
-                            <TableCell>{order.createdAt}</TableCell>
+                            <TableCell>{formatDateTime(order.createdAt)}</TableCell>
                             <TableCell>
                                 <div className="flex items-center gap-1">
                                     {order.status === 'pending' && (<>
@@ -312,11 +313,7 @@ const OrdersManagerPage = () => {
                                 codAmount={printOrder.total}
                                 paymentMethod={printOrder.paymentMethod}
                                 deliveryMethod={printOrder.shippingMethod}
-                                createdAt={new Date(printOrder.createdAt).toLocaleDateString('vi-VN', {
-                                    day: '2-digit',
-                                    month: '2-digit',
-                                    year: 'numeric'
-                                })}
+                                createdAt={formatDate(printOrder.createdAt)}
                             />
                         )}
                     </div>
@@ -340,7 +337,7 @@ const OrdersManagerPage = () => {
                         <DialogTitle className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-lg font-bold border-b pb-2 gap-2 text-left">
                             <span>Chi tiết đơn hàng #{selectedDetailOrder?.id}</span>
                             <span className="text-xs sm:text-sm font-normal text-muted-foreground">
-                                Ngày đặt: {selectedDetailOrder?.createdAt ? new Date(selectedDetailOrder.createdAt).toLocaleString("vi-VN") : ""}
+                                Ngày đặt: {selectedDetailOrder?.createdAt ? formatDateTime(selectedDetailOrder.createdAt) : ""}
                             </span>
                         </DialogTitle>
                     </DialogHeader>

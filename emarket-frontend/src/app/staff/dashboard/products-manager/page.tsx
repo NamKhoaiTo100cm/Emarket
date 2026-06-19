@@ -34,6 +34,7 @@ import {
     DialogClose
 } from "@/components/ui/dialog";
 import Image from "next/image";
+import { formatDate } from "@/lib/date";
 
 export default function ProductsManagerPage() {
     const [products, setProducts] = useState<any[]>([]);
@@ -354,7 +355,7 @@ export default function ProductsManagerPage() {
                                             <TableCell>
                                                 <div className="flex items-center gap-1.5 text-muted-foreground text-xs">
                                                     <Calendar className="h-3.5 w-3.5 text-muted-foreground/70" />
-                                                    <span>{new Date(product.createdAt).toLocaleDateString("vi-VN")}</span>
+                                                    <span>{formatDate(product.createdAt)}</span>
                                                 </div>
                                             </TableCell>
 

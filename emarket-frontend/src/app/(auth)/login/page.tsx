@@ -11,6 +11,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useActionState } from 'react'
+import { toast } from 'sonner'
 
 const LoginContent = () => {
   const [stateLogin, actionLogin, isPending] = useActionState(loginAction, null);
@@ -19,12 +20,19 @@ const LoginContent = () => {
 
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
+  const registered = searchParams.get("registered");
 
   useEffect(() => {
     if (error === "unauthorized") {
-      alert("Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại.")
+      toast.error("Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại.")
     }
   }, [error])
+
+  useEffect(() => {
+    if (registered === "true") {
+      toast.success("Đăng ký tài khoản thành công! Vui lòng đăng nhập.")
+    }
+  }, [registered])
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -37,7 +45,7 @@ const LoginContent = () => {
       const res = await authService.login(String(email), String(password));
 
       if (res.statusCode !== 201) {
-        alert(res.message)
+        toast.error(res.message || "Tên đăng nhập hoặc mật khẩu không chính xác")
         return
       }
 
@@ -49,8 +57,8 @@ const LoginContent = () => {
       });
 
       window.location.href = "/";
-    } catch (error) {
-      alert(error)
+    } catch (err: any) {
+      toast.error(err.message || "Đã xảy ra lỗi khi đăng nhập")
     }
   }
 

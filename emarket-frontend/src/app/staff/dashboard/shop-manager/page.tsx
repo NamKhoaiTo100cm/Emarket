@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import VerifiedBadge from "@/components/ui/verified-badge";
 import { Badge } from "@/components/ui/badge";
 import { ShieldAlert } from "lucide-react";
+import { formatDate } from "@/lib/date";
 
 export default function ShopManagerPage() {
     const [shops, setShops] = useState<any[]>([]);
@@ -51,7 +52,7 @@ export default function ShopManagerPage() {
                                     </TableCell>
                                     <TableCell>{shop.address}</TableCell>
                                     <TableCell>{shop.phone}</TableCell>
-                                    <TableCell>{new Date(shop.createdAt).toLocaleDateString()}</TableCell>
+                                    <TableCell>{formatDate(shop.createdAt)}</TableCell>
                                     <TableCell>{shop.productCount}</TableCell>
                                     <TableCell>
                                         {shop.isVerified ? (

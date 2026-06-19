@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/table";
 import { Wallet, CheckCircle, XCircle, AlertCircle, Landmark } from "lucide-react";
 import Image from "next/image";
+import { formatDate, formatTime, formatDateTime } from "@/lib/date";
 
 const statusMap = {
     PENDING: { label: "Chờ duyệt", variant: "secondary" },
@@ -174,8 +175,8 @@ export default function AdminWithdrawalsPage() {
                                             </TableCell>
                                             <TableCell className="py-4 text-sm text-muted-foreground">
                                                 <div className="flex flex-col gap-0.5">
-                                                    <span className="font-semibold">{new Date(req.createdAt).toLocaleDateString("vi-VN")}</span>
-                                                    <span className="text-xs opacity-75">{new Date(req.createdAt).toLocaleTimeString("vi-VN")}</span>
+                                                    <span className="font-semibold">{formatDate(req.createdAt)}</span>
+                                                    <span className="text-xs opacity-75">{formatTime(req.createdAt)}</span>
                                                 </div>
                                             </TableCell>
                                             <TableCell className="py-4 text-center">
@@ -188,7 +189,7 @@ export default function AdminWithdrawalsPage() {
                                             <TableCell className="py-3 text-right pr-4">
                                                 <div className="text-sm text-muted-foreground space-y-1">
                                                     {req.resolvedAt && (
-                                                        <p className="text-xs font-semibold text-foreground">Đã chuyển: {new Date(req.resolvedAt).toLocaleDateString("vi-VN")} {new Date(req.resolvedAt).toLocaleTimeString("vi-VN")}</p>
+                                                        <p className="text-xs font-semibold text-foreground">Đã chuyển: {formatDateTime(req.resolvedAt)}</p>
                                                     )}
                                                     {req.note && (
                                                         <p className="text-xs text-muted-foreground italic max-w-[200px] truncate ml-auto" title={req.note}>

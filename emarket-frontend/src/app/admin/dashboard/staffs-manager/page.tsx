@@ -33,6 +33,7 @@ import {
     Calendar,
     Loader2
 } from "lucide-react";
+import { formatDate } from "@/lib/date";
 
 export default function StaffsManagerPage() {
     const [users, setUsers] = useState<any[]>([]);
@@ -293,7 +294,7 @@ export default function StaffsManagerPage() {
                                             <TableCell>
                                                 <div className="flex items-center gap-1.5 text-muted-foreground">
                                                     <Calendar className="h-3.5 w-3.5 text-muted-foreground/70" />
-                                                    <span>{new Date(user.createdAt).toLocaleDateString("vi-VN")}</span>
+                                                    <span>{formatDate(user.createdAt)}</span>
                                                 </div>
                                             </TableCell>
                                             <TableCell>

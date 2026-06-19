@@ -35,6 +35,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+import { formatDate, formatTime, formatDateTime } from "@/lib/date";
 
 export default function ReturnsManagerPage() {
     const [requests, setRequests] = useState<any[]>([]);
@@ -292,8 +293,8 @@ export default function ReturnsManagerPage() {
                                     </TableCell>
                                     <TableCell className="text-xs text-muted-foreground">
                                         <div className="flex flex-col">
-                                            <span>{new Date(req.createdAt).toLocaleDateString("vi-VN")}</span>
-                                            <span>{new Date(req.createdAt).toLocaleTimeString("vi-VN", { hour: '2-digit', minute: '2-digit' })}</span>
+                                            <span>{formatDate(req.createdAt)}</span>
+                                            <span>{formatTime(req.createdAt)}</span>
                                         </div>
                                     </TableCell>
                                     <TableCell>
@@ -466,7 +467,7 @@ export default function ReturnsManagerPage() {
                                     <span className="text-xs text-muted-foreground block">NGÀY TẠO YÊU CẦU</span>
                                     <span className="text-sm flex items-center gap-1.5 mt-0.5">
                                         <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
-                                        {new Date(detailRequest.createdAt).toLocaleString("vi-VN")}
+                                        {formatDateTime(detailRequest.createdAt)}
                                     </span>
                                 </div>
                             </div>
@@ -603,7 +604,7 @@ export default function ReturnsManagerPage() {
                                     </h4>
                                     <div className="space-y-2 text-xs md:text-sm">
                                         <div className="flex gap-2 text-xs text-muted-foreground">
-                                            <span>Ngày giải quyết: {new Date(detailRequest.updatedAt).toLocaleString("vi-VN")}</span>
+                                            <span>Ngày giải quyết: {formatDateTime(detailRequest.updatedAt)}</span>
                                         </div>
                                         {detailRequest.staffNote && (
                                             <p className="p-3 rounded-lg bg-background border border-border text-foreground/80 italic">

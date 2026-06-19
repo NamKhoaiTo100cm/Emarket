@@ -104,5 +104,5 @@ export async function registerAction(
         }
         return { error: error.message || "Đã xảy ra lỗi trong quá trình đăng ký" }
     }
-    redirect('/login')
+    redirect('/login?registered=true')
 }

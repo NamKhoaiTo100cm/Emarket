@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Field } from "@/components/ui/field";
 import { formatNumberString, parseFormattedString } from "@/lib/utils";
+import { formatDate } from "@/lib/date";
 
 export default function VoucherContent({ role }: { role: 'admin' | 'seller' }) {
     const [vouchers, setVouchers] = useState<any[]>([]);
@@ -339,7 +340,7 @@ export default function VoucherContent({ role }: { role: 'admin' | 'seller' }) {
                                     </TableCell>
                                     <TableCell>{voucher.usedCount}</TableCell>
                                     <TableCell>{voucher.maxUses}</TableCell>
-                                    <TableCell>{voucher.expiresAt ? new Date(voucher.expiresAt).toLocaleDateString() : "Không giới hạn"}</TableCell>
+                                    <TableCell>{voucher.expiresAt ? formatDate(voucher.expiresAt) : "Không giới hạn"}</TableCell>
                                     <TableCell>
                                         <Select
                                             name="status"

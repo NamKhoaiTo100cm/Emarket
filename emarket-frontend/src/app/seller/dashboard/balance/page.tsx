@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Wallet, Clock, ArrowDownCircle } from "lucide-react";
 import { withdrawalService } from "@/services/withdrawal.service";
 import { formatNumberString, parseFormattedString } from "@/lib/utils";
+import { formatDate } from "@/lib/date";
 
 const BANKS = [
     "Vietcombank", "Techcombank", "BIDV", "Agribank",
@@ -198,7 +199,7 @@ export default function SellerBalancePage() {
                                                 {statusMap[req.status as keyof typeof statusMap]?.label}
                                             </Badge>
                                             <p className="text-xs text-muted-foreground">
-                                                {new Date(req.createdAt).toLocaleDateString("vi-VN")}
+                                                {formatDate(req.createdAt)}
                                             </p>
                                         </div>
                                     </div>

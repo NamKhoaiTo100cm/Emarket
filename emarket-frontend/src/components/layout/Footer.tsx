@@ -133,9 +133,9 @@ const footerLinks = [
         ],
     },
     {
-        title: "Về E-Store",
+        title: "Về Emarket",
         links: [
-            { href: "#", label: "Giới thiệu E-Store" },
+            { href: "#", label: "Giới thiệu Emarket" },
             { href: "#", label: "Điều khoản sử dụng" },
             { href: "#", label: "Điều khoản bảo mật" },
             { href: "#", label: "Chính sách giải quyết khiếu nại" },
@@ -145,7 +145,7 @@ const footerLinks = [
         title: "Hợp tác và liên kết",
         links: [
             { href: "#", label: "Quy chế hoạt động" },
-            { href: "#", label: "Bán hàng cùng E-Store" },
+            { href: "#", label: "Bán hàng cùng Emarket" },
             { href: "#", label: "Chứng nhận bởi" },
             { href: "#", label: "Chăm sóc bán hàng" },
         ],

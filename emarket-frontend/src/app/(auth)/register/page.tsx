@@ -1,6 +1,7 @@
 "use client"
 import { registerAction } from "@/actions/auth.action"
 import { Button } from "@/components/ui/button"
+import { toast } from "sonner"
 import {
     Card,
     CardContent,
@@ -22,7 +23,7 @@ const RegisterPage = () => {
     const [state, action, isPending] = useActionState(registerAction, null)
     useEffect(() => {
         if (state?.error) {
-            alert(state.error)
+            toast.error(state.error)
         }
     }, [state])
     return (
@@ -77,7 +78,7 @@ const RegisterPage = () => {
                                     </Field>
                                 </Field>
                                 <FieldDescription>
-                                    Phải ít nhất 8 ký tự
+                                    Phải ít nhất 6 ký tự
                                 </FieldDescription>
                             </Field>
                             <Field>
